@@ -56,6 +56,9 @@
       .no-print {
         display: none !important;
       }
+      #step-3 {
+        display: block !important;
+      }
       .print-only-doc {
         display: block !important;
         border: none !important;
@@ -585,33 +588,40 @@
               <div id="daySimulatorDetail" class="p-3.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-800 leading-relaxed"></div>
             </div>
 
-            <!-- Service Modalities (Clean & Sober) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div class="p-4 rounded-xl border border-slate-200 bg-white flex flex-col justify-between">
+            <!-- Business-Day Statutory Deadline Calculator & Export -->
+            <div class="p-5 rounded-xl border border-slate-200 bg-white space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
                 <div>
-                  <span class="text-[11px] font-bold uppercase text-slate-500">Autogestión gratuita</span>
-                  <h3 class="font-display font-bold text-base text-navy mt-0.5">Descarga manual de los 3 oficios</h3>
-                  <p class="font-display font-extrabold text-xl text-navy mt-1">$0 COP</p>
-                  <p class="text-xs text-slate-600 mt-1.5">
-                    Descarga e imprime sin costo la solicitud de reversión al banco, la reclamación al comercio y el formato para la SIC.
+                  <h3 class="font-display font-bold text-sm text-navy">Cálculo de fechas límite en días hábiles (Colombia)</h3>
+                  <p class="text-xs text-slate-600 mt-0.5">
+                    Selecciona la fecha en que radicas la solicitud para conocer el vencimiento exacto de los plazos del Decreto 587 de 2016 (excluyendo sábados, domingos y festivos nacionales).
                   </p>
                 </div>
-                <button type="button" onclick="goToStep(3); window.print();" class="mt-4 w-full py-2 rounded-lg border border-navy text-navy font-bold text-xs hover:bg-slate-50 transition">
-                  Imprimir o guardar documentos gratis
-                </button>
+                <div class="shrink-0">
+                  <label for="inputFechaRadicacion" class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Fecha de radicación</label>
+                  <input id="inputFechaRadicacion" type="date" onchange="recalculateCase()" class="py-1.5 px-2.5 rounded-lg border-slate-300 text-xs font-semibold text-navy focus:border-navy focus:ring-navy"/>
+                </div>
               </div>
 
-              <div class="p-4 rounded-xl border-2 border-navy bg-navy text-white flex flex-col justify-between">
-                <div>
-                  <span class="text-[11px] font-bold uppercase text-emerald">Radicación asistida</span>
-                  <h3 class="font-display font-bold text-base text-white mt-0.5">Envío simultáneo certificado + seguimiento</h3>
-                  <p class="font-display font-extrabold text-xl text-white mt-1">$19.900 COP <span class="text-xs font-normal text-slate-300">/ caso único (0% comisión)</span></p>
-                  <p class="text-xs text-slate-300 mt-1.5">
-                    Remisión electrónica con constancia de entrega al comercio, al banco emisor y al expediente de la SIC, con alertas durante los 15 días hábiles.
-                  </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+                  <span class="text-[11px] font-semibold uppercase text-slate-500 block">Cierre de oposición del proveedor (5 días hábiles)</span>
+                  <p id="deadline5DaysText" class="font-display font-bold text-base text-navy mt-0.5"></p>
+                  <p class="text-[11px] text-slate-600 mt-0.5">Art. 2.2.2.51.6 Decreto 1074 de 2015</p>
                 </div>
-                <button type="button" onclick="openFilingModal()" class="mt-4 w-full py-2 rounded-lg bg-emerald hover:bg-emerald-dark text-white font-display font-bold text-xs transition">
-                  Generar constancia de radicación
+                <div class="p-3.5 rounded-lg bg-emerald-soft border border-emerald/30">
+                  <span class="text-[11px] font-semibold uppercase text-emerald-dark block">Fecha máxima de abono bancario (15 días hábiles)</span>
+                  <p id="deadline15DaysText" class="font-display font-bold text-base text-navy mt-0.5"></p>
+                  <p class="text-[11px] text-slate-700 mt-0.5">Art. 2.2.2.51.5 Decreto 1074 de 2015</p>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-end gap-2.5 pt-1">
+                <button type="button" onclick="downloadAllDocumentsTxt()" class="px-4 py-2 rounded-lg border border-navy text-navy font-display font-bold text-xs hover:bg-slate-50 transition">
+                  Descargar paquete con los 3 oficios (.TXT)
+                </button>
+                <button type="button" onclick="goToStep(3); window.print();" class="px-4 py-2 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-xs transition">
+                  Imprimir o guardar en PDF
                 </button>
               </div>
             </div>
@@ -676,56 +686,6 @@
 
     </div>
   </main>
-
-  <!-- MODAL: CONSTANCIA DE RADICACIÓN -->
-  <div id="filingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy/60 p-4 no-print" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="bg-white rounded-xl max-w-lg w-full p-6 border border-slate-200 shadow-xl space-y-4">
-      <div class="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
-        <div>
-          <span class="text-[11px] font-mono font-semibold text-emerald-dark">Expediente #REV-2026-CO-88421</span>
-          <h3 id="modalTitle" class="font-display font-bold text-lg text-navy mt-0.5">Resumen de radicación listo</h3>
-        </div>
-        <button type="button" onclick="closeFilingModal()" class="text-slate-400 hover:text-slate-700 text-sm font-bold px-2 py-1" aria-label="Cerrar ventana">
-          ✕
-        </button>
-      </div>
-
-      <div class="space-y-2.5 text-xs">
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
-          <div>
-            <p class="font-bold text-navy">1. Reclamación directa al proveedor</p>
-            <p id="modalMerchantTarget" class="text-slate-600"></p>
-          </div>
-          <span class="px-2 py-0.5 rounded bg-emerald-soft text-emerald-dark font-bold shrink-0">Listo</span>
-        </div>
-
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
-          <div>
-            <p class="font-bold text-navy">2. Orden de reversión al emisor financiero</p>
-            <p id="modalBankTarget" class="text-slate-600"></p>
-          </div>
-          <span class="px-2 py-0.5 rounded bg-emerald-soft text-emerald-dark font-bold shrink-0">Plazo: 15 días hábiles</span>
-        </div>
-
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
-          <div>
-            <p class="font-bold text-navy">3. Anexo probatorio de mensajes de datos</p>
-            <p class="text-slate-600">Soportes con huella SHA-256 conforme a la Ley 527 de 1999</p>
-          </div>
-          <span class="px-2 py-0.5 rounded bg-slate-200 text-navy font-bold shrink-0">Verificado</span>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-end gap-2 pt-2">
-        <button type="button" onclick="closeFilingModal(); goToStep(3);" class="px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
-          Revisar oficios
-        </button>
-        <button type="button" onclick="closeFilingModal()" class="px-4 py-2 rounded-lg bg-navy text-white text-xs font-semibold hover:bg-navy-light">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-200 py-5 px-4 sm:px-6 mt-10 text-xs text-slate-500 no-print">

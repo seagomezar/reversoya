@@ -44,8 +44,46 @@ const CAUSAL_META = {
   }
 };
 
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function formatCOP(num) {
-  return '$' + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const safeNum = Number.isFinite(Number(num)) ? Math.max(0, Math.round(Number(num))) : 0;
+  return '$' + safeNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+const COLOMBIA_HOLIDAYS_2026 = new Set([
+  '2026-01-01', '2026-01-12', '2026-03-23', '2026-04-02', '2026-04-03',
+  '2026-05-01', '2026-05-18', '2026-06-08', '2026-06-15', '2026-06-29',
+  '2026-07-20', '2026-08-07', '2026-08-17', '2026-10-12', '2026-11-02',
+  '2026-11-16', '2026-12-08', '2026-12-25'
+]);
+
+function addColombianBusinessDays(startIso, daysToAdd) {
+  const parts = String(startIso || '').split('-').map(Number);
+  const dt = (parts.length === 3 && !parts.some(isNaN))
+    ? new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]))
+    : new Date();
+  let added = 0;
+  while (added < daysToAdd) {
+    dt.setUTCDate(dt.getUTCDate() + 1);
+    const dow = dt.getUTCDay();
+    const iso = dt.toISOString().slice(0, 10);
+    if (dow !== 0 && dow !== 6 && !COLOMBIA_HOLIDAYS_2026.has(iso)) {
+      added++;
+    }
+  }
+  const months = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+  ];
+  return `${dt.getUTCDate()} de ${months[dt.getUTCMonth()]} de ${dt.getUTCFullYear()} (${dt.toISOString().slice(0, 10)})`;
 }
 
 function goToStep(stepNum) {
@@ -192,8 +230,8 @@ function renderEvidenceList() {
     item.className = 'p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2';
     item.innerHTML = `
       <div class="min-w-0">
-        <span class="block truncate font-semibold text-navy">${file.name}</span>
-        <span class="block font-mono text-[10px] text-emerald-dark">SHA-256: ${file.hash}</span>
+        <span class="block truncate font-semibold text-navy">${escapeHtml(file.name)}</span>
+        <span class="block font-mono text-[10px] text-emerald-dark">SHA-256: ${escapeHtml(file.hash)}</span>
       </div>
       <button type="button" onclick="removeEvidenceFile(${index})" class="text-slate-400 hover:text-danger text-xs font-bold px-1.5" title="Quitar archivo">✕</button>
     `;
@@ -231,19 +269,37 @@ async function handleRealFileUpload(fileList) {
 }
 
 function recalculateCase() {
-  state.monto = Math.max(0, Number(document.getElementById('inputMonto')?.value || 680000));
-  state.medioPago = document.getElementById('selectMedioPago')?.value || state.medioPago;
-  state.banco = document.getElementById('selectBanco')?.value || state.banco;
-  state.comercio = document.getElementById('inputComercio')?.value || state.comercio;
-  state.nombreUsuario = document.getElementById('inputNombreUsuario')?.value || state.nombreUsuario;
-  state.cedulaUsuario = document.getElementById('inputCedulaUsuario')?.value || state.cedulaUsuario;
-  state.diasTranscurridos = Number(document.getElementById('selectDiasTranscurridos')?.value || 2);
+  const montoEl = document.getElementById('inputMonto');
+  const rawMonto = montoEl ? Number(montoEl.value) : state.monto;
+  state.monto = Number.isFinite(rawMonto) ? Math.max(0, rawMonto) : 0;
+
+  const medioEl = document.getElementById('selectMedioPago');
+  if (medioEl) state.medioPago = medioEl.value;
+
+  const bancoEl = document.getElementById('selectBanco');
+  if (bancoEl) state.banco = bancoEl.value;
+
+  const comercioEl = document.getElementById('inputComercio');
+  if (comercioEl) state.comercio = comercioEl.value.trim() || '[Comercio / Proveedor por diligenciar]';
+
+  const nombreEl = document.getElementById('inputNombreUsuario');
+  if (nombreEl) state.nombreUsuario = nombreEl.value.trim() || '[Nombre del solicitante]';
+
+  const cedulaEl = document.getElementById('inputCedulaUsuario');
+  if (cedulaEl) state.cedulaUsuario = cedulaEl.value.trim() || '[Número de identificación]';
+
+  const diasEl = document.getElementById('selectDiasTranscurridos');
+  if (diasEl) state.diasTranscurridos = Number(diasEl.value) || 2;
 
   const isVuelo = state.causal === 'vuelo';
   const compensacionRAC3 = isVuelo ? Math.round(state.monto * 0.30) : 0;
   const totalExigible = state.monto + compensacionRAC3;
   const enTermino5Dias = state.diasTranscurridos <= 5;
   const diasRestantes = Math.max(0, 5 - state.diasTranscurridos);
+
+  const safeBanco = escapeHtml(state.banco);
+  const safeMedio = escapeHtml(state.medioPago);
+  const safeComercio = escapeHtml(state.comercio);
 
   // Update Step 1 Notice Banner
   const plazoBanner = document.getElementById('plazoBanner');
@@ -253,11 +309,11 @@ function recalculateCase() {
   if (enTermino5Dias) {
     plazoBanner.className = 'p-4 rounded-xl bg-emerald-soft border border-emerald/30 text-xs leading-relaxed';
     plazoTitulo.textContent = `Estás dentro del plazo legal de 5 días hábiles (${diasRestantes === 0 ? 'vence hoy' : 'quedan ' + diasRestantes + ' días hábiles'}). Art. 2.2.2.51.4 Decreto 1074 de 2015`;
-    plazoDesc.innerHTML = `Al notificar al comercio y radicar la orden ante <strong>${state.banco}</strong> (${state.medioPago}), la entidad financiera dispone de máximo <strong>15 días hábiles</strong> para abonar <strong>${formatCOP(state.monto)} COP</strong>${isVuelo ? ` más <strong>${formatCOP(compensacionRAC3)} COP</strong> correspondientes al 30% de compensación aeronáutica (RAC 3)` : ''}.`;
+    plazoDesc.innerHTML = `Al notificar al comercio y radicar la orden ante <strong>${safeBanco}</strong> (${safeMedio}), la entidad financiera dispone de máximo <strong>15 días hábiles</strong> para abonar el 100% de la compra (<strong>${formatCOP(state.monto)} COP</strong>)${isVuelo ? `; adicionalmente, la aerolínea (<strong>${safeComercio}</strong>) debe pagar <strong>${formatCOP(compensacionRAC3)} COP</strong> correspondientes al 30% de compensación mínima obligatoria (RAC 3), para un total exigible de <strong>${formatCOP(totalExigible)} COP</strong>` : ''}.`;
   } else {
     plazoBanner.className = 'p-4 rounded-xl bg-danger-soft border border-danger/30 text-xs leading-relaxed';
     plazoTitulo.textContent = 'Plazo bancario de 5 días superado: se activa la acción de protección al consumidor ante la SIC (Art. 58 Ley 1480)';
-    plazoDesc.innerHTML = `Como transcurrieron más de 5 días hábiles para la reversión administrativa directa ante ${state.banco}, se estructura la reclamación directa prejudicial y la demanda ante la Superintendencia de Industria y Comercio (SIC) para exigir los <strong>${formatCOP(totalExigible)} COP</strong>.`;
+    plazoDesc.innerHTML = `Como transcurrieron más de 5 días hábiles para la reversión administrativa directa ante <strong>${safeBanco}</strong>, se estructura la reclamación directa prejudicial y la demanda ante la Superintendencia de Industria y Comercio (SIC) contra <strong>${safeComercio}</strong> para exigir los <strong>${formatCOP(totalExigible)} COP</strong>.`;
   }
 
   // Update Sidebar
@@ -267,7 +323,7 @@ function recalculateCase() {
     : `Acción jurisdiccional ante la SIC contra ${state.comercio} por ${formatCOP(totalExigible)} COP`;
   document.getElementById('sidebarTotalAmount').textContent = formatCOP(totalExigible);
   document.getElementById('sidebarCompensationNote').textContent = isVuelo
-    ? `Incluye ${formatCOP(state.monto)} (100% tiquete) + ${formatCOP(compensacionRAC3)} (30% compensación obligatoria RAC 3).`
+    ? `Incluye ${formatCOP(state.monto)} (100% tiquete vía ${state.banco}) + ${formatCOP(compensacionRAC3)} (30% compensación RAC 3 a cargo de la aerolínea).`
     : 'Reembolso íntegro en dinero al instrumento de pago original (Art. 47 y 51 Ley 1480).';
 
   const daysPill = document.getElementById('sidebarDaysLeft');
@@ -285,18 +341,24 @@ function recalculateCase() {
     : 'Demanda jurisdiccional SIC';
   document.getElementById('semaforoMonto').textContent = `${formatCOP(totalExigible)} COP`;
   document.getElementById('semaforoMontoDetalle').textContent = isVuelo
-    ? `${formatCOP(state.monto)} tiquete + ${formatCOP(compensacionRAC3)} RAC 3`
+    ? `${formatCOP(state.monto)} banco + ${formatCOP(compensacionRAC3)} aerolínea (RAC 3)`
     : `100% mediante ${state.banco}`;
 
-  // Update Step 4 labels
+  // Update Step 4 labels & Business-Day Deadlines
   const s4Merchant = document.getElementById('step4MerchantName');
   const s4Bank = document.getElementById('step4BankName');
   if (s4Merchant) s4Merchant.textContent = state.comercio;
   if (s4Bank) s4Bank.textContent = state.banco;
 
-  // Update Modal Targets
-  document.getElementById('modalMerchantTarget').textContent = state.comercio;
-  document.getElementById('modalBankTarget').textContent = `${state.banco}, ${state.medioPago} (${formatCOP(state.monto)} COP)`;
+  const fechaInput = document.getElementById('inputFechaRadicacion');
+  if (fechaInput && !fechaInput.value) {
+    fechaInput.value = new Date().toISOString().slice(0, 10);
+  }
+  const baseDate = fechaInput?.value || new Date().toISOString().slice(0, 10);
+  const d5El = document.getElementById('deadline5DaysText');
+  const d15El = document.getElementById('deadline15DaysText');
+  if (d5El) d5El.textContent = addColombianBusinessDays(baseDate, 5);
+  if (d15El) d15El.textContent = addColombianBusinessDays(baseDate, 15);
 
   renderLegalDocument();
   updateCountdownSimulator(document.getElementById('daySlider')?.value || 3);
@@ -316,15 +378,19 @@ function switchDocTab(tabKey) {
   renderLegalDocument();
 }
 
-function renderLegalDocument() {
-  const container = document.getElementById('liveLegalDocument');
-  if (!container) return;
-
+function buildDocumentHtml(docType) {
   const meta = CAUSAL_META[state.causal];
   const isVuelo = state.causal === 'vuelo';
   const compensacionRAC3 = isVuelo ? Math.round(state.monto * 0.30) : 0;
   const totalExigible = state.monto + compensacionRAC3;
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const enTermino5Dias = state.diasTranscurridos <= 5;
+  const todayStr = document.getElementById('inputFechaRadicacion')?.value || new Date().toISOString().slice(0, 10);
+
+  const safeBanco = escapeHtml(state.banco);
+  const safeMedio = escapeHtml(state.medioPago);
+  const safeComercio = escapeHtml(state.comercio);
+  const safeNombre = escapeHtml(state.nombreUsuario);
+  const safeCedula = escapeHtml(state.cedulaUsuario);
 
   const selectedExcuses = Array.from(document.querySelectorAll('.excuse-check:checked')).map((el) => {
     if (el.value === 'bono') return 'Pretensión improcedente de imponer un bono o saldo a favor en lugar del reembolso en dinero (contraviene los artículos 47 y 51 de la Ley 1480 de 2011).';
@@ -339,64 +405,68 @@ function renderLegalDocument() {
     : '   1. Falta de entrega oportuna o ausencia de reembolso efectivo de las sumas pagadas.';
 
   const annexListHtml = state.evidenceFiles.length > 0
-    ? state.evidenceFiles.map((f) => `${f.name} (SHA-256: ${f.hash})`).join(', ')
+    ? state.evidenceFiles.map((f) => `${escapeHtml(f.name)} (SHA-256: ${escapeHtml(f.hash)})`).join(', ')
     : 'Comprobante de transacción electrónica y constancia de reclamación directa al proveedor.';
 
-  if (state.activeDocTab === 'banco') {
-    container.innerHTML = `
+  const plazoDeclarationHtml = enTermino5Dias
+    ? `Dentro del término legal de cinco (5) días hábiles siguientes al conocimiento del hecho (${state.diasTranscurridos} días hábiles transcurridos), presenté reclamación directa ante el proveedor, frente a lo cual se configuró:`
+    : `Dejo constancia de que presenté reclamación directa ante el proveedor (habiendo transcurrido más de cinco días hábiles desde el hecho inicial por causas atribuibles a la dilación del comercio), por lo cual solicito la reversión y contracargo de la operación en articulación con la acción jurisdiccional ante la SIC (artículo 58 de la Ley 1480 de 2011), habiéndose configurado:`;
+
+  if (docType === 'banco') {
+    return `
       <div class="space-y-3">
         <div class="border-b border-slate-300 pb-2 flex justify-between items-start gap-2">
           <div>
             <strong>SOLICITUD FORMAL DE REVERSIÓN DE PAGO</strong><br/>
             <span>Artículo 51 de la Ley 1480 de 2011 y Decreto 587 de 2016 (Capítulo 51 del Decreto 1074 de 2015)</span>
           </div>
-          <span class="px-2 py-0.5 bg-slate-200 rounded font-semibold shrink-0">Fecha: ${todayStr}</span>
+          <span class="px-2 py-0.5 bg-slate-200 rounded font-semibold shrink-0">Fecha: ${escapeHtml(todayStr)}</span>
         </div>
         <p>
-          <strong>DESTINATARIO (EMISOR DEL INSTRUMENTO DE PAGO):</strong> ${state.banco}<br/>
-          <strong>SOLICITANTE:</strong> ${state.nombreUsuario}, C.C. ${state.cedulaUsuario}<br/>
-          <strong>INSTRUMENTO DE PAGO UTILIZADO:</strong> ${state.medioPago}<br/>
-          <strong>PROVEEDOR REPORTADO:</strong> ${state.comercio}<br/>
-          <strong>VALOR SOLICITADO EN REVERSIÓN:</strong> ${formatCOP(state.monto)} COP
+          <strong>DESTINATARIO (EMISOR DEL INSTRUMENTO DE PAGO):</strong> ${safeBanco}<br/>
+          <strong>SOLICITANTE:</strong> ${safeNombre}, C.C. ${safeCedula}<br/>
+          <strong>INSTRUMENTO DE PAGO UTILIZADO:</strong> ${safeMedio}<br/>
+          <strong>PROVEEDOR REPORTADO:</strong> ${safeComercio}<br/>
+          <strong>VALOR SOLICITADO EN REVERSIÓN BANCARIA:</strong> ${formatCOP(state.monto)} COP
         </p>
         <p>
           <strong>1. CAUSAL LEGAL INVOCADA (ART. 2.2.2.51.2 DECRETO 1074 DE 2015):</strong><br/>
-          Manifiesto bajo la gravedad de juramento que la transacción por valor de <strong>${formatCOP(state.monto)} COP</strong> realizada mediante <strong>${state.medioPago}</strong> a favor de <strong>${state.comercio}</strong> se encuentra incursa en la causal de <strong>${meta.title.toUpperCase()}</strong>, de conformidad con el ${meta.legalCite}.
+          Manifiesto bajo la gravedad de juramento que la transacción por valor de <strong>${formatCOP(state.monto)} COP</strong> realizada mediante <strong>${safeMedio}</strong> a favor de <strong>${safeComercio}</strong> se encuentra incursa en la causal de <strong>${meta.title.toUpperCase()}</strong>, de conformidad con el ${meta.legalCite}.
         </p>
         <p>
           <strong>2. CONSTANCIA DE RECLAMACIÓN PREVIA AL PROVEEDOR (ART. 2.2.2.51.4):</strong><br/>
-          Dentro del término legal de cinco (5) días hábiles siguientes al conocimiento del hecho, presenté reclamación directa ante el proveedor, frente a lo cual se configuró:<br/>
+          ${plazoDeclarationHtml}<br/>
           ${excusesHtml}
         </p>
         <p>
           <strong>3. SOLICITUD DE ABONO EN QUINCE (15) DÍAS HÁBILES (ART. 2.2.2.51.5):</strong><br/>
-          Solicito a <strong>${state.banco}</strong> que, en conjunto con los demás participantes del proceso de pago, efectúe la reversión íntegra de <strong>${formatCOP(state.monto)} COP</strong> a mi cuenta o instrumento de pago dentro del término máximo e improrrogable de <strong>quince (15) días hábiles</strong> contados a partir de la presente radicación.
+          Solicito a <strong>${safeBanco}</strong> que, en conjunto con los demás participantes del proceso de pago, efectúe la reversión íntegra de <strong>${formatCOP(state.monto)} COP</strong> a mi cuenta o instrumento de pago dentro del término máximo e improrrogable de <strong>quince (15) días hábiles</strong> contados a partir de la presente radicación.
         </p>
         <div class="pt-2 border-t border-slate-300 text-xs text-slate-600">
           <strong>Anexos probatorios (Ley 527 de 1999):</strong> ${annexListHtml}<br/>
-          <strong>Firma:</strong> ${state.nombreUsuario}, C.C. ${state.cedulaUsuario}
+          <strong>Firma:</strong> ${safeNombre}, C.C. ${safeCedula}
         </div>
       </div>
     `;
-  } else if (state.activeDocTab === 'comercio') {
-    container.innerHTML = `
+  } else if (docType === 'comercio') {
+    return `
       <div class="space-y-3">
         <div class="border-b border-slate-300 pb-2 flex justify-between items-start gap-2">
           <div>
             <strong>NOTIFICACIÓN DE REVERSIÓN DE PAGO Y RECLAMACIÓN DIRECTA</strong><br/>
             <span>Artículos 7, 43, 47, 50, 51 y 58 numeral 5 de la Ley 1480 de 2011</span>
           </div>
-          <span class="px-2 py-0.5 bg-slate-200 rounded font-semibold shrink-0">Fecha: ${todayStr}</span>
+          <span class="px-2 py-0.5 bg-slate-200 rounded font-semibold shrink-0">Fecha: ${escapeHtml(todayStr)}</span>
         </div>
         <p>
-          <strong>DESTINATARIO (PROVEEDOR):</strong> ${state.comercio}<br/>
-          <strong>RECLAMANTE:</strong> ${state.nombreUsuario}, C.C. ${state.cedulaUsuario}<br/>
-          <strong>ENTIDAD FINANCIERA NOTIFICADA:</strong> ${state.banco} (${state.medioPago})<br/>
+          <strong>DESTINATARIO (PROVEEDOR):</strong> ${safeComercio}<br/>
+          <strong>RECLAMANTE:</strong> ${safeNombre}, C.C. ${safeCedula}<br/>
+          <strong>ENTIDAD FINANCIERA NOTIFICADA:</strong> ${safeBanco} (${safeMedio})<br/>
           <strong>MONTO TOTAL RECLAMADO:</strong> ${formatCOP(totalExigible)} COP
         </p>
         <p>
           <strong>1. OBJETO DE LA NOTIFICACIÓN:</strong><br/>
-          Por medio del presente escrito notifico formalmente el ejercicio de la solicitud de reversión de pago por valor de <strong>${formatCOP(state.monto)} COP</strong> con fundamento en el ${meta.legalCite}.${isVuelo ? ` Adicionalmente, solicito el pago de <strong>${formatCOP(compensacionRAC3)} COP</strong> correspondientes al 30% de compensación mínima obligatoria establecida en el RAC 3 de la Aeronáutica Civil.` : ''}
+          Por medio del presente escrito notifico formalmente el ejercicio de la solicitud de reversión de pago por valor de <strong>${formatCOP(state.monto)} COP</strong> ante <strong>${safeBanco}</strong> con fundamento en el ${meta.legalCite}.${isVuelo ? ` Adicionalmente, exijo directamente a la aerolínea el pago de <strong>${formatCOP(compensacionRAC3)} COP</strong> correspondientes al 30% de compensación mínima obligatoria establecida en el RAC 3 de la Aeronáutica Civil, para un total de <strong>${formatCOP(totalExigible)} COP</strong>.` : ''}
         </p>
         <p>
           <strong>2. IMPROCEDENCIA DE LAS EXCUSAS OPUESTAS (ART. 43 LEY 1480 DE 2011):</strong><br/>
@@ -405,43 +475,49 @@ function renderLegalDocument() {
         </p>
         <p>
           <strong>3. REQUISITO DE PROCEDIBILIDAD Y EFECTOS LEGALES:</strong><br/>
-          Esta comunicación agota el requisito de reclamación directa previsto en el artículo 58 numeral 5 de la Ley 1480 de 2011 y acompaña la orden de reversión radicada ante <strong>${state.banco}</strong>.
+          Esta comunicación agota el requisito de reclamación directa previsto en el artículo 58 numeral 5 de la Ley 1480 de 2011 y acompaña la orden de reversión radicada ante <strong>${safeBanco}</strong>.
         </p>
         <div class="pt-2 border-t border-slate-300 text-xs text-slate-600">
           <strong>Anexos probatorios (Ley 527 de 1999):</strong> ${annexListHtml}<br/>
-          <strong>Firma:</strong> ${state.nombreUsuario}, C.C. ${state.cedulaUsuario}
+          <strong>Firma:</strong> ${safeNombre}, C.C. ${safeCedula}
         </div>
       </div>
     `;
   } else {
-    container.innerHTML = `
+    return `
       <div class="space-y-3">
         <div class="border-b border-slate-300 pb-2 flex justify-between items-start gap-2">
           <div>
             <strong>DEMANDA DE PROTECCIÓN AL CONSUMIDOR (ART. 58 LEY 1480 DE 2011)</strong><br/>
             <span>Artículos 78 y 229 de la Constitución Política · Artículo 24 del Código General del Proceso</span>
           </div>
-          <span class="px-2 py-0.5 bg-slate-200 rounded font-semibold shrink-0">Fecha: ${todayStr}</span>
+          <span class="px-2 py-0.5 bg-slate-200 rounded font-semibold shrink-0">Fecha: ${escapeHtml(todayStr)}</span>
         </div>
         <p>
           <strong>AUTORIDAD COMPETENTE:</strong> Superintendencia de Industria y Comercio (Delegatura para Asuntos Jurisdiccionales)${isVuelo ? ' / Superintendencia de Transporte (RAC 3)' : ''}<br/>
-          <strong>DEMANDANTE:</strong> ${state.nombreUsuario}, C.C. ${state.cedulaUsuario}<br/>
-          <strong>DEMANDADO:</strong> ${state.comercio}<br/>
+          <strong>DEMANDANTE:</strong> ${safeNombre}, C.C. ${safeCedula}<br/>
+          <strong>DEMANDADO:</strong> ${safeComercio}<br/>
           <strong>CUANTÍA:</strong> Mínima cuantía: ${formatCOP(totalExigible)} COP (no requiere representación por abogado)
         </p>
         <p>
           <strong>PRETENSIONES:</strong><br/>
-          1. Que se declare que <strong>${state.comercio}</strong> vulneró los derechos del consumidor previstos en el ${meta.legalCite}.<br/>
+          1. Que se declare que <strong>${safeComercio}</strong> vulneró los derechos del consumidor previstos en el ${meta.legalCite}.<br/>
           2. Que se ordene la restitución inmediata de <strong>${formatCOP(totalExigible)} COP</strong> en dinero efectivo, debidamente indexados.<br/>
           3. Que se impongan las sanciones previstas en los artículos 58 numeral 10 y 61 de la Ley 1480 de 2011 en caso de incumplimiento.
         </p>
         <div class="pt-2 border-t border-slate-300 text-xs text-slate-600">
           <strong>Pruebas documentales (Ley 527 de 1999):</strong> ${annexListHtml}<br/>
-          <strong>Firma:</strong> ${state.nombreUsuario}, C.C. ${state.cedulaUsuario}
+          <strong>Firma:</strong> ${safeNombre}, C.C. ${safeCedula}
         </div>
       </div>
     `;
   }
+}
+
+function renderLegalDocument() {
+  const container = document.getElementById('liveLegalDocument');
+  if (!container) return;
+  container.innerHTML = buildDocumentHtml(state.activeDocTab);
 }
 
 function copyCurrentDocument() {
@@ -468,6 +544,24 @@ function downloadCurrentDocumentTxt() {
   URL.revokeObjectURL(url);
 }
 
+function downloadAllDocumentsTxt() {
+  const temp = document.createElement('div');
+  const sections = ['banco', 'comercio', 'sic'].map((tab) => {
+    temp.innerHTML = buildDocumentHtml(tab);
+    return (temp.innerText || temp.textContent || '').trim();
+  });
+  const separator = '\n\n' + '='.repeat(76) + '\n\n';
+  const blob = new Blob([sections.join(separator)], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Paquete_3_Oficios_ReversoYa.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function updateCountdownSimulator(dayVal) {
   const day = Number(dayVal);
   const label = document.getElementById('currentDayLabel');
@@ -475,40 +569,28 @@ function updateCountdownSimulator(dayVal) {
   const detail = document.getElementById('daySimulatorDetail');
   if (!label || !pill || !detail) return;
 
+  const safeBanco = escapeHtml(state.banco);
+  const safeComercio = escapeHtml(state.comercio);
+  const safeMedio = escapeHtml(state.medioPago);
+
   label.textContent = String(day);
 
   if (day <= 5) {
     pill.className = 'px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-xs';
     pill.textContent = `Faltan ${15 - day} días hábiles para el desembolso`;
-    detail.innerHTML = `<strong>Día ${day} hábil (Verificación de la solicitud):</strong> La solicitud ya fue radicada ante <strong>${state.banco}</strong> y notificada a <strong>${state.comercio}</strong>. Según el artículo 2.2.2.51.6 del Decreto 1074 de 2015, el comercio solo puede oponerse si acredita documentalmente que ya entregó el bien o que ya devolvió el dinero.`;
+    detail.innerHTML = `<strong>Día ${day} hábil (Verificación de la solicitud):</strong> La solicitud ya fue radicada ante <strong>${safeBanco}</strong> y notificada a <strong>${safeComercio}</strong>. Según el artículo 2.2.2.51.6 del Decreto 1074 de 2015, el comercio solo puede oponerse si acredita documentalmente que ya entregó el bien o que ya devolvió el dinero.`;
   } else if (day <= 14) {
     pill.className = 'px-2.5 py-0.5 rounded-full bg-slate-200 text-navy font-bold text-xs';
     pill.textContent = `En trámite bancario: faltan ${15 - day} días hábiles`;
-    detail.innerHTML = `<strong>Día ${day} hábil (Procesamiento en red de pagos):</strong> Cerrado el término de oposición del proveedor, <strong>${state.banco}</strong> y la red procesadora (${state.medioPago}) ejecutan el abono de los <strong>${formatCOP(state.monto)} COP</strong> a favor del consumidor.`;
+    detail.innerHTML = `<strong>Día ${day} hábil (Procesamiento en red de pagos):</strong> Cerrado el término de oposición del proveedor, <strong>${safeBanco}</strong> y la red procesadora (${safeMedio}) ejecutan el abono de los <strong>${formatCOP(state.monto)} COP</strong> a favor del consumidor.`;
   } else if (day === 15) {
     pill.className = 'px-2.5 py-0.5 rounded-full bg-emerald text-white font-bold text-xs';
     pill.textContent = 'Día 15 hábil: vencimiento del plazo legal de abono';
-    detail.innerHTML = `<strong>Día 15 hábil (Plazo límite, Art. 2.2.2.51.5 Decreto 1074 de 2015):</strong> Hoy vence el término máximo para que <strong>${state.banco}</strong> acredite los <strong>${formatCOP(state.monto)} COP</strong> en la cuenta o tarjeta del consumidor sin cobro de comisiones.`;
+    detail.innerHTML = `<strong>Día 15 hábil (Plazo límite, Art. 2.2.2.51.5 Decreto 1074 de 2015):</strong> Hoy vence el término máximo para que <strong>${safeBanco}</strong> acredite los <strong>${formatCOP(state.monto)} COP</strong> en la cuenta o tarjeta del consumidor sin cobro de comisiones.`;
   } else {
     pill.className = 'px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-xs';
     pill.textContent = 'Día 16+: incumplimiento del plazo bancario';
-    detail.innerHTML = `<strong>Día 16+ hábil (Mora del emisor financiero):</strong> Si <strong>${state.banco}</strong> no abonó los recursos al cumplirse el día 15 hábil, procede presentar queja formal ante el <strong>Defensor del Consumidor Financiero</strong> y ante la <strong>Superintendencia Financiera de Colombia</strong> por incumplimiento del Decreto 587 de 2016.`;
-  }
-}
-
-function openFilingModal() {
-  const m = document.getElementById('filingModal');
-  if (m) {
-    m.classList.remove('hidden');
-    m.classList.add('flex');
-  }
-}
-
-function closeFilingModal() {
-  const m = document.getElementById('filingModal');
-  if (m) {
-    m.classList.add('hidden');
-    m.classList.remove('flex');
+    detail.innerHTML = `<strong>Día 16+ hábil (Mora del emisor financiero):</strong> Si <strong>${safeBanco}</strong> no abonó los recursos al cumplirse el día 15 hábil, procede presentar queja formal ante el <strong>Defensor del Consumidor Financiero</strong> y ante la <strong>Superintendencia Financiera de Colombia</strong> por incumplimiento del Decreto 587 de 2016.`;
   }
 }
 

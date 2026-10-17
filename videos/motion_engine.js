@@ -437,13 +437,13 @@ window.ReversoMotionEngine = (function () {
     drawArtifactBox(ctx, scene.visualType, 730, 155, 500, 385, sceneProgress, t);
 
     // 5. Bottom Subtitle & 45-Second Progress Bar
-    drawRoundedRect(ctx, 50, 582, 1180, 68, 12, 'rgba(11, 19, 43, 0.94)', 'rgba(0, 196, 140, 0.4)', 1.5);
+    drawRoundedRect(ctx, 50, 574, 1180, 78, 12, 'rgba(11, 19, 43, 0.94)', 'rgba(0, 196, 140, 0.4)', 1.5);
     ctx.fillStyle = '#00C48C';
     ctx.font = '800 11px Inter, sans-serif';
-    ctx.fillText(`GUION SINCRONIZADO (${t.toFixed(1)}s / 45.0s):`, 72, 605);
+    ctx.fillText(`GUION SINCRONIZADO (${t.toFixed(1)}s / 45.0s):`, 72, 595);
     ctx.fillStyle = '#F8FAFC';
-    ctx.font = '500 14px Inter, sans-serif';
-    ctx.fillText(scene.voiceover.slice(0, 122) + (scene.voiceover.length > 122 ? '...' : ''), 72, 632);
+    ctx.font = '500 13.5px Inter, sans-serif';
+    wrapText(ctx, scene.voiceover, 72, 616, 1136, 19);
 
     drawRoundedRect(ctx, 50, 668, 1180, 10, 5, 'rgba(255,255,255,0.12)', null);
     drawRoundedRect(ctx, 50, 668, Math.max(12, 1180 * (t / 45.0)), 10, 5, '#00C48C', null);
@@ -453,6 +453,7 @@ window.ReversoMotionEngine = (function () {
 
   // Renders an isolated high-resolution Motion Design Artifact for a Presentation Slide
   function renderSlideArtifact(ctx, width, height, artifactType, t) {
+    ctx.clearRect(0, 0, width, height);
     ctx.save();
     // Scale 520x400 logical coordinate system to canvas width x height
     const logicalW = 520;
@@ -477,8 +478,8 @@ window.ReversoMotionEngine = (function () {
       ctx.stroke();
     }
 
-    const cycleProgress = Math.min(1, ((t % 8) / 2.2));
-    drawArtifactBox(ctx, artifactType, 10, 10, 500, 380, cycleProgress, t);
+    const steadyProgress = t <= 0 ? 1 : Math.min(1, 0.35 + (t / 0.8) * 0.65);
+    drawArtifactBox(ctx, artifactType, 10, 10, 500, 380, steadyProgress, t);
     ctx.restore();
   }
 

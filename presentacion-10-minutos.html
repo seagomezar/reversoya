@@ -796,6 +796,7 @@
 
     function showSlide(n) {
       currentSlide = Math.max(1, Math.min(totalSlides, n));
+      animStart = null;
       document.querySelectorAll('.slide-card').forEach((el) => {
         if (Number(el.dataset.slide) === currentSlide) {
           el.classList.add('active');
@@ -855,6 +856,19 @@
       document.getElementById('timerBtn').textContent = 'Iniciar reloj';
     }
 
+    function renderAllSlideCanvasesStatic() {
+      if (!window.ReversoMotionEngine) return;
+      document.querySelectorAll('.slide-card').forEach((card) => {
+        const slideNum = card.dataset.slide;
+        const artifactType = card.dataset.artifact;
+        const canvas = document.getElementById(`artifact-canvas-${slideNum}`);
+        if (canvas) {
+          const ctx = canvas.getContext('2d');
+          window.ReversoMotionEngine.renderSlideArtifact(ctx, canvas.width, canvas.height, artifactType, 2.5);
+        }
+      });
+    }
+
     function animateSlideArtifacts(ts) {
       if (!animStart) animStart = ts;
       const elapsed = (ts - animStart) / 1000;
@@ -880,6 +894,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
+      renderAllSlideCanvasesStatic();
       showSlide(1);
       requestAnimationFrame(animateSlideArtifacts);
     });

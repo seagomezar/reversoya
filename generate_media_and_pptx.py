@@ -579,11 +579,45 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
             p2.font.color.rgb = RGBColor(248, 250, 252)
             p2.font.name = "Segoe UI"
 
-        # 5. Right Column: Embedded Motion Design Artifact PNG
+        # 5. Right Column: Embedded Motion Design Artifact PNG + Source Module Card
         png_stream = render_motion_artifact_png(sp["artifact"])
         slide.shapes.add_picture(
-            png_stream, Inches(7.85), Inches(1.15), width=Inches(4.98)
+            png_stream, Inches(7.85), Inches(1.08), width=Inches(4.98)
         )
+
+        meta_card = slide.shapes.add_shape(
+            MSO_SHAPE.ROUNDED_RECTANGLE,
+            Inches(7.85),
+            Inches(4.90),
+            Inches(4.98),
+            Inches(1.84),
+        )
+        meta_card.fill.solid()
+        meta_card.fill.fore_color.rgb = RGBColor(19, 26, 51)
+        meta_card.line.color.rgb = RGBColor(0, 196, 140)
+        meta_card.line.width = Pt(1.5)
+
+        m_tf = meta_card.text_frame
+        m_tf.word_wrap = True
+        pm1 = m_tf.paragraphs[0]
+        pm1.text = f"ARTEFACTO INTERACTIVO: {sp['artifact'].upper()}"
+        pm1.font.size = Pt(11)
+        pm1.font.bold = True
+        pm1.font.color.rgb = RGBColor(99, 252, 192)
+        pm1.font.name = "Segoe UI"
+
+        pm2 = m_tf.add_paragraph()
+        pm2.text = f"Importado desde videos/motion_engine.js · Rubro: {sp['rubric']}"
+        pm2.font.size = Pt(11.5)
+        pm2.font.bold = True
+        pm2.font.color.rgb = RGBColor(255, 255, 255)
+        pm2.font.name = "Segoe UI"
+
+        pm3 = m_tf.add_paragraph()
+        pm3.text = sp["cards"][0][1]
+        pm3.font.size = Pt(11)
+        pm3.font.color.rgb = RGBColor(203, 213, 225)
+        pm3.font.name = "Segoe UI"
 
         # 6. Bottom Footer Bar
         footer_box = slide.shapes.add_textbox(

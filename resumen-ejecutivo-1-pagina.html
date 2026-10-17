@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReversoYa — Resumen Ejecutivo (1 Página)</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 7mm 10mm;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0D1C2F;
+      background: #E2E8F0;
+      font-size: 8.4pt;
+      line-height: 1.26;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 210mm;
+      margin: 12px auto;
+      background: #FFFFFF;
+      padding: 8mm 10mm;
+      box-shadow: 0 10px 30px rgba(11,19,43,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @media print {
+      body { background: #FFFFFF; }
+      .page {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+      .no-print { display: none !important; }
+    }
+    h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0B132B;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+    }
+    .brand-box { display: flex; align-items: center; gap: 8px; }
+    .slogan {
+      font-size: 8.8pt;
+      font-weight: 700;
+      color: #00714F;
+      background: #E6F9F3;
+      border: 1px solid #00C48C;
+      padding: 2.5px 8px;
+      border-radius: 999px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 6px;
+    }
+    .card {
+      border: 1px solid #CBD5E1;
+      border-radius: 7px;
+      padding: 6.5px 8.5px;
+      background: #F8FAFC;
+    }
+    .card-navy {
+      background: #0B132B;
+      color: #FFFFFF;
+      border: 1px solid #0B132B;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 6.8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0B132B;
+      background: #DDE9FF;
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-bottom: 2px;
+    }
+    .card-navy .section-tag {
+      background: #00C48C;
+      color: #0B132B;
+    }
+    h2 {
+      font-size: 9.4pt;
+      font-weight: 800;
+      color: #0B132B;
+      margin-bottom: 3px;
+    }
+    .card-navy h2 { color: #FFFFFF; }
+    p, li { font-size: 7.9pt; line-height: 1.25; }
+    ul { padding-left: 12px; }
+    li { margin-bottom: 2px; }
+    .flow-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .flow-step {
+      border: 1px solid #CBD5E1;
+      border-top: 3px solid #0B132B;
+      border-radius: 6px;
+      padding: 5px 6px;
+      background: #FFFFFF;
+    }
+    .flow-step strong {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 7.9pt;
+      color: #0B132B;
+      margin-bottom: 1.5px;
+    }
+    .flow-step span {
+      font-size: 7.3pt;
+      color: #334155;
+      display: block;
+      line-height: 1.22;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.3pt;
+      margin-top: 2px;
+    }
+    th, td {
+      border: 1px solid #CBD5E1;
+      padding: 2.5px 5px;
+      text-align: left;
+    }
+    th {
+      background: #EFF4FF;
+      color: #0B132B;
+      font-weight: 700;
+    }
+    .footer {
+      border-top: 1px solid #CBD5E1;
+      padding-top: 4px;
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.1pt;
+      color: #475569;
+    }
+    .toolbar {
+      max-width: 210mm;
+      margin: 10px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0B132B;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+    }
+    .toolbar a, .toolbar button {
+      background: #00C48C;
+      color: #0B132B;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <span><strong>Resumen Ejecutivo (1 Página Exacta A4)</strong> — Editado con la skill <em>Clarity</em> y diseñado con <em>Stitch</em></span>
+    <div style="display:flex; gap:8px;">
+      <a href="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf" download>Descargar PDF Listo</a>
+      <button onclick="window.print()">Imprimir / Guardar PDF</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <div>
+      <!-- 1. NOMBRE - LOGO - ESLOGAN -->
+      <header class="header">
+        <div class="brand-box">
+          <svg width="185" height="42" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(4, 4)">
+              <path d="M28 2L6 10V28C6 44 28 54 28 54C28 54 50 44 50 28V10L28 2Z" fill="#0B132B" stroke="#00C48C" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M28 17C21.925 17 17 21.925 17 28C17 34.075 21.925 39 28 39C32.4 39 36.18 36.42 37.95 32.7" stroke="#00C48C" stroke-width="3" stroke-linecap="round"/>
+              <path d="M30 13L28 17.5L33 19" fill="#00C48C"/>
+              <circle cx="28" cy="28" r="3.5" fill="#FFFFFF"/>
+            </g>
+            <text x="68" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="26" font-weight="800" fill="#0B132B" letter-spacing="-0.5">Reverso<tspan fill="#00C48C">Ya</tspan></text>
+            <rect x="206" y="21" width="66" height="18" rx="9" fill="#EFF4FF" stroke="#0B132B" stroke-width="1"/>
+            <text x="239" y="33.5" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="800" fill="#0B132B" text-anchor="middle">LEY 1480</text>
+          </svg>
+          <div>
+            <div style="font-size:7.8pt; color:#475569; font-weight:600;">PROTOTIPO LEGALTECH DE ACCESO A LA JUSTICIA EN COLOMBIA</div>
+            <div style="font-size:8.2pt; color:#0B132B;"><strong>Identidad:</strong> Escudo naval de certeza jurídica (#0B132B) + flecha de restitución esmeralda (#00C48C)</div>
+          </div>
+        </div>
+        <div class="slogan">“Tu plata de vuelta por ley, sin rogarle al comercio”</div>
+      </header>
+
+      <!-- 2. PROBLEMA JURÍDICO Y 3. PÚBLICO OBJETIVO -->
+      <div class="grid-2">
+        <section class="card">
+          <span class="section-tag">1. Problema Jurídico, Derechos y Legislación</span>
+          <h2>Abandono de reclamos digitales por barreras de forma y plazo</h2>
+          <p style="margin-bottom:4px;">
+            En Colombia se procesan más de <strong>370 millones de compras digitales al año</strong> (CCCE), pero cuando un comercio no entrega el pedido, envía un producto defectuoso, realiza un cobro doble o una aerolínea sobrevende un vuelo, el consumidor choca con excusas ilegales (<em>“solo damos bono”</em>, <em>“reclámele a la transportadora”</em>, <em>“en promoción no hay garantía”</em>). Pagar un abogado cuesta entre $400.000 y $800.000 COP, dejando desprotegidas las compras cotidianas.
+          </p>
+          <ul>
+            <li><strong>Derechos Constitucionales y DD. HH.:</strong> <strong>Art. 78 C.P.</strong> (protección al consumidor y patrimonio familiar), <strong>Art. 229 C.P.</strong> (acceso efectivo a la justicia) y Directrices ONU de Protección al Consumidor (Res. A/RES/70/186).</li>
+            <li><strong>Ley 1480 de 2011:</strong> <strong>Art. 51</strong> (Reversión de pago), <strong>Art. 47</strong> (Retracto en 5 días hábiles, prohibiendo imponer bonos), <strong>Arts. 7, 8 y 43</strong> (Garantía obligatoria e ineficacia de pleno derecho de cláusulas que la nieguen en descuentos) y <strong>Art. 50 lit. h</strong> (responsabilidad directa de entrega).</li>
+            <li><strong>Decreto 587 de 2016 (Cap. 51 Dec. 1074/2015):</strong> Si el comprador notifica en <strong>5 días hábiles</strong> (Art. 2.2.2.51.4), el <strong>banco emisor o pasarela (PSE/Nequi/Tarjeta) está obligado a devolver el 100% del dinero en máximo 15 días hábiles</strong> (Art. 2.2.2.51.5).</li>
+            <li><strong>RAC 3 Aerocivil:</strong> Reembolso del 100% del tiquete + <strong>30% de compensación obligatoria</strong> en sobreventa o cancelación atribuible a la aerolínea.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <span class="section-tag">2. Público Objetivo y Solución LegalTech</span>
+          <h2>¿A quién afecta y cómo lo resuelve ReversoYa?</h2>
+          <p style="margin-bottom:4px;">
+            <strong>Público objetivo directo (B2C):</strong> Colombianos de 18 a 55 años (estratos 2 al 5) que compran por internet, Instagram, WhatsApp o aerolíneas usando <strong>PSE, Nequi, Daviplata o tarjetas</strong> y sufren pérdidas entre $80.000 y $4.000.000 COP que hoy no reclaman por desconocer el término de 5 días hábiles ante su banco.
+          </p>
+          <p style="margin-bottom:4px;">
+            <strong>Público aliado (B2B):</strong> Pasarelas de pago (Wompi, Bold, Mercado Pago) y comercios formales que buscan conciliar automáticamente antes de enfrentar demandas verbales sumarias (Art. 58 Ley 1480) o multas de la SIC de hasta <strong>2.000 SMLMV</strong> (Art. 61).
+          </p>
+          <p>
+            <strong>La Solución:</strong> Inspirada en el flujo guiado de <em>Symplifica</em>, <strong>ReversoYa</strong> reemplaza la jerga procesal por una calculadora interactiva que no se limita a pedirle el favor al vendedor: <strong>activa la obligación legal del banco emisor (Decreto 587 de 2016)</strong> para que debite los fondos del comercio incumplido y los abone en la cuenta del ciudadano en máximo 15 días hábiles, o radique la demanda jurisdiccional ante la SIC (Art. 24 CGP) si ya vencieron los 5 días iniciales.
+          </p>
+        </section>
+      </div>
+
+      <!-- 4. FLUJO DE 4 PANTALLAS -->
+      <div style="margin-bottom:3px;">
+        <span class="section-tag">3. Flujo del Usuario en 4 Pantallas Interactivas (Diseño en Stitch)</span>
+      </div>
+      <section class="flow-strip">
+        <div class="flow-step">
+          <strong>Pantalla 1: Escáner y Plazo 5d</strong>
+          <span>El usuario elige la causal (no entrega, defecto/retracto, cobro doble o vuelo RAC 3), ingresa monto, medio de pago (PSE/Nequi/Tarjeta) y valida su ventana de 5 días hábiles.</span>
+        </div>
+        <div class="flow-step">
+          <strong>Pantalla 2: Detector de Excusas</strong>
+          <span>Escanea el chat de WhatsApp del vendedor, marca como nulas las excusas ilegales (bono obligatorio, culpa a transportadora, sin garantía en promo) y sella pruebas con SHA-256 (Ley 527/1999).</span>
+        </div>
+        <div class="flow-step">
+          <strong>Pantalla 3: Semáforo y 3 Oficios</strong>
+          <span>Emite el dictamen de viabilidad y genera 3 documentos con los requisitos taxativos del Art. 2.2.2.51.3 Dec. 1074/2015: Orden al Banco, Notificación al Comercio y Demanda SIC.</span>
+        </div>
+        <div class="flow-step">
+          <strong>Pantalla 4: Reloj de 15 Días</strong>
+          <span>Ejecuta la radicación simultánea y activa el cronómetro de 15 días hábiles bancarios. Si el banco no abona al día 15, dispara queja automática ante Superfinanciera.</span>
+        </div>
+      </section>
+
+      <!-- 5. PROPUESTA DE VALOR (BENCHMARK COLOMBIA) Y 6. MODELO DE NEGOCIO -->
+      <div class="grid-2" style="margin-bottom:0;">
+        <section class="card">
+          <span class="section-tag">4. Propuesta de Valor y Benchmark en Colombia</span>
+          <h2>¿Qué existe hoy en el país y por qué ReversoYa es diferente?</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Alternativa en Colombia</th>
+                <th>Limitación actual para el ciudadano</th>
+                <th>Ventaja de ReversoYa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>SIC Facilita / Demanda SIC</strong></td>
+                <td>Solo incluye comercios registrados voluntariamente o exige redactar demanda técnica.</td>
+                <td>Vincula directamente al <strong>banco/PSE</strong> y cubre tiendas de Instagram/WhatsApp.</td>
+              </tr>
+              <tr>
+                <td><strong>Formularios de Bancos</strong></td>
+                <td>Tratan todo como “fraude de tarjeta” y rechazan reclamos por no entrega o PSE.</td>
+                <td>Invoca el <strong>Art. 2.2.2.51.3 Dec. 1074/2015</strong> que prohíbe al banco rechazar PSE/débito.</td>
+              </tr>
+              <tr>
+                <td><strong>Apps de Derecho de Petición</strong></td>
+                <td>Solo envían una carta al comercio incumplido, quien simplemente no devuelve el dinero.</td>
+                <td><strong>Triple radicación:</strong> ordena el contracargo forzoso al emisor financiero en 15 días.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card card-navy">
+          <span class="section-tag">5. Modelo de Negocio Ético y Escalable</span>
+          <h2>¿Cómo genera ingresos sin cobrar porcentajes abusivos?</h2>
+          <ul>
+            <li><strong>1. Nivel Freemium ($0 COP — Impacto Social):</strong> Escáner de viabilidad, detector de cláusulas abusivas y descarga manual de los 3 oficios sin costo para garantizar el acceso constitucional a la justicia.</li>
+            <li><strong>2. Micro-pago por Radicación Triple ($19.900 COP / caso):</strong> Tarifa plana única (0% de comisión sobre el dinero recuperado y 95% más barato que un abogado) que automatiza el envío certificado con estampa de tiempo NTP/SHA-256 a Comercio + Banco/PSE + SIC y monitorea los 15 días hábiles.</li>
+            <li><strong>3. SaaS B2B para Pasarelas y Comercios ($290.000 – $1.200.000 COP/mes):</strong> API de autogestión de retractos y garantías que previene multas de la SIC (hasta 2.000 SMLMV) y reduce costos de contracargos bancarios.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span><strong>ReversoYa S.A.S.</strong> • Proyecto de Prototipo Legal (Colombia) • Marco: Art. 78 y 229 C.P. | Ley 1480/2011 | Decreto 587/2016 | RAC 3 Aerocivil</span>
+      <span>Diseño: <strong>Stitch MCP</strong> • Redacción: <strong>Clarity Standard</strong></span>
+    </footer>
+  </main>
+
+</body>
+</html>

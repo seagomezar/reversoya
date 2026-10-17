@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none">
+  <!-- Shield with circular reverse refund arrow -->
+  <g transform="translate(4, 4)">
+    <!-- Shield Base -->
+    <path d="M28 2L6 10V28C6 44 28 54 28 54C28 54 50 44 50 28V10L28 2Z" fill="#0B132B" stroke="#00C48C" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Dynamic curved return arrow inside shield -->
+    <path d="M28 17C21.925 17 17 21.925 17 28C17 34.075 21.925 39 28 39C32.4 39 36.18 36.42 37.95 32.7" stroke="#00C48C" stroke-width="3" stroke-linecap="round"/>
+    <path d="M30 13L28 17.5L33 19" fill="#00C48C"/>
+    <!-- Small Colombian accent spark / legal dot -->
+    <circle cx="28" cy="28" r="3.5" fill="#FFFFFF"/>
+  </g>
+  <!-- Typography ReversoYa -->
+  <text x="68" y="38" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="25" font-weight="800" fill="#0B132B" letter-spacing="-0.5">Reverso<tspan fill="#00C48C">Ya</tspan></text>
+  <!-- Legal badge tag -->
+  <rect x="204" y="22" width="68" height="18" rx="9" fill="#EFF4FF" stroke="#CCDBF4" stroke-width="1"/>
+  <text x="238" y="34.5" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#0B132B" text-anchor="middle" letter-spacing="0.3">LEY 1480</text>
+</svg>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReversoYa — Presentación de 10 Minutos (10 Slides + Speaker Notes)</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0B132B; color: #F8FAFC; }
+    h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .slide-card {
+      background: #FFFFFF;
+      color: #0D1C2F;
+      border-radius: 20px;
+      min-height: 500px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-card.active { display: flex; animation: slideIn 0.25s ease-out; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @media print {
+      body { background: #FFFFFF; color: #0D1C2F; }
+      .no-print { display: none !important; }
+      .slide-card {
+        display: flex !important;
+        page-break-after: always;
+        box-shadow: none;
+        border: 2px solid #0B132B;
+        min-height: auto;
+        margin-bottom: 16px;
+        padding: 24px;
+      }
+      .print-notes {
+        display: block !important;
+        page-break-after: always;
+        border: 1px solid #CBD5E1;
+        padding: 16px;
+        margin-bottom: 24px;
+        background: #F8FAFC;
+        color: #0D1C2F;
+        border-radius: 10px;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- TOP PRESENTER BAR -->
+  <header class="bg-[#131A33] border-b border-white/10 px-6 py-3 flex flex-wrap items-center justify-between gap-4 no-print">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white inline-flex items-center gap-1">
+        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        <span>Volver a la App</span>
+      </a>
+      <span class="font-display font-extrabold text-sm text-white">Presentación de Sustentación: 10 Minutos Exactos (10 Slides + Speaker Notes)</span>
+    </div>
+
+    <!-- 10-Minute Presentation Timer -->
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 bg-[#0B132B] px-3.5 py-1.5 rounded-lg border border-white/15">
+        <span class="material-symbols-outlined text-[#00C48C] text-[18px]">timer</span>
+        <span id="timerDisplay" class="font-mono font-bold text-sm text-[#63FCC0]">10:00</span>
+        <button type="button" onclick="toggleTimer()" id="timerBtn" class="px-2 py-0.5 rounded bg-[#00C48C] text-[#0B132B] font-bold text-xs">Iniciar Reloj</button>
+        <button type="button" onclick="resetTimer()" class="text-xs text-white/60 hover:text-white">Reiniciar</button>
+      </div>
+      <button type="button" onclick="toggleNotesDrawer()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">
+        Mostrar/Ocultar Notas Orador
+      </button>
+      <a href="ReversoYa_Presentacion_10Minutos.pptx" download class="px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white text-xs font-bold">
+        ⬇ Descargar .PPTX
+      </a>
+      <button type="button" onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-[#00C48C] text-[#0B132B] text-xs font-extrabold">
+        Imprimir / Guardar PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN DECK + SPEAKER NOTES SPLIT -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+    <!-- SLIDES VIEWPORT (8 Cols) -->
+    <div id="slidesContainer" class="lg:col-span-8 space-y-4">
+
+      <!-- SLIDE 1 -->
+      <article class="slide-card active" data-slide="1" data-time="00:00 – 00:50 (50 seg)" data-title="Identidad: Nombre, Logo y Eslogan">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+            <span class="px-3 py-1 rounded-full bg-[#EFF4FF] text-[#0B132B] font-bold text-xs">SLIDE 1 DE 10 • 00:00 – 00:50 (50s)</span>
+            <span class="text-xs font-bold text-slate-500">NOMBRE • LOGO • ESLOGAN</span>
+          </div>
+          <div class="py-6 flex flex-col items-start gap-6">
+            <svg class="h-20 w-auto" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(4, 4)">
+                <path d="M28 2L6 10V28C6 44 28 54 28 54C28 54 50 44 50 28V10L28 2Z" fill="#0B132B" stroke="#00C48C" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M28 17C21.925 17 17 21.925 17 28C17 34.075 21.925 39 28 39C32.4 39 36.18 36.42 37.95 32.7" stroke="#00C48C" stroke-width="3" stroke-linecap="round"/>
+                <path d="M30 13L28 17.5L33 19" fill="#00C48C"/>
+                <circle cx="28" cy="28" r="3.5" fill="#FFFFFF"/>
+              </g>
+              <text x="68" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="26" font-weight="800" fill="#0B132B" letter-spacing="-0.5">Reverso<tspan fill="#00C48C">Ya</tspan></text>
+              <rect x="204" y="22" width="68" height="18" rx="9" fill="#EFF4FF" stroke="#0B132B" stroke-width="1"/>
+              <text x="238" y="34.5" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="800" fill="#0B132B" text-anchor="middle">LEY 1480</text>
+            </svg>
+            <h1 class="font-display font-extrabold text-4xl text-[#0B132B] leading-tight">
+              “Tu plata de vuelta por ley, sin rogarle al comercio.”
+            </h1>
+            <p class="text-lg text-slate-600 leading-relaxed">
+              Plataforma LegalTech colombiana que ejecuta la <strong>Reversión de Pago obligatoria ante bancos y pasarelas (PSE, Nequi, Tarjetas)</strong> en compras online fallidas, garantías negadas y vuelos cancelados.
+            </p>
+            <div class="grid grid-cols-3 gap-4 w-full pt-2">
+              <div class="p-3.5 rounded-xl bg-[#F8F9FF] border border-slate-200">
+                <span class="text-xs font-bold text-slate-500 block">MARCA</span>
+                <strong class="font-display text-lg text-[#0B132B]">ReversoYa</strong>
+                <p class="text-xs text-slate-600 mt-0.5">Acción inmediata sobre el dinero retenido.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#F8F9FF] border border-slate-200">
+                <span class="text-xs font-bold text-slate-500 block">SÍMBOLO (LOGO)</span>
+                <strong class="font-display text-lg text-[#0B132B]">Escudo + Flecha 360°</strong>
+                <p class="text-xs text-slate-600 mt-0.5">Azul institucional (#0B132B) y verde restitución (#00C48C).</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#E6F9F3] border border-[#00C48C]">
+                <span class="text-xs font-bold text-[#005138] block">PROMESA</span>
+                <strong class="font-display text-lg text-[#0B132B]">5 días → 15 días</strong>
+                <p class="text-xs text-[#005138] mt-0.5">Notificas en 5 días hábiles; tu banco devuelve en 15.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Prototipo Legal — Acceso a la Justicia en Colombia</span>
+          <span>ReversoYa • Slide 1</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 2 -->
+      <article class="slide-card" data-slide="2" data-time="00:50 – 02:00 (70 seg)" data-title="El Problema en Colombia: Por qué la gente pierde su dinero">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#FFDAD6] text-[#93000A] font-bold text-xs">SLIDE 2 DE 10 • 00:50 – 02:00 (70s)</span>
+            <span class="text-xs font-bold text-slate-500">IDENTIFICACIÓN DEL PROBLEMA EN COLOMBIA</span>
+          </div>
+          <h2 class="font-display font-extrabold text-3xl text-[#0B132B] mb-2">
+            El Problema: 370 millones de pagos digitales y reclamos que se abandonan
+          </h2>
+          <p class="text-sm text-slate-600 mb-5">
+            Según la Cámara Colombiana de Comercio Electrónico (CCCE), el comercio digital supera los $62 billones COP anuales en Colombia. Pero cuando la compra falla, el ciudadano enfrenta dos muros:
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="p-4 rounded-xl bg-[#FFF0F0] border border-[#FF5A5F]/40">
+              <h3 class="font-display font-bold text-base text-[#93000A] mb-2">Muro 1: Las 4 excusas ilegales del comercio</h3>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li>❌ <strong>“Solo damos bono de cambio, no devolvemos efectivo”</strong> (frecuente en tiendas de Instagram y moda).</li>
+                <li>❌ <strong>“Reclámele a Servientrega / Interrapidísimo, ya salió de bodega”</strong> (cuando el paquete se pierde).</li>
+                <li>❌ <strong>“Productos en promoción o Black Friday no tienen garantía”</strong>.</li>
+                <li>❌ <strong>“El reembolso tarda 60 días hábiles”</strong> o bloquean al comprador en WhatsApp.</li>
+              </ul>
+            </div>
+            <div class="p-4 rounded-xl bg-[#F8F9FF] border border-slate-200">
+              <h3 class="font-display font-bold text-base text-[#0B132B] mb-2">Muro 2: La asimetría económica y procesal</h3>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li>⚖️ <strong>El costo de un abogado ($400.000 a $800.000 COP)</strong> supera el valor de la mayoría de compras ($150.000 a $900.000 COP).</li>
+                <li>⏳ <strong>El plazo oculto de 5 días hábiles:</strong> La ley obliga al banco a devolver la plata, pero solo si el consumidor notifica dentro de los 5 días hábiles con requisitos formales exactos.</li>
+                <li>🏦 <strong>Fricción bancaria:</strong> Los bancos tramitan todo como “fraude de tarjeta” y rechazan reclamos de PSE o incumplimiento de entrega.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Fuente: CCCE & Informes de Asuntos Jurisdiccionales SIC</span>
+          <span>ReversoYa • Slide 2</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 3 -->
+      <article class="slide-card" data-slide="3" data-time="02:00 – 03:15 (75 seg)" data-title="Marco Constitucional, DD. HH. y Legislación Colombiana">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#EFF4FF] text-[#0B132B] font-bold text-xs">SLIDE 3 DE 10 • 02:00 – 03:15 (75s)</span>
+            <span class="text-xs font-bold text-slate-500">PROBLEMA JURÍDICO • DERECHOS • LEGISLACIÓN</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-[#0B132B] mb-4">
+            Arquitectura Normativa: El derecho ya existe; faltaba el interruptor
+          </h2>
+          <div class="grid grid-cols-2 gap-3.5 text-xs">
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8F9FF]">
+              <span class="px-2 py-0.5 rounded bg-[#0B132B] text-white font-bold text-[10px]">1. CONSTITUCIÓN Y DD. HH.</span>
+              <h3 class="font-display font-bold text-sm text-[#0B132B] mt-1.5">Art. 78 y 229 C.P. + Directrices ONU</h3>
+              <p class="text-slate-600 mt-1">
+                El <strong>Art. 78 C.P.</strong> protege los derechos colectivos de los consumidores y su patrimonio. El <strong>Art. 229 C.P.</strong> garantiza el acceso material a la justicia, alineado con las Directrices de la ONU (Res. A/RES/70/186) sobre comercio electrónico justo.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8F9FF]">
+              <span class="px-2 py-0.5 rounded bg-[#0B132B] text-white font-bold text-[10px]">2. LEY 1480 DE 2011</span>
+              <h3 class="font-display font-bold text-sm text-[#0B132B] mt-1.5">Arts. 7, 43, 47, 50, 51 y 58</h3>
+              <p class="text-slate-600 mt-1">
+                <strong>Art. 51:</strong> Reversión de pago en ventas electrónicas. <strong>Art. 47:</strong> Retracto en 5 días hábiles (en dinero, prohibido imponer bonos). <strong>Art. 43:</strong> Ineficacia de pleno derecho de cláusulas que nieguen garantía en promociones.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl border-2 border-[#00C48C] bg-[#E6F9F3]/60">
+              <span class="px-2 py-0.5 rounded bg-[#00C48C] text-[#0B132B] font-bold text-[10px]">3. DECRETO 587 DE 2016 (EL MOTOR)</span>
+              <h3 class="font-display font-bold text-sm text-[#0B132B] mt-1.5">Cap. 51 Decreto Único 1074 de 2015</h3>
+              <p class="text-slate-700 mt-1">
+                <strong>Art. 2.2.2.51.4:</strong> 5 días hábiles para reclamar al comercio y avisar al banco/PSE. <strong>Art. 2.2.2.51.5:</strong> El banco o pasarela tiene máximo <strong>15 días hábiles</strong> para devolver el 100% del dinero a la cuenta del consumidor.
+              </p>
+            </div>
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-[#F8F9FF]">
+              <span class="px-2 py-0.5 rounded bg-[#0B132B] text-white font-bold text-[10px]">4. RAC 3 AEROCIVIL</span>
+              <h3 class="font-display font-bold text-sm text-[#0B132B] mt-1.5">Transporte Aéreo de Pasajeros</h3>
+              <p class="text-slate-600 mt-1">
+                En sobreventa (<em>overbooking</em>) o cancelación atribuible a la aerolínea, procede el 100% del reembolso más una <strong>compensación mínima obligatoria del 30% del valor del trayecto</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Fundamento: Constitución Política de Colombia, Ley 1480/2011, Decreto 587/2016 y RAC 3</span>
+          <span>ReversoYa • Slide 3</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 4 -->
+      <article class="slide-card" data-slide="4" data-time="03:15 – 04:15 (60 seg)" data-title="Público Objetivo: ¿A quiénes está dirigido?">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#EFF4FF] text-[#0B132B] font-bold text-xs">SLIDE 4 DE 10 • 03:15 – 04:15 (60s)</span>
+            <span class="text-xs font-bold text-slate-500">PÚBLICO OBJETIVO</span>
+          </div>
+          <h2 class="font-display font-extrabold text-3xl text-[#0B132B] mb-4">
+            Público Objetivo: Ciudadanos digitales y ecosistema de pagos
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-[#F8F9FF] border border-slate-200 space-y-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-[#00C48C]/20 text-[#005138] font-bold text-xs">SEGMENTO PRINCIPAL (B2C)</span>
+              <h3 class="font-display font-bold text-lg text-[#0B132B]">Compradores Online y Viajeros (Estratos 2 a 5)</h3>
+              <ul class="space-y-1.5 text-xs text-slate-600">
+                <li>• <strong>Edad y perfil:</strong> Personas de 18 a 55 años que compran en comercios electrónicos, tiendas de Instagram/WhatsApp, plataformas y aerolíneas.</li>
+                <li>• <strong>Medios de pago:</strong> Usuarios de <strong>PSE, Nequi, Daviplata y tarjetas débito/crédito</strong>.</li>
+                <li>• <strong>Rango del problema:</strong> Reclamos de <strong>$80.000 a $4.000.000 COP</strong> (demasiado costosos para perderlos, pero inviables para pagar un abogado particular).</li>
+              </ul>
+            </div>
+            <div class="p-4 rounded-xl bg-[#0B132B] text-white space-y-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-[#00C48C] text-[#0B132B] font-bold text-xs">SEGMENTO ALIADO (B2B)</span>
+              <h3 class="font-display font-bold text-lg text-white">Pasarelas de Pago y Comercios Formales</h3>
+              <ul class="space-y-1.5 text-xs text-slate-300">
+                <li>• <strong>Pasarelas y Fintechs:</strong> Wompi, Bold, Mercado Pago, PayU y bancos emisores que necesitan estandarizar la recepción de solicitudes del Decreto 587.</li>
+                <li>• <strong>Comercios e-commerce:</strong> Tiendas que prefieren resolver retractos y garantías en 1 clic antes de afrontar una demanda jurisdiccional en la SIC (Art. 58 Ley 1480) o multas de hasta 2.000 SMLMV.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Enfoque centrado en el usuario sin conocimientos jurídicos</span>
+          <span>ReversoYa • Slide 4</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 5 -->
+      <article class="slide-card" data-slide="5" data-time="04:15 – 05:30 (75 seg)" data-title="Solución y Flujo: Pantallas 1 y 2 (Inspiración Symplifica)">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#E6F9F3] text-[#005138] font-bold text-xs">SLIDE 5 DE 10 • 04:15 – 05:30 (75s)</span>
+            <span class="text-xs font-bold text-slate-500">SOLUCIÓN Y FLUJO DE PANTALLAS (PARTE 1)</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-[#0B132B] mb-3">
+            De la frustración al dictamen en 2 minutos: Pantallas 1 y 2
+          </h2>
+          <p class="text-xs text-slate-600 mb-4">
+            Al igual que <em>Symplifica</em> convierte la liquidación laboral en una calculadora sencilla, <strong>ReversoYa</strong> traduce el Decreto 587 de 2016 en tarjetas visuales:
+          </p>
+          <div class="grid grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-xl border-2 border-[#0B132B] bg-[#F8F9FF]">
+              <span class="font-bold text-[#00714F] uppercase">Pantalla 1: Escáner de Caso y Plazo</span>
+              <h3 class="font-display font-bold text-base text-[#0B132B] mt-1">Calculadora de Ventana de 5 Días Hábiles</h3>
+              <ul class="mt-2 space-y-1.5 text-slate-600">
+                <li>1. El usuario toca una de las 4 tarjetas (No entrega, Producto defectuoso/Retracto, Cobro doble o Vuelo).</li>
+                <li>2. Ingresa el valor en COP, el medio de pago (PSE, Nequi, Tarjeta) y el banco emisor.</li>
+                <li>3. El sistema verifica si está dentro de los <strong>5 días hábiles</strong> para ordenar el débito al banco o si activa la ruta jurisdiccional ante la SIC.</li>
+              </ul>
+            </div>
+            <div class="p-4 rounded-xl border-2 border-[#00C48C] bg-white">
+              <span class="font-bold text-[#93000A] uppercase">Pantalla 2: Detector de Excusas</span>
+              <h3 class="font-display font-bold text-base text-[#0B132B] mt-1">Auditoría de Chats y Sello SHA-256</h3>
+              <ul class="mt-2 space-y-1.5 text-slate-600">
+                <li>1. El usuario pega el mensaje de WhatsApp de la tienda o marca las excusas recibidas.</li>
+                <li>2. El detector señala en rojo por qué son ilegales (Art. 47 prohíbe obligar a bonos; Art. 43 anula negar garantía en promoción).</li>
+                <li>3. Genera estampa criptográfica SHA-256 de las capturas conforme a la <strong>Ley 527 de 1999</strong> (validez probatoria de mensajes de datos).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Diseñado con Stitch MCP bajo el sistema ReversoYa Compliance Fintech</span>
+          <span>ReversoYa • Slide 5</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 6 -->
+      <article class="slide-card" data-slide="6" data-time="05:30 – 06:45 (75 seg)" data-title="Solución y Flujo: Pantallas 3 y 4 (Orden al Banco y Reloj de 15 Días)">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#E6F9F3] text-[#005138] font-bold text-xs">SLIDE 6 DE 10 • 05:30 – 06:45 (75s)</span>
+            <span class="text-xs font-bold text-slate-500">SOLUCIÓN Y FLUJO DE PANTALLAS (PARTE 2)</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-[#0B132B] mb-3">
+            No le rogamos al vendedor: le ordenamos al banco (Pantallas 3 y 4)
+          </h2>
+          <div class="grid grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-xl border border-slate-200 bg-[#F8F9FF]">
+              <span class="font-bold text-[#0B132B] uppercase">Pantalla 3: Semáforo y 3 Oficios</span>
+              <h3 class="font-display font-bold text-base text-[#0B132B] mt-1">Cumplimiento estricto del Art. 2.2.2.51.3</h3>
+              <p class="text-slate-600 mt-1.5">
+                Los bancos rechazan reclamos de ciudadanos cuando les falta alguno de los 5 requisitos formales del Decreto 587. ReversoYa genera automáticamente los <strong>3 documentos blindados</strong>:
+              </p>
+              <ul class="mt-2 space-y-1 text-slate-700 font-medium">
+                <li>📄 <strong>1. Orden Vinculante al Banco / PSE</strong> (bajo juramento y causal taxativa).</li>
+                <li>📄 <strong>2. Notificación Prejudicial al Comercio</strong> (requisito Art. 58 num. 5 Ley 1480).</li>
+                <li>📄 <strong>3. Demanda / Queja ante SIC o Aerocivil.</strong></li>
+              </ul>
+            </div>
+            <div class="p-4 rounded-xl bg-[#0B132B] text-white">
+              <span class="font-bold text-[#00C48C] uppercase">Pantalla 4: Reloj Legal de 15 Días</span>
+              <h3 class="font-display font-bold text-base text-white mt-1">Término Perentorio Bancario</h3>
+              <p class="text-slate-300 mt-1.5">
+                El usuario sigue en vivo su cronómetro de <strong>15 días hábiles bancarios</strong> (Art. 2.2.2.51.5 Decreto 587/2016):
+              </p>
+              <ul class="mt-2 space-y-1 text-slate-200">
+                <li>⏱️ <strong>Día 1:</strong> Radicación triple simultánea certificada.</li>
+                <li>⏱️ <strong>Día 5:</strong> Vence plazo del comercio para probar entrega real.</li>
+                <li>⏱️ <strong>Día 15:</strong> Abono forzoso en la cuenta del consumidor.</li>
+                <li>🚨 <strong>Día 16+:</strong> Escalado automático a la Superfinanciera por mora regulatoria.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Ejecución procesal automatizada de principio a fin</span>
+          <span>ReversoYa • Slide 6</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 7 -->
+      <article class="slide-card" data-slide="7" data-time="06:45 – 07:45 (60 seg)" data-title="Módulo Especial: Vuelos y Compensación del 30% (RAC 3)">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#DDE9FF] text-[#0B132B] font-bold text-xs">SLIDE 7 DE 10 • 06:45 – 07:45 (60s)</span>
+            <span class="text-xs font-bold text-slate-500">CASO DE USO: TRANSPORTE AÉREO (RAC 3)</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-[#0B132B] mb-3">
+            Módulo Aeronáutico: Cuando la aerolínea te sobrevende el vuelo
+          </h2>
+          <p class="text-xs text-slate-600 mb-4">
+            En Colombia, miles de viajeros aceptan un simple “bono de millas” cuando les cancelan o sobrevenden un vuelo, porque desconocen la fórmula de los <strong>Reglamentos Aeronáuticos de Colombia (RAC 3)</strong> integrada en ReversoYa:
+          </p>
+          <div class="grid grid-cols-3 gap-4 text-center my-4">
+            <div class="p-4 rounded-xl bg-[#F8F9FF] border border-slate-200">
+              <span class="text-xs font-bold text-slate-500">VALOR DEL TIQUETE</span>
+              <p class="font-display font-extrabold text-2xl text-[#0B132B] mt-1">$540.000 COP</p>
+              <span class="text-[11px] text-slate-500">100% Reembolso vía Banco/PSE</span>
+            </div>
+            <div class="p-4 rounded-xl bg-[#E6F9F3] border border-[#00C48C]">
+              <span class="text-xs font-bold text-[#005138]">+ COMPENSACIÓN RAC 3 (30%)</span>
+              <p class="font-display font-extrabold text-2xl text-[#00714F] mt-1">+$162.000 COP</p>
+              <span class="text-[11px] text-[#005138]">Mínimo legal por sobreventa</span>
+            </div>
+            <div class="p-4 rounded-xl bg-[#0B132B] text-white">
+              <span class="text-xs font-bold text-[#00C48C]">TOTAL EXIGIBLE</span>
+              <p class="font-display font-extrabold text-2xl text-white mt-1">$702.000 COP</p>
+              <span class="text-[11px] text-slate-300">En dinero, no en vouchers</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <strong>Mecanismo dual:</strong> ReversoYa exige el 100% del tiquete no volado al banco emisor mediante reversión de pago y radica simultáneamente el cobro del 30% adicional ante la aerolínea y la Superintendencia de Transporte.
+          </p>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Reglamentos Aeronáuticos de Colombia RAC 3 — Protección al Pasajero</span>
+          <span>ReversoYa • Slide 7</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 8 -->
+      <article class="slide-card" data-slide="8" data-time="07:45 – 08:45 (60 seg)" data-title="Propuesta de Valor y Benchmark en Colombia">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
+            <span class="px-3 py-1 rounded-full bg-[#EFF4FF] text-[#0B132B] font-bold text-xs">SLIDE 8 DE 10 • 07:45 – 08:45 (60s)</span>
+            <span class="text-xs font-bold text-slate-500">PROPUESTA DE VALOR Y COMPETENCIA EN EL PAÍS</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-[#0B132B] mb-3">
+            Benchmark en Colombia: ¿Por qué ReversoYa es único?
+          </h2>
+          <table class="w-full text-xs border-collapse border border-slate-200">
+            <thead>
+              <tr class="bg-[#0B132B] text-white">
+                <th class="p-2.5 text-left">Criterio</th>
+                <th class="p-2.5 text-left">SIC Facilita</th>
+                <th class="p-2.5 text-left">Formulario del Banco</th>
+                <th class="p-2.5 text-left">Apps de Peticiones</th>
+                <th class="p-2.5 text-left bg-[#00C48C] text-[#0B132B]">ReversoYa</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="p-2.5 font-bold">¿Obliga al banco/PSE a devolver en 15 días?</td>
+                <td class="p-2.5 text-slate-600">No (solo media con el comercio)</td>
+                <td class="p-2.5 text-slate-600">Oculta PSE y exige trámite complejo</td>
+                <td class="p-2.5 text-slate-600">No (solo escribe al vendedor)</td>
+                <td class="p-2.5 font-bold text-[#00714F] bg-[#E6F9F3]/40">Sí (Decreto 587 Art. 2.2.2.51.5)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold">¿Funciona con tiendas de Instagram/WhatsApp?</td>
+                <td class="p-2.5 text-slate-600">No (solo comercios adheridos)</td>
+                <td class="p-2.5 text-slate-600">Rechaza por “disputa comercial”</td>
+                <td class="p-2.5 text-slate-600">El vendedor ignora la carta</td>
+                <td class="p-2.5 font-bold text-[#00714F] bg-[#E6F9F3]/40">Sí (toma el dinero vía pasarela/banco)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold">¿Sella pruebas de WhatsApp con SHA-256?</td>
+                <td class="p-2.5 text-slate-600">No</td>
+                <td class="p-2.5 text-slate-600">No</td>
+                <td class="p-2.5 text-slate-600">No</td>
+                <td class="p-2.5 font-bold text-[#00714F] bg-[#E6F9F3]/40">Sí (Ley 527 de 1999)</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold">Costo para el usuario</td>
+                <td class="p-2.5 text-slate-600">$0 (pero baja cobertura)</td>
+                <td class="p-2.5 text-slate-600">$0 (alta tasa de rechazo)</td>
+                <td class="p-2.5 text-slate-600">$15.000 – $50.000 COP</td>
+                <td class="p-2.5 font-bold text-[#00714F] bg-[#E6F9F3]/40">$0 Diagnóstico / $19.900 Triple Envío</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Diferenciación total frente a herramientas existentes en Colombia</span>
+          <span>ReversoYa • Slide 8</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 9 -->
+      <article class="slide-card" data-slide="9" data-time="08:45 – 09:30 (45 seg)" data-title="Modelo de Negocio: Cómo gana dinero ReversoYa">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#E6F9F3] text-[#005138] font-bold text-xs">SLIDE 9 DE 10 • 08:45 – 09:30 (45s)</span>
+            <span class="text-xs font-bold text-slate-500">MODELO DE NEGOCIO</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl text-[#0B132B] mb-3">
+            Modelo de Negocio: Sostenible, ético y 0% de comisión sobre el reembolso
+          </h2>
+          <div class="grid grid-cols-3 gap-4 text-xs mt-4">
+            <div class="p-4 rounded-xl border border-slate-200 bg-[#F8F9FF]">
+              <span class="font-bold text-slate-500 uppercase">1. Freemium (Adquisición)</span>
+              <p class="font-display font-extrabold text-2xl text-[#0B132B] mt-1">$0 COP</p>
+              <p class="text-slate-600 mt-2">
+                Escáner de plazos, detector de excusas abusivas y descarga manual de los 3 oficios gratis. Elimina cualquier barrera económica de entrada.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl border-2 border-[#0B132B] bg-[#0B132B] text-white">
+              <span class="font-bold text-[#00C48C] uppercase">2. B2C Radicación Triple</span>
+              <p class="font-display font-extrabold text-2xl text-[#63FCC0] mt-1">$19.900 COP</p>
+              <p class="text-slate-300 mt-2">
+                Pago único por caso (95% menor que un abogado). Incluye envío certificado simultáneo a Comercio + Banco/PSE + SIC, hash SHA-256 y reloj de 15 días.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-200 bg-[#F8F9FF]">
+              <span class="font-bold text-slate-500 uppercase">3. B2B SaaS & API</span>
+              <p class="font-display font-extrabold text-2xl text-[#0B132B] mt-1">$290k – $1.2M</p>
+              <p class="text-slate-600 mt-2">
+                Suscripción mensual para comercios y pasarelas que integran el botón de autogestión de retractos para evitar multas de la SIC de hasta 2.000 SMLMV.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>Unit Economics: CAC orgánico bajo y margen bruto >82% en radicación digital</span>
+          <span>ReversoYa • Slide 9</span>
+        </div>
+      </article>
+
+      <!-- SLIDE 10 -->
+      <article class="slide-card" data-slide="10" data-time="09:30 – 10:00 (30 seg)" data-title="Impacto en Acceso a la Justicia y Demostración">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-5">
+            <span class="px-3 py-1 rounded-full bg-[#0B132B] text-white font-bold text-xs">SLIDE 10 DE 10 • 09:30 – 10:00 (30s)</span>
+            <span class="text-xs font-bold text-slate-500">CIERRE Y DEMO EN VIVO</span>
+          </div>
+          <h2 class="font-display font-extrabold text-3xl text-[#0B132B] mb-3">
+            Cuando la ley se vuelve ejecutable en 3 clics, el abuso deja de ser rentable
+          </h2>
+          <p class="text-sm text-slate-600 mb-5">
+            <strong>ReversoYa</strong> convierte el Artículo 78 de la Constitución, la Ley 1480 de 2011 y el Decreto 587 de 2016 en una herramienta cotidiana que protege el ahorro de los colombianos sin depender de la buena voluntad del comercio incumplido.
+          </p>
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <a href="index.html" class="p-4 rounded-xl bg-[#0B132B] text-white hover:bg-[#131A33] transition block">
+              <span class="text-xs text-[#00C48C] font-bold">ENTREGABLE 1</span>
+              <h3 class="font-display font-bold text-base mt-1">Probar App en Vivo →</h3>
+              <p class="text-xs text-slate-300 mt-1">4 pantallas interactivas y casos demo.</p>
+            </a>
+            <a href="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf" target="_blank" class="p-4 rounded-xl bg-[#F8F9FF] border border-slate-200 hover:border-[#0B132B] transition block">
+              <span class="text-xs text-[#0B132B] font-bold">ENTREGABLE 2</span>
+              <h3 class="font-display font-bold text-base text-[#0B132B] mt-1">Resumen PDF 1 Página →</h3>
+              <p class="text-xs text-slate-600 mt-1">Síntesis ejecutiva lista para entregar.</p>
+            </a>
+            <a href="videos-motion-graphics.html" class="p-4 rounded-xl bg-[#E6F9F3] border border-[#00C48C] hover:bg-[#00C48C]/20 transition block">
+              <span class="text-xs text-[#005138] font-bold">ENTREGABLE 4</span>
+              <h3 class="font-display font-bold text-base text-[#0B132B] mt-1">5 Videos Motion (45s) →</h3>
+              <p class="text-xs text-[#005138] mt-1">Suite audiovisual de motion design.</p>
+            </a>
+          </div>
+        </div>
+        <div class="text-xs text-slate-400 flex justify-between border-t border-slate-100 pt-3">
+          <span>ReversoYa — “Tu plata de vuelta por ley, sin rogarle al comercio”</span>
+          <span>ReversoYa • Slide 10</span>
+        </div>
+      </article>
+
+      <!-- SLIDE NAVIGATION CONTROLS -->
+      <div class="flex items-center justify-between bg-[#131A33] p-3.5 rounded-xl border border-white/10 no-print">
+        <button type="button" onclick="prevSlide()" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white inline-flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+          <span>Anterior (←)</span>
+        </button>
+        <div class="flex items-center gap-1.5" id="slideDots"></div>
+        <button type="button" onclick="nextSlide()" class="px-4 py-2 rounded-lg bg-[#00C48C] hover:bg-[#3FDFA5] text-xs font-extrabold text-[#0B132B] inline-flex items-center gap-1">
+          <span>Siguiente (→)</span>
+          <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SPEAKER NOTES PANEL (4 Cols - Clarity Oral Register) -->
+    <aside id="notesDrawer" class="lg:col-span-4 bg-[#131A33] rounded-2xl p-5 border border-white/15 space-y-4 sticky top-6 no-print">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#00C48C] block">Guion del Orador (Clarity Oral)</span>
+          <h3 id="notesSlideTitle" class="font-display font-bold text-base text-white">Slide 1: Identidad de Marca</h3>
+        </div>
+        <span id="notesSlideTime" class="px-2.5 py-1 rounded bg-white/10 font-mono text-xs font-bold text-[#63FCC0]">00:00 – 00:50</span>
+      </div>
+
+      <div id="speakerNotesContent" class="text-sm text-slate-200 leading-relaxed space-y-3">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="pt-3 border-t border-white/10 text-xs text-slate-400">
+        <strong>Tip de oratoria:</strong> Usa las flechas del teclado <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-white">←</kbd> y <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-white">→</kbd> para cambiar de diapositiva mientras hablas.
+      </div>
+    </aside>
+
+  </main>
+
+  <script>
+    const SPEAKER_NOTES = {
+      1: {
+        time: "00:00 – 00:50 (50 seg)",
+        title: "Slide 1: Nombre, Logo y Eslogan",
+        notes: [
+          "“Buenas tardes. ¿A cuántos de ustedes les ha pasado que compran algo por internet o Instagram, pagan por PSE o Nequi, el producto nunca llega o llega roto, y la tienda les responde: ‘no devolvemos plata, solo damos un bono’?”",
+          "“Para resolver ese abuso cotidiano en Colombia creamos <strong>ReversoYa</strong>. Nuestro símbolo une un escudo azul naval de certeza jurídica con una flecha circular verde esmeralda que representa el retorno del dinero a la cuenta del ciudadano. Y nuestro eslogan resume toda nuestra tesis jurídica: <em>‘Tu plata de vuelta por ley, sin rogarle al comercio’</em>.”"
+        ]
+      },
+      2: {
+        time: "00:50 – 02:00 (70 seg)",
+        title: "Slide 2: El Problema en Colombia",
+        notes: [
+          "“Veamos la dimensión del problema en Colombia. Según la Cámara Colombiana de Comercio Electrónico, en el país se realizan más de 370 millones de transacciones digitales al año. Sin embargo, cuando una compra de $200.000 o $680.000 pesos falla, el consumidor choca contra dos muros.”",
+          "“El primero son cuatro excusas ilegales que usan a diario los comercios: que solo dan bonos, que la culpa es de la transportadora, que en promoción no hay garantía o que el reembolso demora 60 días. El segundo muro es económico: ningún ciudadano puede pagarle $500.000 pesos a un abogado para recuperar una compra de $300.000. El resultado es la impunidad por desgaste.”"
+        ]
+      },
+      3: {
+        time: "02:00 – 03:15 (75 seg)",
+        title: "Slide 3: Marco Constitucional y Legal",
+        notes: [
+          "“Lo paradójico es que Colombia tiene una de las legislaciones más protectoras de América Latina, anclada en el <strong>Artículo 78 de la Constitución Política</strong> (protección al consumidor), el <strong>Artículo 229</strong> (acceso a la justicia) y las Directrices de las Naciones Unidas para la Protección del Consumidor.”",
+          "“Específicamente, el <strong>Artículo 51 de la Ley 1480 de 2011</strong> y el <strong>Decreto 587 de 2016</strong> crearon una figura poderosísima llamada <strong>Reversión del Pago</strong>: si pagaste por cualquier medio electrónico (PSE, Nequi, tarjeta débito o crédito) y notificas dentro de los <strong>5 días hábiles</strong> siguientes al incumplimiento, tu propio banco está obligado por ley a reversar el 100% del dinero en máximo <strong>15 días hábiles</strong>. Además, en transporte aéreo, el <strong>RAC 3 de la Aerocivil</strong> ordena una compensación adicional del 30% por sobreventa.”"
+        ]
+      },
+      4: {
+        time: "03:15 – 04:15 (60 seg)",
+        title: "Slide 4: Público Objetivo",
+        notes: [
+          "“¿A quién está dirigido ReversoYa? Nuestro público principal son los compradores digitales y viajeros en Colombia, entre los 18 y 55 años, principalmente de estratos 2 al 5, que pagan con PSE, Nequi, Daviplata o tarjetas y sufren pérdidas entre $80.000 y $4.000.000 de pesos.”",
+          "“Y en el lado B2B, nos dirigimos a pasarelas de pago como Wompi, Bold o Mercado Pago y a comercios formales que prefieren resolver un retracto a tiempo antes que recibir una multa de la SIC de hasta 2.000 salarios mínimos.”"
+        ]
+      },
+      5: {
+        time: "04:15 – 05:30 (75 seg)",
+        title: "Slide 5: Pantallas 1 y 2 del Prototipo",
+        notes: [
+          "“Inspirados en la facilidad de uso de Symplifica, diseñamos en Stitch un flujo de 4 pantallas sin jerga de abogados. En la <strong>Pantalla 1</strong>, el usuario elige qué le pasó en lenguaje sencillo, escribe el monto, selecciona si pagó por PSE, Nequi o tarjeta y la calculadora le indica cuántos de los 5 días hábiles le quedan.”",
+          "“En la <strong>Pantalla 2</strong> está nuestro Detector de Excusas Abusivas: el usuario pega el mensaje de WhatsApp donde la tienda le dice ‘solo damos bono’ o ‘reclámele a Servientrega’, y ReversoYa identifica automáticamente los artículos violados (Art. 47, 43 y 50 de la Ley 1480) y sella las capturas con código criptográfico SHA-256 conforme a la Ley 527 de 1999.”"
+        ]
+      },
+      6: {
+        time: "05:30 – 06:45 (75 seg)",
+        title: "Slide 6: Pantallas 3 y 4 del Prototipo",
+        notes: [
+          "“¿Por qué los bancos suelen rechazar las solicitudes que hace una persona sola? Porque el artículo 2.2.2.51.3 del Decreto 1074 de 2015 exige requisitos formales estrictos. En la <strong>Pantalla 3</strong>, ReversoYa muestra el Semáforo Legal y genera en tiempo real los 3 oficios con todos los requisitos de ley: la Orden Vinculante al Banco, la Notificación al Comercio y la Demanda ante la SIC.”",
+          "“Y en la <strong>Pantalla 4</strong>, activamos el Cronómetro Legal de 15 Días Hábiles. El usuario ve día a día cuándo vence el plazo de su banco para depositarle el dinero y, si el banco llega al día 16 sin abonar, el sistema dispara la queja automática ante la Superintendencia Financiera.”"
+        ]
+      },
+      7: {
+        time: "06:45 – 07:45 (60 seg)",
+        title: "Slide 7: Caso Vuelos RAC 3",
+        notes: [
+          "“Un ejemplo concreto del alcance de nuestra calculadora es el módulo de aerolíneas bajo el RAC 3 de la Aeronáutica Civil. Si a un pasajero le sobrevenden un vuelo Bogotá–Cartagena de $540.000 pesos, la aerolínea suele ofrecerle un bono.”",
+          "“ReversoYa calcula automáticamente que el pasajero tiene derecho a $702.000 pesos en efectivo: los $540.000 del tiquete reversados a través de su banco más $162.000 correspondientes al 30% de compensación obligatoria del RAC 3.”"
+        ]
+      },
+      8: {
+        time: "07:45 – 08:45 (60 seg)",
+        title: "Slide 8: Propuesta de Valor y Benchmark",
+        notes: [
+          "“Investigamos qué existe hoy en Colombia y por qué nuestra propuesta de valor es diferente. Primero, existe <em>SIC Facilita</em>, pero solo funciona si el comercio está registrado voluntariamente; no sirve para la tienda de Instagram que te bloqueó ni le da órdenes a tu banco. Segundo, los formularios de los bancos esconden la reversión de PSE.”",
+          "“Y tercero, las apps que solo redactan derechos de petición le envían una carta al vendedor incumplido, quien simplemente la ignora. <strong>ReversoYa no le ruega al comercio: activa la obligación legal del banco emisor para que devuelva el dinero en 15 días hábiles.</strong>”"
+        ]
+      },
+      9: {
+        time: "08:45 – 09:30 (45 seg)",
+        title: "Slide 9: Modelo de Negocio",
+        notes: [
+          "“¿Cómo gana dinero ReversoYa sin excluir a quien acaba de perder su plata? Con un modelo híbrido de tres niveles. Primero, un nivel <strong>Freemium a $0 pesos</strong>: cualquier colombiano puede usar el escáner y descargar sus oficios gratis.”",
+          "“Segundo, el plan de <strong>Radicación Triple Automatizada por un pago único de $19.900 pesos</strong> —sin quedarnos con ningún porcentaje de lo recuperado—, que certifica las pruebas y radica simultáneamente ante comercio, banco y SIC. Y tercero, una suscripción <strong>B2B SaaS</strong> para comercios y pasarelas que integran nuestro botón de retracto para evitar sanciones de la SIC.”"
+        ]
+      },
+      10: {
+        time: "09:30 – 10:00 (30 seg)",
+        title: "Slide 10: Cierre y Demostración",
+        notes: [
+          "“En conclusión: el acceso a la justicia no fracasa en Colombia por falta de leyes, sino porque activarlas cuesta más tiempo y dinero que el derecho reclamado.”",
+          "“Con ReversoYa demostramos que cuando un derecho constitucional como el del artículo 78 se traduce en cuatro pantallas claras, el abuso comercial deja de ser rentable. Muchas gracias; a continuación podemos ver el prototipo y los videos en vivo.”"
+        ]
+      }
+    };
+
+    let currentSlide = 1;
+    const totalSlides = 10;
+    let timerSeconds = 600;
+    let timerInterval = null;
+
+    function renderDots() {
+      const dots = document.getElementById('slideDots');
+      dots.innerHTML = '';
+      for (let i = 1; i <= totalSlides; i++) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.onclick = () => showSlide(i);
+        b.className = i === currentSlide
+          ? 'w-7 h-2.5 rounded-full bg-[#00C48C] transition-all'
+          : 'w-2.5 h-2.5 rounded-full bg-white/25 hover:bg-white/50 transition-all';
+        b.title = `Ir a Slide ${i}`;
+        dots.appendChild(b);
+      }
+    }
+
+    function showSlide(n) {
+      currentSlide = Math.max(1, Math.min(totalSlides, n));
+      document.querySelectorAll('.slide-card').forEach((el) => {
+        if (Number(el.dataset.slide) === currentSlide) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+      const data = SPEAKER_NOTES[currentSlide];
+      document.getElementById('notesSlideTitle').textContent = data.title;
+      document.getElementById('notesSlideTime').textContent = data.time;
+      document.getElementById('speakerNotesContent').innerHTML = data.notes.map(p => `<p>${p}</p>`).join('');
+      renderDots();
+    }
+
+    function nextSlide() { if (currentSlide < totalSlides) showSlide(currentSlide + 1); }
+    function prevSlide() { if (currentSlide > 1) showSlide(currentSlide - 1); }
+
+    function toggleNotesDrawer() {
+      const drawer = document.getElementById('notesDrawer');
+      const slides = document.getElementById('slidesContainer');
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        slides.className = 'lg:col-span-8 space-y-4';
+      } else {
+        drawer.classList.add('hidden');
+        slides.className = 'lg:col-span-12 space-y-4';
+      }
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('timerBtn');
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = 'Reanudar';
+      } else {
+        btn.textContent = 'Pausar';
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) {
+            timerSeconds--;
+            const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+            const s = String(timerSeconds % 60).padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${m}:${s}`;
+          } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      timerSeconds = 600;
+      document.getElementById('timerDisplay').textContent = '10:00';
+      document.getElementById('timerBtn').textContent = 'Iniciar Reloj';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showSlide(1);
+    });
+  </script>
+</body>
+</html>

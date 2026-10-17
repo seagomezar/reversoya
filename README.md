@@ -1,39 +1,36 @@
-# ReversoYa — _«Tu plata de vuelta por ley, sin rogarle al comercio»_
+# ReversoYa: _«Tu plata de vuelta por ley, sin rogarle al comercio»_
 
-Plataforma LegalTech de acceso a la justicia para **Colombia** que ejecuta la **Reversión de Pago obligatoria ante bancos y pasarelas (PSE, Nequi, Daviplata, tarjetas)**, el **Derecho de Retracto**, la **Garantía Legal en compras online** y la **Compensación por Sobreventa o Cancelación Aérea (RAC 3)**.
+Herramienta LegalTech de acceso a la justicia para **Colombia** que ejecuta la **Reversión de Pago obligatoria ante bancos y pasarelas (PSE, Nequi, Daviplata, tarjetas)**, el **Derecho de Retracto**, la **Garantía Legal en compras online** y la **Compensación por Sobreventa o Cancelación Aérea (RAC 3)**.
 
-🌐 **Demo en vivo (GitHub Pages):** [https://seagomezar.github.io/reversoya/](https://seagomezar.github.io/reversoya/)
+🌐 **Aplicación Web (GitHub Pages):** [https://seagomezar.github.io/reversoya/](https://seagomezar.github.io/reversoya/)
 
 ---
 
-## 📦 Los 4 Entregables del Proyecto
+## 📦 Archivos y Entregables en el Repositorio
 
-| # | Entregable | Enlace en Vivo (GitHub Pages) | Archivo en el Repositorio |
+| # | Entregable | Archivo en el Repositorio | Enlace Directo |
 |---|---|---|---|
-| **1** | **Aplicación Web Interactiva (4 Pantallas + Simulador Legal)** | [Abrir App Interactiva](https://seagomezar.github.io/reversoya/index.html) | `index.html` + `app.js` + `stitch_assets/` |
-| **2** | **Resumen Ejecutivo (Máx. 1 Página A4)** | [Descargar PDF (1 Página)](https://seagomezar.github.io/reversoya/ReversoYa_Resumen_Ejecutivo_1Pagina.pdf) · [Versión Web A4](https://seagomezar.github.io/reversoya/resumen-ejecutivo-1-pagina.html) | `ReversoYa_Resumen_Ejecutivo_1Pagina.pdf` / `resumen-ejecutivo-1-pagina.html` |
-| **3** | **Presentación de 10 Minutos (10 Slides + Speaker Notes)** | [Abrir Presentación Interactiva](https://seagomezar.github.io/reversoya/presentacion-10-minutos.html) · [Descargar .PPTX](https://seagomezar.github.io/reversoya/ReversoYa_Presentacion_10Minutos.pptx) | `presentacion-10-minutos.html` / `ReversoYa_Presentacion_10Minutos.pptx` / `Presentacion_10_Minutos_Speaker_Notes.md` |
-| **4** | **Medios Audiovisuales (5 Videos Motion Graphics de 45 s)** | [Abrir Estudio Motion Graphics 60fps](https://seagomezar.github.io/reversoya/videos-motion-graphics.html) | `videos-motion-graphics.html` + 5 archivos `.mp4` en `videos/` |
+| **1** | **Aplicación Web Independiente (Calculadora y Generador de Oficios)** | `index.html` + `app.js` | [Abrir Aplicación](https://seagomezar.github.io/reversoya/index.html) |
+| **2** | **Documento Ejecutivo Formal (1 Página A4)** | `ReversoYa_Resumen_Ejecutivo_1Pagina.pdf` / `resumen-ejecutivo-1-pagina.html` | [Descargar PDF](https://seagomezar.github.io/reversoya/ReversoYa_Resumen_Ejecutivo_1Pagina.pdf) |
+| **3** | **Presentación de 10 Minutos Estilizada con Artefactos Motion Design** | `presentacion-10-minutos.html` / `ReversoYa_Presentacion_10Minutos.pptx` / `Presentacion_10_Minutos_Speaker_Notes.md` | [Abrir Diapositivas Web](https://seagomezar.github.io/reversoya/presentacion-10-minutos.html) · [Descargar .PPTX](https://seagomezar.github.io/reversoya/ReversoYa_Presentacion_10Minutos.pptx) |
+| **4** | **5 Videos de Motion Design (45 s c/u, Código Fuente + Reproductor HTML)** | `videos-motion-graphics.html` + código fuente en `videos/*.js` | [Abrir Reproductor Motion Design](https://seagomezar.github.io/reversoya/videos-motion-graphics.html) |
 
-### Videos `.mp4` (45 segundos cada uno, 1280×720 HD)
-1. [`videos/video1_problema_colombia_45s.mp4`](https://seagomezar.github.io/reversoya/videos/video1_problema_colombia_45s.mp4) — El Problema en Colombia ($120.000–$800.000 atrapados y las 6 excusas ilegales).
-2. [`videos/video2_marco_legal_decreto587_45s.mp4`](https://seagomezar.github.io/reversoya/videos/video2_marco_legal_decreto587_45s.mp4) — El Escudo Legal: Art. 51 Ley 1480/2011 y Decreto 587 de 2016 (regla 5 + 15 días hábiles).
-3. [`videos/video3_flujo_4_pantallas_45s.mp4`](https://seagomezar.github.io/reversoya/videos/video3_flujo_4_pantallas_45s.mp4) — El Flujo UX en 4 Pantallas (inspirado en la simplicidad guiada de Symplifica).
-4. [`videos/video4_casos_y_vuelos_rac3_45s.mp4`](https://seagomezar.github.io/reversoya/videos/video4_casos_y_vuelos_rac3_45s.mp4) — Casos Reales y Vuelos RAC 3 Aerocivil (100 % reembolso + 30 % compensación).
-5. [`videos/video5_modelo_negocio_impacto_45s.mp4`](https://seagomezar.github.io/reversoya/videos/video5_modelo_negocio_impacto_45s.mp4) — Benchmark en Colombia, Modelo de Negocio (Freemium / $19.900 / SaaS B2B) e Impacto.
+### Código Fuente de los 5 Videos de Motion Design (`videos/`)
+Los 5 videos de 45 segundos están implementados en módulos de código fuente dentro de `videos/` e importados desde `videos-motion-graphics.html` y `presentacion-10-minutos.html`:
+- `videos/motion_engine.js`: Motor compartido de renderizado Canvas 2D a 60 FPS y artefactos visuales para diapositivas.
+- `videos/video1_problema_colombia.js`: Video 1 (45 s): El Problema en Colombia (370M de pagos digitales y las 4 excusas improcedentes).
+- `videos/video2_marco_legal_decreto587.js`: Video 2 (45 s): Marco Constitucional (Arts. 78 y 229 C.P.), Ley 1480/2011 y Decreto 587 de 2016.
+- `videos/video3_flujo_4_pantallas.js`: Video 3 (45 s): Solución y Flujo Guiado en 4 Pantallas.
+- `videos/video4_casos_y_vuelos_rac3.js`: Video 4 (45 s): Casos Reales y Compensación Aérea RAC 3 (100 % reembolso + 30 % compensación).
+- `videos/video5_modelo_negocio_impacto.js`: Video 5 (45 s): Propuesta de Valor, Benchmark en Colombia y Modelo de Negocio ($0 / $19.900 / B2B SaaS).
 
 ---
 
-## ⚖️ Fundamento Constitucional y Legal (Colombia)
+## ⚖️ Marco Normativo (Colombia)
 
-* **Constitución Política de Colombia:** **Art. 78** (protección constitucional al consumidor y responsabilidad de productores y comercializadores) y **Art. 229** (derecho fundamental de acceso a la administración de justicia).
-* **Estándar Internacional de Derechos:** **Directrices de las Naciones Unidas para la Protección del Consumidor** (Resolución A/RES/70/186 de la Asamblea General de la ONU).
-* **Estatuto del Consumidor (Ley 1480 de 2011):**
-  * **Arts. 7 a 11:** Garantía legal obligatoria (reparación, reposición o devolución del 100 % del dinero).
-  * **Art. 43:** Ineficacia de pleno derecho de las cláusulas abusivas (*«en promoción no hay garantía»*, *«solo entregamos bono»*).
-  * **Art. 47:** Derecho de retracto en ventas a distancia dentro de los **5 días hábiles** siguientes a la entrega.
-  * **Arts. 50 y 51:** Protección contractual en comercio electrónico y **Reversión del Pago** por fraude, operación no solicitada, producto no recibido, producto defectuoso o no correspondiente a lo anunciado.
-  * **Arts. 58 y 61:** Acción jurisdiccional de protección al consumidor ante la **Superintendencia de Industria y Comercio (SIC)** y multas hasta por **2.000 SMLMV**.
-* **Decreto 587 de 2016** (compilado en el **Decreto Único Reglamentario 1074 de 2015, Arts. 2.2.2.51.1 a 2.2.2.51.13**): El consumidor notifica en **5 días hábiles** al comercio y al emisor del instrumento de pago; el banco o pasarela dispone de **15 días hábiles** improrrogables para devolver los fondos.
-* **Ley 527 de 1999 (Arts. 6 a 10):** Plena validez probatoria de los mensajes de datos (pantallazos de WhatsApp, correos y comprobantes PSE/Nequi) asegurados con hash **SHA-256**.
-* **Reglamentos Aeronáuticos de Colombia (RAC 3 de la Aerocivil):** Reembolso inmediato del **100 %** del tiquete más compensación mínima del **30 %** del valor del trayecto por sobreventa o cancelación atribuible a la aerolínea.
+* **Constitución Política de Colombia:** **Art. 78** (protección constitucional al consumidor) y **Art. 229** (acceso efectivo a la administración de justicia).
+* **Estándar Internacional:** **Directrices de las Naciones Unidas para la Protección del Consumidor** (Resolución A/RES/70/186).
+* **Estatuto del Consumidor (Ley 1480 de 2011):** **Arts. 7 y 8** (garantía legal), **Art. 43** (ineficacia de pleno derecho de cláusulas abusivas), **Art. 47** (retracto en 5 días hábiles en dinero), **Art. 50 lit. h** (responsabilidad directa de entrega), **Art. 51** (reversión del pago) y **Arts. 58 y 61** (acción jurisdiccional y sanciones hasta por 2.000 SMLMV).
+* **Decreto 587 de 2016** (compilado en el **Decreto 1074 de 2015, Arts. 2.2.2.51.1 a 2.2.2.51.13**): Notificación en **5 días hábiles** y reembolso obligatorio por parte del banco o pasarela en máximo **15 días hábiles**.
+* **Ley 527 de 1999:** Validez probatoria de los mensajes de datos y soportes con huella digital **SHA-256**.
+* **Reglamentos Aeronáuticos de Colombia (RAC 3 de la Aerocivil):** Reembolso del **100 %** del tiquete más compensación mínima del **30 %** del valor del trayecto por sobreventa o cancelación atribuible a la aerolínea.

@@ -3,22 +3,27 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ReversoYa — Estudio de 5 Videos Motion Graphics (45 Segundos c/u)</title>
+  <title>ReversoYa: 5 Videos de Motion Graphics (45 Segundos c/u)</title>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #070C1C; color: #F8FAFC; }
-    h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #070C1C;
+      color: #F8FAFC;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
     canvas {
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
       background: #0B132B;
       border-radius: 16px;
-      box-shadow: 0 25px 60px rgba(0, 196, 140, 0.14);
+      box-shadow: 0 24px 56px rgba(0, 196, 140, 0.14);
       display: block;
     }
   </style>
@@ -26,70 +31,75 @@
 <body class="min-h-screen flex flex-col">
 
   <!-- HEADER -->
-  <header class="bg-[#0B132B] border-b border-white/10 px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+  <header class="bg-[#0B132B] border-b border-white/10 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
     <div class="flex items-center gap-3">
-      <a href="index.html" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white inline-flex items-center gap-1">
-        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
-        <span>Volver a la App</span>
-      </a>
-      <div>
-        <span class="text-[10px] font-bold uppercase tracking-wider text-[#00C48C] block">Entregable 4 • Medios Audiovisuales</span>
-        <h1 class="font-display font-extrabold text-base text-white">5 Videos Dinámicos de Motion Graphics (45.0 Segundos c/u • 60 FPS + MP4 Descargables)</h1>
+      <svg class="h-8 w-auto" viewBox="0 0 220 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26 4L6 11V26C6 40 26 49 26 49C26 49 46 40 46 26V11L26 4Z" fill="#0B132B" stroke="#00C48C" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M26 17C20.477 17 16 21.477 16 27C16 32.523 20.477 37 26 37C30.05 37 33.54 34.6 35.12 31.15" stroke="#00C48C" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M28 13L26 17.5L30.8 19" fill="#00C48C"/>
+        <circle cx="26" cy="27" r="3" fill="#FFFFFF"/>
+        <text x="58" y="35" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Reverso<tspan fill="#00C48C">Ya</tspan></text>
+      </svg>
+      <div class="border-l border-white/15 pl-3">
+        <h1 class="font-display font-extrabold text-sm sm:text-base text-white">
+          Reproductor de 5 Videos de Motion Design (45.0 Segundos c/u · 60 FPS)
+        </h1>
+        <p class="text-xs text-slate-400">
+          Módulos de código fuente importados desde <code>/videos/*.js</code>
+        </p>
       </div>
     </div>
-    <div class="flex items-center gap-2">
-      <a href="resumen-ejecutivo-1-pagina.html" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white">Resumen 1 Pág PDF</a>
-      <a href="presentacion-10-minutos.html" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white">Presentación 10 Min</a>
+
+    <div class="flex items-center gap-2 text-xs font-mono text-[#63FCC0] bg-[#131A33] px-3 py-1.5 rounded-lg border border-white/10">
+      <span>Motor: videos/motion_engine.js</span>
     </div>
   </header>
 
   <!-- MAIN STUDIO LAYOUT -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
-    <!-- LEFT 4 COLS: PLAYLIST OF 5 MOTION VIDEOS (45s EACH) -->
-    <aside class="lg:col-span-4 space-y-3">
-      <div class="flex items-center justify-between mb-1">
-        <span class="font-display font-bold text-xs uppercase tracking-wider text-slate-400">Selecciona uno de los 5 Videos (45s):</span>
+    <!-- LEFT 4 COLS: PLAYLIST OF 5 MOTION VIDEOS + SOURCE FILES -->
+    <aside class="lg:col-span-4 space-y-4">
+      <div class="flex items-center justify-between">
+        <span class="font-display font-bold text-xs uppercase tracking-wider text-slate-400">5 Videos de Motion Design (45s):</span>
         <span class="px-2 py-0.5 rounded bg-[#00C48C]/20 text-[#63FCC0] font-mono text-[11px] font-bold">5 × 45.0s</span>
       </div>
 
-      <div id="videoPlaylist" class="space-y-2.5">
-        <!-- Populated by JS -->
-      </div>
+      <div id="videoPlaylist" class="space-y-2.5"></div>
 
-      <!-- Direct MP4 Files Card -->
-      <div class="p-4 rounded-xl bg-[#131A33] border border-white/10 text-xs space-y-2 mt-4">
+      <!-- Source Code Files in /videos -->
+      <div class="p-4 rounded-xl bg-[#131A33] border border-white/10 text-xs space-y-2.5">
         <div class="flex items-center justify-between">
-          <span class="font-display font-bold text-white flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[#00C48C] text-[18px]">movie</span>
-            Archivos .MP4 Renderizados (45s)
-          </span>
-          <span class="font-mono text-[10px] text-[#63FCC0]">1280×720 HD</span>
+          <span class="font-display font-bold text-white">Código fuente importado (<code>/videos</code>)</span>
+          <span class="font-mono text-[10px] text-[#63FCC0]">ES / Canvas 2D</span>
         </div>
         <p class="text-slate-300 leading-relaxed">
-          Además del motor interactivo a 60 FPS en pantalla, tienes los <strong>5 archivos de video MP4 de 45 segundos</strong> en la carpeta <code>/videos</code> listos para adjuntar o proyectar:
+          Cada video se carga dinámicamente desde su archivo fuente independiente en el directorio <code>videos/</code>:
         </p>
-        <div class="grid grid-cols-1 gap-1.5 pt-1">
-          <a href="videos/video1_problema_colombia_45s.mp4" download class="px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-[#63FCC0] font-mono text-[11px] flex justify-between items-center">
-            <span>⬇ video1_problema_colombia_45s.mp4</span><span>45s</span>
+        <div class="space-y-1.5 pt-1 font-mono text-[11px]">
+          <a href="videos/motion_engine.js" target="_blank" class="block px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-[#63FCC0] flex justify-between">
+            <span>videos/motion_engine.js</span><span>Motor 60fps</span>
           </a>
-          <a href="videos/video2_marco_legal_decreto587_45s.mp4" download class="px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-[#63FCC0] font-mono text-[11px] flex justify-between items-center">
-            <span>⬇ video2_marco_legal_decreto587_45s.mp4</span><span>45s</span>
+          <a href="videos/video1_problema_colombia.js" target="_blank" class="block px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-slate-200 flex justify-between">
+            <span>videos/video1_problema_colombia.js</span><span>45.0s</span>
           </a>
-          <a href="videos/video3_flujo_4_pantallas_45s.mp4" download class="px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-[#63FCC0] font-mono text-[11px] flex justify-between items-center">
-            <span>⬇ video3_flujo_4_pantallas_45s.mp4</span><span>45s</span>
+          <a href="videos/video2_marco_legal_decreto587.js" target="_blank" class="block px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-slate-200 flex justify-between">
+            <span>videos/video2_marco_legal_decreto587.js</span><span>45.0s</span>
           </a>
-          <a href="videos/video4_casos_y_vuelos_rac3_45s.mp4" download class="px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-[#63FCC0] font-mono text-[11px] flex justify-between items-center">
-            <span>⬇ video4_casos_y_vuelos_rac3_45s.mp4</span><span>45s</span>
+          <a href="videos/video3_flujo_4_pantallas.js" target="_blank" class="block px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-slate-200 flex justify-between">
+            <span>videos/video3_flujo_4_pantallas.js</span><span>45.0s</span>
           </a>
-          <a href="videos/video5_modelo_negocio_impacto_45s.mp4" download class="px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-[#63FCC0] font-mono text-[11px] flex justify-between items-center">
-            <span>⬇ video5_modelo_negocio_impacto_45s.mp4</span><span>45s</span>
+          <a href="videos/video4_casos_y_vuelos_rac3.js" target="_blank" class="block px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-slate-200 flex justify-between">
+            <span>videos/video4_casos_y_vuelos_rac3.js</span><span>45.0s</span>
+          </a>
+          <a href="videos/video5_modelo_negocio_impacto.js" target="_blank" class="block px-2.5 py-1.5 rounded bg-white/5 hover:bg-white/15 text-slate-200 flex justify-between">
+            <span>videos/video5_modelo_negocio_impacto.js</span><span>45.0s</span>
           </a>
         </div>
       </div>
     </aside>
 
-    <!-- RIGHT 8 COLS: 60FPS CANVAS STAGE + TIMELINE SCRUBBER + CLARITY VOICEOVER SCRIPT -->
+    <!-- RIGHT 8 COLS: 60FPS CANVAS STAGE + CONTROLS + SCENE JUMPERS -->
     <section class="lg:col-span-8 space-y-4">
       <div class="relative">
         <canvas id="motionCanvas" width="1280" height="720"></canvas>
@@ -98,22 +108,20 @@
       <!-- PLAYER CONTROLS & 45-SECOND SCRUBBER -->
       <div class="bg-[#131A33] p-4 rounded-2xl border border-white/10 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-2.5">
-            <button type="button" onclick="togglePlay()" id="playPauseBtn" class="px-4 py-2 rounded-xl bg-[#00C48C] hover:bg-[#3FDFA5] text-[#0B132B] font-display font-extrabold text-xs inline-flex items-center gap-1.5 transition">
-              <span class="material-symbols-outlined text-[18px]" id="playIcon">pause</span>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="togglePlay()" id="playPauseBtn" class="px-4 py-2 rounded-xl bg-[#00C48C] hover:bg-[#3FDFA5] text-[#0B132B] font-display font-extrabold text-xs transition">
               <span id="playLabel">Pausar</span>
             </button>
-            <button type="button" onclick="restartVideo()" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1">
-              <span class="material-symbols-outlined text-[16px]">replay</span>
-              <span>Reiniciar (0:00)</span>
+            <button type="button" onclick="restartVideo()" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition">
+              Reiniciar (0:00)
             </button>
-            <button type="button" onclick="toggleSound()" id="soundBtn" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1">
-              <span class="material-symbols-outlined text-[16px]" id="soundIcon">volume_up</span>
-              <span id="soundLabel">Audio Synth Activo</span>
+            <button type="button" onclick="toggleSound()" id="soundBtn" class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition">
+              <span id="soundLabel">Audio: Silenciado</span>
             </button>
           </div>
 
           <div class="flex items-center gap-3">
+            <span id="sourceFileBadge" class="px-2.5 py-1 rounded bg-white/5 text-slate-300 font-mono text-[11px]">videos/video1_problema_colombia.js</span>
             <span id="sceneBadge" class="px-2.5 py-1 rounded bg-white/10 text-[#63FCC0] font-mono text-xs font-bold">Escena 1 / 5</span>
             <span id="timecodeDisplay" class="font-mono font-bold text-sm text-white">00.0s / 45.0s</span>
           </div>
@@ -121,303 +129,34 @@
 
         <input id="timelineSlider" type="range" min="0" max="45" step="0.05" value="0" oninput="scrubTo(this.value)" class="w-full accent-[#00C48C] cursor-pointer"/>
 
-        <!-- Live Subtitle / Voiceover Box (Clarity Edited) -->
+        <!-- Scene Jump Buttons -->
+        <div id="sceneButtonsBar" class="flex flex-wrap gap-1.5 pt-1"></div>
+
+        <!-- Live Subtitle / Voiceover Box -->
         <div class="p-3.5 rounded-xl bg-[#0B132B] border border-white/10">
           <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-            <span class="font-bold text-[#00C48C] uppercase tracking-wider">Locución / Guion Sincronizado (Clarity Standard)</span>
+            <span class="font-bold text-[#00C48C] uppercase tracking-wider">Guion de Locución Sincronizado</span>
             <span id="currentVideoTitleTag" class="font-semibold text-slate-300">Video 1</span>
           </div>
-          <p id="liveSubtitleText" class="text-sm text-white font-medium leading-relaxed">
-            Cargando secuencia de motion graphics...
-          </p>
+          <p id="liveSubtitleText" class="text-sm text-white font-medium leading-relaxed"></p>
         </div>
       </div>
     </section>
 
   </main>
 
-  <script>
-    // 5 Videos × 45 Seconds = 9 scenes of 5 seconds each per video (or 5 scenes of 9s)
-    const VIDEOS = [
-      {
-        id: 1,
-        title: "Video 1: El Problema en Colombia",
-        subtitle: "370M de compras digitales y las 4 excusas ilegales",
-        mp4: "videos/video1_problema_colombia_45s.mp4",
-        accent: "#FF5A5F",
-        scenes: [
-          {
-            start: 0, end: 9,
-            tag: "ESCENA 1/5 • LA CIFRA OCULTA",
-            kicker: "COMERCIO DIGITAL EN COLOMBIA (CCCE)",
-            headline: "370.000.000+ pagos digitales al año",
-            stat: "$62 Billones COP",
-            sub: "Pagamos por PSE, Nequi, Daviplata y tarjetas. Pero cuando el comercio incumple, el comprador queda solo.",
-            voiceover: "En Colombia realizamos más de 370 millones de pagos digitales al año. Pero cuando un pedido no llega o sale defectuoso, recuperar tu dinero parece imposible.",
-            visualType: "counter"
-          },
-          {
-            start: 9, end: 18,
-            tag: "ESCENA 2/5 • LAS EXCUSAS EN WHATSAPP",
-            kicker: "PRÁCTICAS ABUSIVAS COTIDIANAS",
-            headline: "“No devolvemos plata, solo damos bono”",
-            stat: "4 Excusas Ilegales",
-            sub: "1) Bono obligatorio  •  2) 'Culpa de la transportadora'  •  3) 'En promo no hay garantía'  •  4) 'Espere 60 días'",
-            voiceover: "Las tiendas en redes y comercios repiten cuatro excusas ilegales: que solo dan bonos, que le reclames a la transportadora, que en promoción no hay garantía o que esperes dos meses.",
-            visualType: "chat_excuses"
-          },
-          {
-            start: 18, end: 27,
-            tag: "ESCENA 3/5 • LA BARRERA ECONÓMICA",
-            kicker: "ASIMETRÍA DE ACCESO A LA JUSTICIA",
-            headline: "Un abogado cuesta más que tu compra",
-            stat: "$500.000 vs $280.000",
-            sub: "Pagar una consulta y trámite particular cuesta entre $400k y $800k COP. El 84% abandona el reclamo.",
-            voiceover: "Ningún ciudadano va a pagarle quinientos mil pesos a un abogado para recuperar unos zapatos o un tiquete de trescientos mil. Esa brecha vuelve rentable el incumplimiento.",
-            visualType: "bars"
-          },
-          {
-            start: 27, end: 36,
-            tag: "ESCENA 4/5 • EL RELOJ DE 5 DÍAS HÁBILES",
-            kicker: "DECRETO 587 DE 2016 • ART. 2.2.2.51.4",
-            headline: "Tienes 5 días hábiles para activar a tu banco",
-            stat: "5 Días Hábiles",
-            sub: "La ley obliga a tu banco o PSE a devolverte la plata, pero exige una orden formal dentro de los primeros 5 días.",
-            voiceover: "La ley colombiana ya obliga a tu banco a devolverte el dinero, pero te exige notificar formalmente en cinco días hábiles con requisitos que casi nadie conoce.",
-            visualType: "clock5"
-          },
-          {
-            start: 36, end: 45,
-            tag: "ESCENA 5/5 • NACE REVERSOYA",
-            kicker: "PROTOTIPO LEGALTECH COLOMBIA",
-            headline: "ReversoYa: Tu plata de vuelta por ley",
-            stat: "Sin rogarle al comercio",
-            sub: "Activamos la orden vinculante ante tu banco, el comercio y la SIC en 3 minutos.",
-            voiceover: "Por eso creamos ReversoYa: tu plata de vuelta por ley, sin rogarle al comercio. Transformamos una norma técnica en un escudo ciudadano de tres minutos.",
-            visualType: "shield"
-          }
-        ]
-      },
-      {
-        id: 2,
-        title: "Video 2: El Motor Legal (Ley 1480 y Dec. 587)",
-        subtitle: "Art. 78 C.P., Reversión de Pago, Retracto y RAC 3",
-        mp4: "videos/video2_marco_legal_decreto587_45s.mp4",
-        accent: "#00C48C",
-        scenes: [
-          {
-            start: 0, end: 9,
-            tag: "ESCENA 1/5 • CONSTITUCIÓN Y DD. HH.",
-            kicker: "FUNDAMENTO CONSTITUCIONAL COLOMBIANO",
-            headline: "Artículos 78 y 229 de la Constitución",
-            stat: "Art. 78 + Art. 229 C.P.",
-            sub: "Protección constitucional al consumidor, acceso material a la justicia y Directrices de la ONU (Res. A/RES/70/186).",
-            voiceover: "ReversoYa materializa los artículos 78 y 229 de la Constitución Política de Colombia y las Directrices de las Naciones Unidas sobre protección al consumidor digital.",
-            visualType: "pillars"
-          },
-          {
-            start: 9, end: 18,
-            tag: "ESCENA 2/5 • ESTATUTO DEL CONSUMIDOR",
-            kicker: "LEY 1480 DE 2011 • ARTÍCULOS 43, 47 Y 50",
-            headline: "Retracto en Dinero y Cláusulas Nulas",
-            stat: "Art. 47 y Art. 43",
-            sub: "Art. 47: 5 días de retracto en efectivo (prohibido imponer bonos). Art. 43: Nula cualquier exclusión de garantía en promo.",
-            voiceover: "El artículo 47 de la Ley 1480 prohíbe obligarte a recibir bonos de cambio, y el artículo 43 declara ineficaz de pleno derecho negar la garantía en productos en promoción.",
-            visualType: "law_badges"
-          },
-          {
-            start: 18, end: 27,
-            tag: "ESCENA 3/5 • REVERSIÓN DEL PAGO",
-            kicker: "ARTÍCULO 51 LEY 1480 + DECRETO 587 DE 2016",
-            headline: "Las 5 Causales que Obligan a tu Banco",
-            stat: "100% Reembolsable",
-            sub: "1) Fraude  •  2) Débito no solicitado  •  3) Cobro de más  •  4) Producto no entregado  •  5) Producto defectuoso.",
-            voiceover: "El artículo 51 de la Ley 1480 y el Decreto 587 de 2016 ordenan que, ante falta de entrega, defecto o cobro indebido, el banco emisor debe reversar la transacción.",
-            visualType: "causals_wheel"
-          },
-          {
-            start: 27, end: 36,
-            tag: "ESCENA 4/5 • EL PLAZO PERENTORIO",
-            kicker: "ARTÍCULO 2.2.2.51.5 DECRETO 1074 DE 2015",
-            headline: "15 Días Hábiles para Abonar en tu Cuenta",
-            stat: "Máx. 15 Días Hábiles",
-            sub: "Notificado el emisor (PSE, Nequi o Tarjeta), la red de pagos tiene 15 días hábiles improrrogables para devolver el dinero.",
-            voiceover: "Una vez radicada la orden con los requisitos del Decreto 587, tu banco o pasarela tiene máximo quince días hábiles para depositar el cien por ciento en tu cuenta.",
-            visualType: "timeline15"
-          },
-          {
-            start: 36, end: 45,
-            tag: "ESCENA 5/5 • SANCIONES Y VUELOS RAC 3",
-            kicker: "ART. 61 LEY 1480 Y RAC 3 AEROCIVIL",
-            headline: "Multas de 2.000 SMLMV + 30% en Vuelos",
-            stat: "2.000 SMLMV",
-            sub: "La SIC sanciona la obstrucción hasta con 2.000 SMLMV, y el RAC 3 exige 30% adicional en sobreventa aérea.",
-            voiceover: "Quien obstruya la reversión enfrenta multas de hasta dos mil salarios mínimos ante la SIC, y en sobreventa de vuelos el RAC 3 exige un treinta por ciento adicional.",
-            visualType: "shield"
-          }
-        ]
-      },
-      {
-        id: 3,
-        title: "Video 3: Flujo Interactivo en 4 Pantallas",
-        subtitle: "Diseño en Stitch inspirado en Symplifica",
-        mp4: "videos/video3_flujo_4_pantallas_45s.mp4",
-        accent: "#63FCC0",
-        scenes: [
-          {
-            start: 0, end: 9,
-            tag: "ESCENA 1/5 • DISEÑO CENTRADO EN EL USUARIO",
-            kicker: "STITCH DESIGN SYSTEM + INSPIRACIÓN SYMPLIFICA",
-            headline: "Cero jerga jurídica: 4 pantallas guiadas",
-            stat: "3 Minutos",
-            sub: "Transformamos un procedimiento administrativo complejo en una calculadora paso a paso accesible desde celular o PC.",
-            voiceover: "Inspirados en la simplicidad de Symplifica y diseñados con Stitch, construimos una experiencia de cuatro pantallas que cualquier ciudadano completa en tres minutos.",
-            visualType: "ui_step1"
-          },
-          {
-            start: 9, end: 18,
-            tag: "ESCENA 2/5 • PANTALLA 1: ESCÁNER DEL CASO",
-            kicker: "PASO 1 DE 4 • CALCULADORA DE VIABILIDAD",
-            headline: "Selecciona causal, monto, PSE/Nequi y fecha",
-            stat: "Pantalla 1",
-            sub: "Calcula al instante si estás en los 5 días hábiles bancarios o si activa la demanda jurisdiccional ante la SIC.",
-            voiceover: "En la Pantalla 1 eliges qué ocurrió con tu compra o vuelo, ingresas el valor y el medio de pago, y el escáner verifica tu ventana legal de cinco días hábiles.",
-            visualType: "ui_step1"
-          },
-          {
-            start: 18, end: 27,
-            tag: "ESCENA 3/5 • PANTALLA 2: DETECTOR DE EXCUSAS",
-            kicker: "PASO 2 DE 4 • AUDITORÍA DE WHATSAPP + LEY 527",
-            headline: "Escanea el chat y sella pruebas con SHA-256",
-            stat: "Pantalla 2",
-            sub: "Detecta frases ilegales del vendedor y genera estampa criptográfica SHA-256 con validez probatoria (Ley 527/1999).",
-            voiceover: "En la Pantalla 2 pegas el mensaje de WhatsApp del vendedor. El detector señala las cláusulas nulas y certifica tus capturas con código criptográfico SHA-256.",
-            visualType: "chat_excuses"
-          },
-          {
-            start: 27, end: 36,
-            tag: "ESCENA 4/5 • PANTALLA 3: LOS 3 OFICIOS",
-            kicker: "PASO 3 DE 4 • REQUISITOS ART. 2.2.2.51.3",
-            headline: "Orden al Banco + Aviso al Comercio + SIC",
-            stat: "3 Documentos",
-            sub: "Genera el paquete jurídico exacto para que el banco no pueda rechazar la solicitud por requisitos de forma.",
-            voiceover: "En la Pantalla 3 el Semáforo Legal redacta al instante los tres oficios obligatorios: la Orden Vinculante al Banco, el Aviso al Comercio y la Demanda ante la SIC.",
-            visualType: "docs_triple"
-          },
-          {
-            start: 36, end: 45,
-            tag: "ESCENA 5/5 • PANTALLA 4: RELOJ DE 15 DÍAS",
-            kicker: "PASO 4 DE 4 • RADICACIÓN Y SEGUIMIENTO",
-            headline: "Cronómetro Bancario y Alerta Superfinanciera",
-            stat: "Día 1 a Día 15",
-            sub: "Monitorea el desembolso y radica queja automática ante el Defensor Financiero si el banco supera el día 15 hábil.",
-            voiceover: "Y en la Pantalla 4 activas la radicación simultánea y el reloj de quince días hábiles que vigila a tu banco hasta que el dinero regrese a tu cuenta.",
-            visualType: "timeline15"
-          }
-        ]
-      },
-      {
-        id: 4,
-        title: "Video 4: Casos Reales y Vuelos RAC 3",
-        subtitle: "Compras por Instagram, Garantías y Aerolíneas",
-        mp4: "videos/video4_casos_y_vuelos_rac3_45s.mp4",
-        accent: "#38BDF8",
-        scenes: [
-          {
-            start: 0, end: 11,
-            tag: "ESCENA 1/4 • CASO 1: COMPRA EN INSTAGRAM + PSE",
-            kicker: "CAUSAL 4 • PRODUCTO NO ENTREGADO",
-            headline: "Camila recupera $680.000 COP vía PSE",
-            stat: "$680.000 COP",
-            sub: "La tienda de Instagram no envió el pedido y ofreció un bono. ReversoYa ordenó la reversión a Bancolombia en 11 días.",
-            voiceover: "Caso uno: Camila pagó seiscientos ochenta mil pesos por PSE en una tienda de Instagram que nunca entregó el paquete.Con ReversoYa, su banco reversó el dinero en once días.",
-            visualType: "counter"
-          },
-          {
-            start: 11, end: 22,
-            tag: "ESCENA 2/4 • CASO 2: GARANTÍA EN PROMOCIÓN",
-            kicker: "CAUSAL 5 + ART. 43 LEY 1480 DE 2011",
-            headline: "Andrés anula la excusa de 'Black Friday'",
-            stat: "$1.450.000 COP",
-            sub: "Compró un equipo con descuento que llegó averiado. ReversoYa invocó la ineficacia de pleno derecho del Art. 43.",
-            voiceover: "Caso dos: Andrés compró un equipo de un millón cuatrocientos cincuenta mil pesos en descuento que llegó roto. ReversoYa anuló la cláusula abusiva y activó el reembolso con su tarjeta.",
-            visualType: "law_badges"
-          },
-          {
-            start: 22, end: 34,
-            tag: "ESCENA 3/4 • CASO 3: SOBREVENTA DE VUELO RAC 3",
-            kicker: "REGLAMENTOS AERONÁUTICOS DE COLOMBIA (RAC 3)",
-            headline: "Valentina exige 100% Tiquete + 30% RAC 3",
-            stat: "$540k + $162k = $702k",
-            sub: "Ante sobreventa en ruta Bogotá–Cartagena, ReversoYa líquida el 100% del pasaje más el 30% de compensación obligatoria.",
-            voiceover: "Caso tres: a Valentina le sobrevendieron su vuelo de quinientos cuarenta mil pesos. ReversoYa calculó el cien por ciento del tiquete más ciento sesenta y dos mil pesos de compensación RAC 3.",
-            visualType: "flight_rac3"
-          },
-          {
-            start: 34, end: 45,
-            tag: "ESCENA 4/4 • COBERTURA INTEGRAL EN COLOMBIA",
-            kicker: "CUATRO FRENTES EN UNA SOLA PLATAFORMA",
-            headline: "E-Commerce • Redes • Fintechs • Aerolíneas",
-            stat: "100% Trazable",
-            sub: "Si vencieron los 5 días bancarios, el sistema redirige el caso a Demanda Jurisdiccional ante la SIC (Art. 58 Ley 1480).",
-            voiceover: "Incluso si al usuario se le pasaron los cinco días bancarios, ReversoYa no lo deja desprotegido: transforma el caso en demanda jurisdiccional ante la SIC sin requerir abogado.",
-            visualType: "shield"
-          }
-        ]
-      },
-      {
-        id: 5,
-        title: "Video 5: Benchmark y Modelo de Negocio",
-        subtitle: "Diferenciación en Colombia y Sostenibilidad ($0 / $19.900 / B2B)",
-        mp4: "videos/video5_modelo_negocio_impacto_45s.mp4",
-        accent: "#00C48C",
-        scenes: [
-          {
-            start: 0, end: 11,
-            tag: "ESCENA 1/4 • ¿QUÉ EXISTE HOY EN COLOMBIA?",
-            kicker: "BENCHMARK DE COMPETENCIA NACIONAL",
-            headline: "Por qué SIC Facilita y los chatbots no bastan",
-            stat: "Diferencial Real",
-            sub: "SIC Facilita solo incluye comercios voluntarios; las apps de peticiones solo escriben al vendedor. ReversoYa vincula al banco.",
-            voiceover: "En Colombia, SIC Facilita solo cubre comercios inscritos voluntariamente y las apps de derechos de petición solo le escriben al vendedor. ReversoYa acciona directamente al banco emisor.",
-            visualType: "bars"
-          },
-          {
-            start: 11, end: 22,
-            tag: "ESCENA 2/4 • NIVEL 1: ACCESO UNIVERSAL GRATUITO",
-            kicker: "MODELO FREEMIUM DE IMPACTO SOCIAL",
-            headline: "Diagnóstico, Escáner y Oficios por $0 COP",
-            stat: "$0 COP Gratis",
-            sub: "Cualquier colombiano puede diagnosticar su caso, auditar excusas y descargar los 3 oficios sin pagar un peso.",
-            voiceover: "Nuestro modelo de negocio inicia con acceso universal gratuito: cualquier persona puede diagnosticar su caso y descargar los tres oficios listos por cero pesos.",
-            visualType: "pricing_tiers"
-          },
-          {
-            start: 22, end: 34,
-            tag: "ESCENA 3/4 • NIVEL 2: MICRO-PAGO ÉTICO B2C",
-            kicker: "0% DE COMISIÓN SOBRE TU REEMBOLSO",
-            headline: "Radicación Triple Certificada por $19.900 COP",
-            stat: "$19.900 COP",
-            sub: "95% más económico que un abogado. Envío simultáneo a Comercio + Banco/PSE + SIC con sello SHA-256 y reloj de 15 días.",
-            voiceover: "Para quien prefiere automatización total, cobramos una tarifa única de diecinueve mil novecientos pesos por radicar simultáneamente ante comercio, banco y SIC con sello criptográfico.",
-            visualType: "pricing_tiers"
-          },
-          {
-            start: 34, end: 45,
-            tag: "ESCENA 4/4 • NIVEL 3: ESCALA B2B SAAS",
-            kicker: "API PARA COMERCIOS Y PASARELAS DE PAGO",
-            headline: "Prevención de Multas SIC de 2.000 SMLMV",
-            stat: "SaaS B2B Mensual",
-            sub: "Los comercios formales y pasarelas pagan una licencia mensual para autogestionar retractos y evitar demandas.",
-            voiceover: "Y escalamos con un modelo SaaS B2B para pasarelas y comercios que integran nuestro botón de retracto para evitar multas de hasta dos mil salarios mínimos. Eso es justicia sostenible.",
-            visualType: "shield"
-          }
-        ]
-      }
-    ];
+  <!-- IMPORTACION DIRECTA DEL CODIGO FUENTE DE LOS 5 VIDEOS Y EL MOTOR DE MOTION DESIGN -->
+  <script src="videos/video1_problema_colombia.js"></script>
+  <script src="videos/video2_marco_legal_decreto587.js"></script>
+  <script src="videos/video3_flujo_4_pantallas.js"></script>
+  <script src="videos/video4_casos_y_vuelos_rac3.js"></script>
+  <script src="videos/video5_modelo_negocio_impacto.js"></script>
+  <script src="videos/motion_engine.js"></script>
 
+  <script>
+    const VIDEOS = window.REVERSOYA_VIDEOS || [];
     let activeVideoIndex = 0;
-    let currentTime = 0; // 0.0 to 45.0
+    let currentTime = 0;
     let isPlaying = true;
     let lastTimestamp = null;
     let soundEnabled = false;
@@ -448,9 +187,28 @@
               <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-[#63FCC0] shrink-0">45.0s</span>
             </div>
             <p class="text-xs text-slate-400 truncate mt-0.5">${v.subtitle}</p>
+            <span class="block font-mono text-[10px] text-slate-500 mt-1">${v.sourceFile}</span>
           </div>
         `;
         container.appendChild(btn);
+      });
+    }
+
+    function renderSceneJumpers() {
+      const bar = document.getElementById('sceneButtonsBar');
+      const v = VIDEOS[activeVideoIndex];
+      if (!bar || !v) return;
+      bar.innerHTML = '';
+      v.scenes.forEach((sc, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.onclick = () => {
+          currentTime = sc.start + 0.05;
+          drawFrame();
+        };
+        b.className = 'px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-[11px] font-semibold text-slate-200 transition';
+        b.textContent = `Escena ${i + 1} (${sc.start}s–${sc.end}s)`;
+        bar.appendChild(b);
       });
     }
 
@@ -461,6 +219,7 @@
       isPlaying = true;
       updatePlayUI();
       renderPlaylist();
+      renderSceneJumpers();
       playTransitionChime(320, 480);
     }
 
@@ -470,7 +229,6 @@
     }
 
     function updatePlayUI() {
-      document.getElementById('playIcon').textContent = isPlaying ? 'pause' : 'play_arrow';
       document.getElementById('playLabel').textContent = isPlaying ? 'Pausar' : 'Reproducir';
     }
 
@@ -492,8 +250,7 @@
       if (soundEnabled && !audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
-      document.getElementById('soundIcon').textContent = soundEnabled ? 'volume_up' : 'volume_off';
-      document.getElementById('soundLabel').textContent = soundEnabled ? 'Audio Synth Activo' : 'Audio Silenciado';
+      document.getElementById('soundLabel').textContent = soundEnabled ? 'Audio: Activo' : 'Audio: Silenciado';
       if (soundEnabled) playTransitionChime(330, 520);
     }
 
@@ -506,302 +263,32 @@
         osc.type = 'sine';
         osc.frequency.setValueAtTime(f1, now);
         osc.frequency.exponentialRampToValueAtTime(f2, now + 0.18);
-        gain.gain.setValueAtTime(0.06, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 0.26);
+        osc.stop(now + 0.25);
       } catch (e) {}
-    }
-
-    function easeOutCubic(x) {
-      return 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 3);
-    }
-
-    function drawRoundedRect(ctx, x, y, w, h, r, fill, stroke, strokeW = 1.5) {
-      ctx.beginPath();
-      ctx.roundRect(x, y, w, h, r);
-      if (fill) { ctx.fillStyle = fill; ctx.fill(); }
-      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = strokeW; ctx.stroke(); }
-    }
-
-    function drawVisualWidget(ctx, type, sceneProgress, t, accent) {
-      const rx = 740, ry = 175, rw = 470, rh = 380;
-      drawRoundedRect(ctx, rx, ry, rw, rh, 20, 'rgba(19, 26, 51, 0.92)', 'rgba(255,255,255,0.14)', 1.5);
-
-      const p = easeOutCubic(Math.min(1, sceneProgress * 1.8));
-
-      if (type === 'counter') {
-        // Animated Radar & Stat Ring
-        const cx = rx + rw / 2, cy = ry + 150;
-        for (let r = 1; r <= 3; r++) {
-          const rad = 45 * r + ((t * 28) % 35);
-          ctx.beginPath();
-          ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(0, 196, 140, ${0.28 - r * 0.07})`;
-          ctx.lineWidth = 2;
-          ctx.stroke();
-        }
-        drawRoundedRect(ctx, rx + 40, ry + 55, rw - 80, 140, 16, '#0B132B', '#00C48C', 2);
-        ctx.fillStyle = '#63FCC0';
-        ctx.font = '700 14px Inter';
-        ctx.textAlign = 'center';
-        ctx.fillText('TRANSACCIONES DIGITALES PROTEGIDAS', cx, ry + 90);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '800 44px "Plus Jakarta Sans"';
-        const val = Math.round(370 * p);
-        ctx.fillText(`${val} Millones / año`, cx, ry + 145);
-        ctx.fillStyle = '#94A3B8';
-        ctx.font = '500 14px Inter';
-        ctx.fillText('PSE • Nequi • Daviplata • Tarjetas Débito y Crédito', cx, ry + 175);
-
-        // Bottom 3 mini badges
-        const labels = ['Art. 78 C.P.', 'Ley 1480/2011', 'Dec. 587/2016'];
-        labels.forEach((lb, i) => {
-          const bx = rx + 35 + i * 138;
-          drawRoundedRect(ctx, bx, ry + 235, 124, 95, 12, 'rgba(255,255,255,0.05)', 'rgba(0,196,140,0.4)');
-          ctx.fillStyle = '#00C48C';
-          ctx.font = '800 15px "Plus Jakarta Sans"';
-          ctx.fillText(lb, bx + 62, ry + 275);
-          ctx.fillStyle = '#CBD5E1';
-          ctx.font = '500 12px Inter';
-          ctx.fillText('Vigente en COL', bx + 62, ry + 300);
-        });
-        ctx.textAlign = 'left';
-      } else if (type === 'chat_excuses') {
-        const excuses = [
-          { msg: '“Solo damos bono de cambio en tienda”', law: 'ILEGAL • Art. 47 Ley 1480', col: '#FF5A5F' },
-          { msg: '“Reclámele a Servientrega, ya salió”', law: 'ILEGAL • Art. 50 lit. h', col: '#FF5A5F' },
-          { msg: '“En promoción o Sale no hay garantía”', law: 'NULO • Art. 43 Ley 1480', col: '#FF5A5F' },
-          { msg: 'Sello Probatorio SHA-256 Activado ✓', law: 'VÁLIDO • Ley 527 de 1999', col: '#00C48C' }
-        ];
-        excuses.forEach((ex, i) => {
-          const appear = easeOutCubic(Math.max(0, Math.min(1, (sceneProgress - i * 0.14) * 2.5)));
-          const by = ry + 25 + i * 84 + (1 - appear) * 20;
-          ctx.globalAlpha = appear;
-          drawRoundedRect(ctx, rx + 25, by, rw - 50, 72, 12, '#0B132B', ex.col, 1.5);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '600 14px Inter';
-          ctx.fillText(ex.msg, rx + 42, by + 28);
-          ctx.fillStyle = ex.col;
-          ctx.font = '800 12px Inter';
-          ctx.fillText(ex.law, rx + 42, by + 52);
-        });
-        ctx.globalAlpha = 1;
-      } else if (type === 'bars' || type === 'pricing_tiers') {
-        const bars = type === 'bars'
-          ? [
-              { label: 'Abogado Particular', val: '$500.000 COP', w: 0.92, col: '#FF5A5F' },
-              { label: 'Compra Promedio Afectada', val: '$320.000 COP', w: 0.62, col: '#38BDF8' },
-              { label: 'ReversoYa Diagnóstico', val: '$0 COP (Gratis)', w: 0.18, col: '#00C48C' },
-              { label: 'ReversoYa Radicación Triple', val: '$19.900 COP', w: 0.25, col: '#63FCC0' }
-            ]
-          : [
-              { label: '1. Nivel Freemium (Diagnóstico + 3 Oficios)', val: '$0 COP Gratis', w: 0.85, col: '#00C48C' },
-              { label: '2. Radicación Triple Certificada (0% comisión)', val: '$19.900 COP / caso', w: 0.95, col: '#63FCC0' },
-              { label: '3. SaaS B2B Comercios & Pasarelas (API)', val: '$290k – $1.2M / mes', w: 0.78, col: '#38BDF8' }
-            ];
-        bars.forEach((b, i) => {
-          const by = ry + 32 + i * (type === 'bars' ? 82 : 105);
-          ctx.fillStyle = '#E2E8F0';
-          ctx.font = '700 14px "Plus Jakarta Sans"';
-          ctx.fillText(b.label, rx + 30, by);
-          drawRoundedRect(ctx, rx + 30, by + 10, rw - 60, 34, 8, '#0B132B', 'rgba(255,255,255,0.1)');
-          drawRoundedRect(ctx, rx + 30, by + 10, (rw - 60) * b.w * p, 34, 8, b.col, null);
-          ctx.fillStyle = '#0B132B';
-          ctx.font = '800 13px Inter';
-          ctx.fillText(b.val, rx + 42, by + 32);
-        });
-      } else if (type === 'clock5' || type === 'timeline15') {
-        const is5 = type === 'clock5';
-        const maxDays = is5 ? 5 : 15;
-        const curDay = Math.max(1, Math.min(maxDays, Math.ceil(sceneProgress * maxDays)));
-        drawRoundedRect(ctx, rx + 30, ry + 30, rw - 60, 110, 14, '#0B132B', '#00C48C', 2);
-        ctx.fillStyle = '#63FCC0';
-        ctx.font = '800 13px Inter';
-        ctx.fillText(is5 ? 'VENTANA PARA ORDENAR AL BANCO (DEC. 587)' : 'RELOJ PERENTORIO DE DESEMBOLSO BANCARIO', rx + 48, ry + 62);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '800 36px "Plus Jakarta Sans"';
-        ctx.fillText(`Día ${curDay} de ${maxDays} Días Hábiles`, rx + 48, ry + 110);
-
-        // Progress track
-        drawRoundedRect(ctx, rx + 30, ry + 165, rw - 60, 22, 11, '#0B132B', 'rgba(255,255,255,0.15)');
-        drawRoundedRect(ctx, rx + 30, ry + 165, (rw - 60) * (curDay / maxDays), 22, 11, '#00C48C', null);
-
-        const milestones = is5
-          ? ['Día 1: Incumplimiento o no entrega', 'Día 3: Escáner ReversoYa y sello SHA-256', 'Día 5: Orden radicada ante Banco/PSE']
-          : ['Día 1: Triple radicación (Comercio + Banco + SIC)', 'Día 5: Vence plazo de oposición del comercio', 'Día 15: Abono forzoso del 100% en tu cuenta'];
-        milestones.forEach((m, i) => {
-          const my = ry + 220 + i * 46;
-          drawRoundedRect(ctx, rx + 30, my, rw - 60, 36, 8, 'rgba(255,255,255,0.05)', 'rgba(0,196,140,0.35)');
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '600 13px Inter';
-          ctx.fillText('✓  ' + m, rx + 45, my + 23);
-        });
-      } else if (type === 'flight_rac3') {
-        const boxes = [
-          { title: '100% VALOR DEL TIQUETE (VÍA BANCO)', val: '$540.000 COP', col: '#38BDF8' },
-          { title: '+ 30% COMPENSACIÓN OBLIGATORIA RAC 3', val: '+ $162.000 COP', col: '#00C48C' },
-          { title: 'TOTAL LÍQUIDO EXIGIBLE EN DINERO', val: '= $702.000 COP', col: '#63FCC0' }
-        ];
-        boxes.forEach((b, i) => {
-          const by = ry + 30 + i * 108;
-          drawRoundedRect(ctx, rx + 30, by, rw - 60, 92, 14, '#0B132B', b.col, 2);
-          ctx.fillStyle = '#94A3B8';
-          ctx.font = '700 12px Inter';
-          ctx.fillText(b.title, rx + 48, by + 32);
-          ctx.fillStyle = b.col;
-          ctx.font = '800 30px "Plus Jakarta Sans"';
-          ctx.fillText(b.val, rx + 48, by + 70);
-        });
-      } else {
-        // Default Shield / Pillars / Law Badges / Docs Triple
-        const cards = [
-          { t: '1. Orden Vinculante al Banco / PSE', s: 'Art. 51 Ley 1480 y Art. 2.2.2.51.5 Dec. 587/2016' },
-          { t: '2. Notificación Prejudicial al Comercio', s: 'Requisito Art. 58 Ley 1480 • Multas hasta 2.000 SMLMV' },
-          { t: '3. Expediente SIC y Aerocivil RAC 3', s: 'Pruebas de WhatsApp selladas con SHA-256 (Ley 527/1999)' },
-          { t: '4. Seguimiento Automático de 15 Días', s: 'Reembolso del 100% directo a la cuenta del consumidor' }
-        ];
-        cards.forEach((c, i) => {
-          const appear = easeOutCubic(Math.max(0, Math.min(1, (sceneProgress - i * 0.12) * 2.4)));
-          const cy = ry + 24 + i * 84;
-          ctx.globalAlpha = appear;
-          drawRoundedRect(ctx, rx + 25, cy, rw - 50, 72, 12, '#0B132B', '#00C48C', 1.5);
-          ctx.fillStyle = '#63FCC0';
-          ctx.font = '800 15px "Plus Jakarta Sans"';
-          ctx.fillText(c.t, rx + 42, cy + 28);
-          ctx.fillStyle = '#CBD5E1';
-          ctx.font = '500 12.5px Inter';
-          ctx.fillText(c.s, rx + 42, cy + 52);
-        });
-        ctx.globalAlpha = 1;
-      }
-    }
-
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
-      let cy = y;
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line, x, cy);
-          line = words[n] + ' ';
-          cy += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, cy);
-      return cy;
     }
 
     function drawFrame() {
       const video = VIDEOS[activeVideoIndex];
-      const t = currentTime;
-      const sceneIdx = Math.min(video.scenes.length - 1, Math.floor(t / (45 / video.scenes.length)));
-      const scene = video.scenes[sceneIdx];
-      const sceneDuration = scene.end - scene.start;
-      const sceneProgress = Math.max(0, Math.min(1, (t - scene.start) / sceneDuration));
+      if (!video || !window.ReversoMotionEngine) return;
+
+      const { sceneIdx, scene } = window.ReversoMotionEngine.renderFullVideoFrame(ctx, video, currentTime);
 
       if (sceneIdx !== lastSceneIndex) {
         lastSceneIndex = sceneIdx;
         playTransitionChime(360 + sceneIdx * 45, 540 + sceneIdx * 45);
       }
 
-      // Update DOM UI
-      document.getElementById('timelineSlider').value = t;
-      document.getElementById('timecodeDisplay').textContent = `${t.toFixed(1).padStart(4, '0')}s / 45.0s`;
+      document.getElementById('timelineSlider').value = currentTime;
+      document.getElementById('timecodeDisplay').textContent = `${currentTime.toFixed(1).padStart(4, '0')}s / 45.0s`;
       document.getElementById('sceneBadge').textContent = `Escena ${sceneIdx + 1} / ${video.scenes.length}`;
-      document.getElementById('currentVideoTitleTag').textContent = `${video.title} (${t.toFixed(1)}s)`;
+      document.getElementById('sourceFileBadge').textContent = video.sourceFile;
+      document.getElementById('currentVideoTitleTag').textContent = `${video.title} (${currentTime.toFixed(1)}s)`;
       document.getElementById('liveSubtitleText').textContent = `“${scene.voiceover}”`;
-
-      // 1. Background Canvas Deep Trust Navy + Animated Grid
-      ctx.fillStyle = '#0B132B';
-      ctx.fillRect(0, 0, 1280, 720);
-
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
-      ctx.lineWidth = 1;
-      const offset = (t * 18) % 40;
-      for (let x = -offset; x < 1280; x += 40) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 720); ctx.stroke();
-      }
-      for (let y = -offset; y < 720; y += 40) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1280, y); ctx.stroke();
-      }
-
-      // 2. Top Brand Header Bar
-      drawRoundedRect(ctx, 50, 36, 1180, 68, 14, 'rgba(19, 26, 51, 0.9)', 'rgba(255, 255, 255, 0.12)', 1);
-      // Shield icon
-      drawRoundedRect(ctx, 70, 50, 40, 40, 10, '#00C48C', null);
-      ctx.fillStyle = '#0B132B';
-      ctx.font = '900 22px "Plus Jakarta Sans"';
-      ctx.fillText('R', 82, 78);
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '800 22px "Plus Jakarta Sans"';
-      ctx.fillText('ReversoYa', 122, 76);
-      ctx.fillStyle = '#00C48C';
-      ctx.font = '700 13px Inter';
-      ctx.fillText('•  “Tu plata de vuelta por ley, sin rogarle al comercio”', 248, 75);
-
-      // Scene Pill on right of header
-      drawRoundedRect(ctx, 940, 52, 270, 36, 18, 'rgba(0, 196, 140, 0.15)', '#00C48C', 1);
-      ctx.fillStyle = '#63FCC0';
-      ctx.font = '700 12px Inter';
-      ctx.textAlign = 'center';
-      ctx.fillText(scene.tag, 1075, 74);
-      ctx.textAlign = 'left';
-
-      // 3. Left Kinetic Typography Column
-      const enter = easeOutCubic(Math.min(1, sceneProgress * 3.0));
-      const slideY = (1 - enter) * 24;
-
-      ctx.save();
-      ctx.translate(0, slideY);
-      ctx.globalAlpha = enter;
-
-      // Kicker badge
-      drawRoundedRect(ctx, 64, 175, 440, 32, 8, 'rgba(255, 255, 255, 0.08)', null);
-      ctx.fillStyle = '#63FCC0';
-      ctx.font = '800 12px Inter';
-      ctx.fillText(scene.kicker, 80, 196);
-
-      // Headline
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '800 42px "Plus Jakarta Sans"';
-      const afterHeadlineY = wrapText(ctx, scene.headline, 64, 260, 620, 50);
-
-      // Big Stat Callout Pill
-      drawRoundedRect(ctx, 64, afterHeadlineY + 22, 390, 64, 14, '#00C48C', null);
-      ctx.fillStyle = '#0B132B';
-      ctx.font = '800 28px "Plus Jakarta Sans"';
-      ctx.fillText(scene.stat, 86, afterHeadlineY + 64);
-
-      // Supporting explanation
-      ctx.fillStyle = '#CBD5E1';
-      ctx.font = '500 18px Inter';
-      wrapText(ctx, scene.sub, 64, afterHeadlineY + 125, 620, 27);
-
-      ctx.restore();
-
-      // 4. Right Dynamic Motion Widget
-      drawVisualWidget(ctx, scene.visualType, sceneProgress, t, video.accent);
-
-      // 5. Bottom Subtitle & 45-Second Timeline Bar
-      drawRoundedRect(ctx, 50, 590, 1180, 66, 12, 'rgba(11, 19, 43, 0.92)', 'rgba(0, 196, 140, 0.4)', 1.5);
-      ctx.fillStyle = '#00C48C';
-      ctx.font = '800 11px Inter';
-      ctx.fillText('LOCUCIÓN CLARITY:', 72, 613);
-      ctx.fillStyle = '#F8FAFC';
-      ctx.font = '500 14.5px Inter';
-      ctx.fillText(scene.voiceover.slice(0, 118) + (scene.voiceover.length > 118 ? '...' : ''), 72, 638);
-
-      // Progress bar at very bottom (45.0s)
-      drawRoundedRect(ctx, 50, 672, 1180, 10, 5, 'rgba(255,255,255,0.12)', null);
-      drawRoundedRect(ctx, 50, 672, 1180 * (t / 45.0), 10, 5, '#00C48C', null);
     }
 
     function loop(timestamp) {
@@ -822,6 +309,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       renderPlaylist();
+      renderSceneJumpers();
       requestAnimationFrame(loop);
     });
   </script>

@@ -26,11 +26,19 @@ Los 5 capítulos de la narrativa jurídica están enlazados en una sola animaci�
 
 ---
 
-## ⚖️ Marco Normativo (Colombia)
+## ⚖️ Marco Normativo y Enlaces Oficiales de Referencia (Colombia)
 
-* **Constitución Política de Colombia:** **Art. 78** (protección constitucional al consumidor) y **Art. 229** (acceso efectivo a la administración de justicia).
-* **Estándar Internacional:** **Directrices de las Naciones Unidas para la Protección del Consumidor** (Resolución A/RES/70/186).
-* **Estatuto del Consumidor (Ley 1480 de 2011):** **Arts. 7 y 8** (garantía legal), **Art. 43** (ineficacia de pleno derecho de cláusulas abusivas), **Art. 47** (retracto en 5 días hábiles en dinero), **Art. 50 lit. h** (responsabilidad directa de entrega), **Art. 51** (reversión del pago) y **Arts. 58 y 61** (acción jurisdiccional y sanciones hasta por 2.000 SMLMV).
-* **Decreto 587 de 2016** (compilado en el **Decreto 1074 de 2015, Arts. 2.2.2.51.1 a 2.2.2.51.13**): Notificación en **5 días hábiles** y reembolso obligatorio por parte del banco o pasarela en máximo **15 días hábiles**.
-* **Ley 527 de 1999:** Validez probatoria de los mensajes de datos y soportes con huella digital **SHA-256**.
-* **Reglamentos Aeronáuticos de Colombia (RAC 3 de la Aerocivil):** Reembolso del **100 %** del tiquete más compensación mínima del **30 %** del valor del trayecto por sobreventa o cancelación atribuible a la aerolínea.
+| Norma o Fuente Citada | Entidad Oficial | Enlace Directo Verificado |
+|---|---|---|
+| **Constitución Política de Colombia (Art. 78)** | Secretaría del Senado / Función Pública | [Art. 78 C.P. (Senado)](http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78) · [Texto completo (Función Pública)](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125) |
+| **Constitución Política de Colombia (Art. 229)** | Secretaría del Senado | [Art. 229 C.P. (Senado)](http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr007.html#229) |
+| **Directrices de la ONU para la Protección del Consumidor (Res. A/RES/70/186)** | Naciones Unidas / UNCTAD | [Documento Oficial ONU (A/RES/70/186)](https://docs.un.org/es/A/RES/70/186) · [Biblioteca Digital ONU](https://digitallibrary.un.org/record/820876?ln=es) |
+| **Estatuto del Consumidor (Ley 1480 de 2011)** | Función Pública / Secretaría del Senado / SUIN-Juriscol | [Función Pública](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306) · [Senado (Arts. 7 y 8)](http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7) · [Senado (Arts. 43, 47, 50, 51, 58 y 61)](http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51) · [SUIN-Juriscol](https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/1681735) |
+| **Decreto 587 de 2016 (Reversión del Pago)** | Función Pública / SUIN-Juriscol | [Función Pública](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037) · [SUIN-Juriscol](https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30021459) |
+| **Decreto Único Reglamentario 1074 de 2015 (Cap. 51, Arts. 2.2.2.51.1 a 2.2.2.51.13)** | Función Pública / SUIN-Juriscol | [Función Pública](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608) · [SUIN-Juriscol](https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30019935) |
+| **Ley 527 de 1999 (Mensajes de Datos y Comercio Electrónico)** | Secretaría del Senado / Función Pública | [Secretaría del Senado](http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html) · [Función Pública](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4276) |
+| **Reglamentos Aeronáuticos de Colombia (RAC 3)** | Aeronáutica Civil / SUIT | [Descarga Oficial RAC 3 (SUIT)](https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380) · [Portal Normativo Aerocivil](https://www.aerocivil.gov.co/normatividad/RAC/Paginas/default.aspx) |
+| **Cámara Colombiana de Comercio Electrónico (CCCE)** | CCCE | [Portal e Informes Estadísticos CCCE](https://ccce.org.co/) |
+| **Superintendencia de Industria y Comercio (SIC) y SIC Facilita** | SIC | [Demandas de Protección al Consumidor](https://servicioslinea.sic.gov.co/servilinea/ServiLinea/DemandasProteccion/) · [SIC Facilita](https://sicfacilita.sic.gov.co/SICFacilita/) |
+| **Superintendencia Financiera de Colombia (Defensor del Consumidor Financiero)** | Superfinanciera | [Portal Oficial Superfinanciera](https://www.superfinanciera.gov.co/) |
+

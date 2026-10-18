@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReversoYa | Calculadora de Reversión de Pago Ley 1480 y RAC 3</title>
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#63fcc0",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#eff4ff",
+            "primary": "#0B132B",
+            "outline-variant": "#c6c6ce",
+            "on-tertiary-fixed": "#410007",
+            "tertiary": "#000000",
+            "surface": "#f8f9ff",
+            "background": "#f8f9ff",
+            "inverse-primary": "#bec5e5",
+            "tertiary-fixed": "#ffdad8",
+            "on-primary-container": "#7b83a0",
+            "on-secondary-fixed": "#002114",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#45464d",
+            "tertiary-container": "#410007",
+            "primary-fixed-dim": "#bec5e5",
+            "error": "#ba1a1a",
+            "on-surface": "#0d1c2f",
+            "surface-tint": "#565d79",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#ea4a51",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#dbe1ff",
+            "secondary-container": "#60f9bd",
+            "surface-container": "#e6eeff",
+            "on-primary-fixed-variant": "#3e4660",
+            "primary-container": "#131a33",
+            "on-secondary-container": "#00714f",
+            "secondary": "#006c4b",
+            "on-tertiary": "#ffffff",
+            "on-background": "#0d1c2f",
+            "surface-dim": "#ccdbf4",
+            "on-error": "#ffffff",
+            "outline": "#76767e",
+            "surface-bright": "#f8f9ff",
+            "surface-variant": "#d5e3fd",
+            "secondary-fixed-dim": "#3fdfa5",
+            "on-tertiary-fixed-variant": "#92001b",
+            "inverse-on-surface": "#ebf1ff",
+            "surface-container-highest": "#d5e3fd",
+            "surface-container-high": "#dde9ff",
+            "on-secondary-fixed-variant": "#005138",
+            "on-primary-fixed": "#131a33",
+            "tertiary-fixed-dim": "#ffb3b0",
+            "inverse-surface": "#233144",
+            "emerald-brand": "#00C48C"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "margin": "2rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "display-hero": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "stat-numeric": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-lg": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "badge-legal": ["Inter", "sans-serif"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.015em", "fontWeight": "800" }],
+            "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600" }],
+            "stat-numeric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "badge-legal": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col bg-surface text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TOP STATUTORY TRUST TICKER -->
+<div class="bg-primary-container text-surface border-b border-surface-container py-2 px-margin">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-body-sm font-body-sm gap-2">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-brand animate-pulse"></span>
+<span class="font-semibold text-secondary-fixed">+$3.420M COP recuperados este mes</span>
+<span class="text-on-primary-container hidden sm:inline">•</span>
+<span class="text-surface-dim hidden sm:inline">94.8% tasa de éxito ante emisores bancarios y pasarelas de pago</span>
+</div>
+<div class="flex items-center gap-4 text-xs">
+<span class="flex items-center gap-1 text-on-primary-container">
+<span class="material-symbols-outlined text-xs">verified_user</span> Amparado en Ley 1480 / Dec 587
+        </span>
+<span class="flex items-center gap-1 text-on-primary-container">
+<span class="material-symbols-outlined text-xs">timer</span> Plazo perentorio: 5 días hábiles
+        </span>
+</div>
+</div>
+</div>
+<!-- TOP NAVIGATION BAR (Exact Shared Component adherence) -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-low shadow-sm dark:shadow-none sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin md:px-margin max-w-7xl mx-auto h-16">
+<!-- Brand Logo Cluster -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="relative w-9 h-9 flex items-center justify-center">
+<svg class="w-9 h-9" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 8L15 22V52C15 74 30 92 50 98C70 92 85 74 85 52V22L50 8Z" fill="#0B132B"></path>
+<path d="M50 14L20 26V52C20 70 33 86 50 91C67 86 80 70 80 52V26L50 14Z" stroke="#00C48C" stroke-linejoin="round" stroke-width="6"></path>
+<path d="M50 34C41.1634 34 34 41.1634 34 50C34 58.8366 41.1634 66 50 66C56.6274 66 62.3137 61.9706 64.6765 56.2353" stroke="#00C48C" stroke-linecap="round" stroke-width="5"></path>
+<polyline points="63,33 67,41 57,43" stroke="#00C48C" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></polyline>
+<circle cx="50" cy="50" fill="#FFFFFF" r="4.5"></circle>
+</svg>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-extrabold text-primary dark:text-inverse-primary tracking-tight">
+            Reverso<span class="text-secondary">Ya</span>
+</span>
+<span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-badge-legal font-badge-legal bg-surface-container text-on-surface-variant border border-outline-variant">
+            LEY 1480
+          </span>
+</div>
+</a>
+<!-- Desktop Navigation Links (Calculadora is active) -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="border-b-2 border-secondary text-secondary dark:text-secondary-fixed font-label-lg text-label-lg pb-1" href="#calculadora">
+          Calculadora
+        </a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#casos">
+          Casos Activos
+        </a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#normativa">
+          Normativa Ley 1480
+        </a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-lg text-label-lg hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#ayuda">
+          Ayuda Urgente
+        </a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<button class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg" data-icon="support_agent">support_agent</span>
+          Línea SOS
+        </button>
+<a class="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-colors duration-150 active:scale-[0.98] shadow-sm" href="#calculadora">
+          Radicar Reversión
+        </a>
+</div>
+</div>
+</header>
+<!-- STATUTORY HORIZONTAL STRIP (Clickable non-wrapping pill filters) -->
+<div class="bg-surface-container-lowest border-b border-surface-container py-2.5 px-margin overflow-x-auto no-scrollbar">
+<div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto">
+<span class="text-badge-legal font-badge-legal text-on-surface-variant whitespace-nowrap uppercase tracking-wider mr-1">
+        Marco Legal:
+      </span>
+<button class="whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-low text-primary border border-outline-variant hover:border-secondary hover:text-secondary cursor-pointer transition-colors" type="button">
+        ⚖️ Art. 78 C.P. (Protección al Consumidor)
+      </button>
+<button class="whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-low text-primary border border-secondary text-secondary cursor-pointer transition-colors" type="button">
+        📜 Ley 1480 de 2011 (Estatuto del Consumidor)
+      </button>
+<button class="whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-low text-primary border border-outline-variant hover:border-secondary hover:text-secondary cursor-pointer transition-colors" type="button">
+        ⏱️ Decreto 587 de 2016 (Reversión 5 días hábiles)
+      </button>
+<button class="whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-low text-primary border border-outline-variant hover:border-secondary hover:text-secondary cursor-pointer transition-colors" type="button">
+        🔏 Ley 527 de 1999 (Validez Probatoria y Mensajes de Datos)
+      </button>
+<button class="whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-low text-primary border border-outline-variant hover:border-secondary hover:text-secondary cursor-pointer transition-colors" type="button">
+        ✈️ RAC 3 Aerocivil (Vuelos y Retracto Aéreo)
+      </button>
+</div>
+</div>
+<!-- MAIN VIEWPORT CONTAINER -->
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-margin py-8">
+<!-- Hero / Title Header Section -->
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-secondary text-label-md font-label-md mb-3 border border-surface-dim">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+        Herramienta Gratuita y Oficial de Cálculo de Reversión Bancaria
+      </div>
+<h1 class="font-headline-lg text-headline-lg md:font-display-hero md:text-display-hero text-primary tracking-tight">
+        Calculadora Legal de Reversión de Pago
+      </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mt-2">
+        Liquida de inmediato la procedencia obligatoria del reembolso de tu dinero conforme al <strong>Artículo 51 de la Ley 1480</strong> y el <strong>Decreto 587 de 2016</strong>. Tu banco y el comercio están obligados a responder.
+      </p>
+</div>
+<!-- 4-STEP WIZARD PROGRESS BAR -->
+<div class="bg-surface-container-lowest border border-surface-dim rounded-xl p-4 md:p-6 mb-8 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+<!-- Step 1 (Active) -->
+<div class="flex items-center md:items-start gap-3 relative">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm shrink-0 ring-4 ring-primary/10">
+            1
+          </div>
+<div>
+<p class="font-label-lg text-label-lg text-primary">1. Escáner del Caso</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Datos del cargo y causales</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center md:items-start gap-3 opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-sm shrink-0">
+            2
+          </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">2. Plazos y Evidencia</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cronómetro 5 días hábiles</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center md:items-start gap-3 opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-sm shrink-0">
+            3
+          </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">3. Semáforo Legal</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dictamen Vinculante 100%</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-center md:items-start gap-3 opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-sm shrink-0">
+            4
+          </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">4. Radicación Simultánea</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Comercio + Banco + SIC</p>
+</div>
+</div>
+</div>
+</div>
+<!-- QUICK-CASE SCENARIO SELECTOR (Purely scenario-driven pills) -->
+<div class="mb-8">
+<p class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-3">
+        Selección Rápida de Escenario Frecuente:
+      </p>
+<div class="flex flex-wrap gap-2.5">
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest border-2 border-secondary text-primary font-label-lg text-label-lg shadow-sm hover:border-secondary transition-all flex items-center gap-2" type="button">
+<span>📦 Pedido no entregado en fecha pactada</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-outline text-on-surface-variant font-label-lg text-label-lg shadow-sm transition-all flex items-center gap-2" type="button">
+<span>🏷️ Producto defectuoso o engañoso en descuento</span>
+</button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-outline text-on-surface-variant font-label-lg text-label-lg shadow-sm transition-all flex items-center gap-2" type="button">
+<span>💳 Cobro no reconocido o duplicado en extracto</span>
+</button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-outline text-on-surface-variant font-label-lg text-label-lg shadow-sm transition-all flex items-center gap-2" type="button">
+<span>🛫 Vuelo cancelado, sobrevendido o demorado</span>
+</button>
+</div>
+</div>
+<!-- TWO COLUMN CALCULATOR CANVAS -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: 8 Columns for Form & Evidence Inputs -->
+<div class="lg:col-span-7 xl:col-span-8 space-y-6">
+<!-- CARD 1: Causal Selection Grid -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-dim p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">
+                ¿Cuál es la causal de reversión o retracto?
+              </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Selecciona la tipificación legal que sustenta el desconocimiento de la transacción.
+              </p>
+</div>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-md text-on-surface font-semibold shrink-0">
+              Paso 1 de 4
+            </span>
+</div>
+<!-- 2x2 Causal Grid with strictly non-wrapping statutory tags -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Option 1: Selected state -->
+<label class="relative block p-4 rounded-xl border-2 border-primary bg-surface-container-low cursor-pointer transition-all shadow-sm">
+<input checked="" class="sr-only" name="causal" type="radio"/>
+<div class="flex items-start justify-between gap-2 mb-2">
+<span class="whitespace-nowrap text-xs font-bold py-0.5 px-2.5 rounded-full inline-flex bg-secondary-fixed text-on-secondary-fixed">
+                  Art. 51 num. 4 Ley 1480
+                </span>
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</span>
+</div>
+<p class="font-label-lg text-label-lg text-primary font-bold">
+                Compra no entregada o fraude en comercio electrónico
+              </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5">
+                Vencido el plazo contractual sin recepción física o digital del producto o servicio.
+              </p>
+</label>
+<!-- Option 2 -->
+<label class="relative block p-4 rounded-xl border border-surface-dim hover:border-outline bg-surface-container-lowest cursor-pointer transition-all">
+<input class="sr-only" name="causal" type="radio"/>
+<div class="flex items-start justify-between gap-2 mb-2">
+<span class="whitespace-nowrap text-xs font-bold py-0.5 px-2.5 rounded-full inline-flex bg-surface-container text-on-surface">
+                  Arts. 7, 47 y 51 Ley 1480
+                </span>
+<span class="w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center"></span>
+</div>
+<p class="font-label-lg text-label-lg text-primary">
+                Producto defectuoso o diferente (incluso en Black Friday/Sale)
+              </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5">
+                Inconsistencia material, roturas, especificaciones falsas o retracto comercial.
+              </p>
+</label>
+<!-- Option 3 -->
+<label class="relative block p-4 rounded-xl border border-surface-dim hover:border-outline bg-surface-container-lowest cursor-pointer transition-all">
+<input class="sr-only" name="causal" type="radio"/>
+<div class="flex items-start justify-between gap-2 mb-2">
+<span class="whitespace-nowrap text-xs font-bold py-0.5 px-2.5 rounded-full inline-flex bg-surface-container text-on-surface">
+                  Art. 51 nums. 1 y 2 Ley 1480
+                </span>
+<span class="w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center"></span>
+</div>
+<p class="font-label-lg text-label-lg text-primary">
+                Fraude, cargo duplicado o débito no autorizado
+              </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5">
+                Cobro no reconocido en tarjeta de crédito, PSE o monedero digital sin consentimiento.
+              </p>
+</label>
+<!-- Option 4 -->
+<label class="relative block p-4 rounded-xl border border-surface-dim hover:border-outline bg-surface-container-lowest cursor-pointer transition-all">
+<input class="sr-only" name="causal" type="radio"/>
+<div class="flex items-start justify-between gap-2 mb-2">
+<span class="whitespace-nowrap text-xs font-bold py-0.5 px-2.5 rounded-full inline-flex bg-surface-container text-on-surface">
+                  RAC 3 Aerocivil
+                </span>
+<span class="w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center"></span>
+</div>
+<p class="font-label-lg text-label-lg text-primary">
+                Vuelo cancelado, demora &gt; 5h o sobreventa de tiquetes
+              </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5">
+                Incumplimiento operacional aéreo, cancelación unilateral o cobros indebidos de aerolínea.
+              </p>
+</label>
+</div>
+</div>
+<!-- CARD 2: Transaction Details & Statutory Channels -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-dim p-6 shadow-sm space-y-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">
+            Datos de la Operación y Canal Bancario
+          </h2>
+<!-- Monto Input + Presets -->
+<div>
+<label class="block font-label-lg text-label-lg text-primary mb-1.5">
+              Monto total del cargo a reclamar (COP)
+            </label>
+<div class="relative rounded-lg shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
+<span class="text-on-surface-variant font-bold text-lg">$</span>
+</div>
+<input class="block w-full rounded-lg border-surface-dim pl-8 pr-12 py-3 text-stat-numeric font-stat-numeric text-primary focus:border-primary focus:ring-1 focus:ring-primary" id="monto-input" type="text" value="680.000"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="text-badge-legal font-badge-legal text-on-surface-variant">COP</span>
+</div>
+</div>
+<!-- Amount presets -->
+<div class="flex flex-wrap gap-2 mt-2.5">
+<button class="px-2.5 py-1 text-xs rounded-md bg-surface border border-surface-dim text-on-surface hover:bg-surface-container font-medium" type="button">$ 150.000</button>
+<button class="px-2.5 py-1 text-xs rounded-md bg-surface border border-surface-dim text-on-surface hover:bg-surface-container font-medium" type="button">$ 350.000</button>
+<button class="px-2.5 py-1 text-xs rounded-md bg-primary text-on-primary border border-primary font-bold shadow-xs" type="button">$ 680.000</button>
+<button class="px-2.5 py-1 text-xs rounded-md bg-surface border border-surface-dim text-on-surface hover:bg-surface-container font-medium" type="button">$ 1.500.000</button>
+<button class="px-2.5 py-1 text-xs rounded-md bg-surface border border-surface-dim text-on-surface hover:bg-surface-container font-medium" type="button">Personalizado</button>
+</div>
+</div>
+<!-- Canal de Pago Electrónico -->
+<div>
+<label class="block font-label-lg text-label-lg text-primary mb-2">
+              Canal de Pago Electrónico Utilizado
+            </label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-secondary bg-surface-container-low text-primary" type="button">
+<span class="material-symbols-outlined text-2xl text-secondary">account_balance</span>
+<span class="font-label-md text-label-md mt-1 font-bold">PSE / Débito</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-surface-dim bg-surface-container-lowest text-on-surface-variant hover:border-outline" type="button">
+<span class="material-symbols-outlined text-2xl">smartphone</span>
+<span class="font-label-md text-label-md mt-1">Nequi / Daviplata</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-surface-dim bg-surface-container-lowest text-on-surface-variant hover:border-outline" type="button">
+<span class="material-symbols-outlined text-2xl">credit_card</span>
+<span class="font-label-md text-label-md mt-1">Tarjeta Crédito</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-surface-dim bg-surface-container-lowest text-on-surface-variant hover:border-outline" type="button">
+<span class="material-symbols-outlined text-2xl">point_of_sale</span>
+<span class="font-label-md text-label-md mt-1">MercadoPago / Wompi</span>
+</button>
+</div>
+</div>
+<!-- Entidad Bancaria & Comercio -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-lg text-label-lg text-primary mb-1">
+                Entidad Bancaria Emisora
+              </label>
+<select class="block w-full h-12 rounded-lg border-surface-dim bg-surface-container-lowest text-body-md font-body-md text-primary focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="" value="bancolombia">Bancolombia S.A.</option>
+<option value="bogota">Banco de Bogotá</option>
+<option value="davivienda">Davivienda</option>
+<option value="nu">Nu Colombia Compañía de Financiamiento</option>
+<option value="lulo">Lulo Bank</option>
+<option value="bbva">BBVA Colombia</option>
+<option value="falabella">Banco Falabella</option>
+</select>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-primary mb-1">
+                Nombre del comercio o aerolínea
+              </label>
+<input class="block w-full h-12 rounded-lg border-surface-dim bg-surface-container-lowest text-body-md font-body-md text-primary focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Ej. Tienda Online SAS o Aerolínea" type="text" value="Comercio Digital Tech S.A.S."/>
+</div>
+</div>
+<!-- Selector de Fecha & Cronómetro Automático -->
+<div class="p-4 rounded-xl bg-surface-container border border-surface-dim">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+<div>
+<label class="block font-label-lg text-label-lg text-primary">
+                  Fecha de la compra o de la entrega pactada
+                </label>
+<span class="text-body-sm font-body-sm text-on-surface-variant">
+                  Base de cómputo para el plazo legal perentorio de 5 días hábiles.
+                </span>
+</div>
+<input class="h-10 px-3 rounded-lg border-surface-dim bg-surface-container-lowest text-label-lg font-label-lg text-primary" type="date" value="2025-02-24"/>
+</div>
+<!-- Calculadora Automática de Plazos -->
+<div class="bg-surface-container-lowest rounded-lg p-3.5 border border-surface-dim flex items-start gap-3">
+<div class="p-2 rounded-full bg-secondary-fixed text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-primary font-bold">
+                    Cómputo en curso: Día hábil 2 de 5
+                  </span>
+<span class="whitespace-nowrap inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-secondary-container text-on-secondary-container">
+                    Dentro de Término Legal
+                  </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+                  Tu solicitud se encuentra plenamente protegida por el Art. 51. Vencimiento del derecho de reclamo directo: <strong>28 de Febrero de 2025 a las 23:59</strong>.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 3: Drag & Drop Zone con Certificación Digital -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-dim p-6 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">
+                Pruebas Rápidas y Cadena de Custodia
+              </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Adjunta pantallazos de compra, reclamos por WhatsApp o extractos bancarios.
+              </p>
+</div>
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded text-primary font-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span> Sellado NTP RFC 3161
+            </span>
+</div>
+<div class="min-h-[140px] border-2 border-dashed border-outline-variant hover:border-secondary rounded-xl bg-surface p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors group">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-secondary-fixed transition-colors mb-2">
+<span class="material-symbols-outlined text-2xl">cloud_upload</span>
+</div>
+<p class="font-label-lg text-label-lg text-primary">
+              Haz clic para examinar o arrastra tus archivos aquí
+            </p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Formatos aceptados: PDF, PNG, JPG o correos en formato EML (Máx. 25MB).
+            </p>
+<div class="mt-3 inline-flex items-center gap-2 text-badge-legal font-badge-legal text-secondary uppercase tracking-wider">
+<span class="material-symbols-outlined text-xs">verified</span> Certificación con validez jurídica Ley 527 de 1999
+            </div>
+</div>
+</div>
+<!-- PRIMARY CALL TO ACTION -->
+<div class="pt-2">
+<button class="w-full h-14 bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 active:scale-[0.99]" type="button">
+            Continuar a Paso 2: Validar Plazos y Generar Escrito Bancario
+            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center text-body-sm font-body-sm text-on-surface-variant mt-2">
+            No cobramos comisiones anticipadas. Notificación automática formal al banco y al comercio.
+          </p>
+</div>
+</div>
+<!-- RIGHT COLUMN: 4-5 Columns Sticky Live Dictamen & Legal Summary -->
+<div class="lg:col-span-5 xl:col-span-4 sticky top-24 space-y-5">
+<!-- Live Legal Summary Card -->
+<div class="bg-surface-container-lowest rounded-2xl border-2 border-primary/20 p-6 shadow-md relative overflow-hidden">
+<!-- Top Tag -->
+<div class="flex items-center justify-between pb-4 border-b border-surface-dim">
+<span class="text-badge-legal font-badge-legal uppercase tracking-wider text-secondary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Dictamen Preliminar
+            </span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-surface-container text-primary">
+              Ley 1480 / Dec 587
+            </span>
+</div>
+<!-- Monto a Restituir Highlight -->
+<div class="py-5 border-b border-surface-dim">
+<span class="text-label-md font-label-md text-on-surface-variant block mb-1">
+              Monto Determinado a Reclamar:
+            </span>
+<div class="flex items-baseline gap-1">
+<span class="font-stat-numeric text-stat-numeric text-primary">$ 680.000</span>
+<span class="text-label-lg font-label-lg text-on-surface-variant font-bold">COP</span>
+</div>
+<p class="text-xs text-secondary font-semibold mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">task_alt</span> 100% reembolsable en dinero, prohibido saldo en tienda
+            </p>
+</div>
+<!-- Semáforo / Estado de Procedencia -->
+<div class="py-4 border-b border-surface-dim space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-primary">Estado de Procedencia:</span>
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-secondary-fixed text-on-secondary-fixed">
+                100% Procedente
+              </span>
+</div>
+<!-- Statutory Alert Strip -->
+<div class="bg-surface-container-low rounded-lg p-3 border border-surface-dim">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">timer</span>
+<div>
+<p class="text-xs font-bold text-primary">Plazo de Radicación:</p>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                    Día 2 de 5 días hábiles. Radica de inmediato para asegurar orden vinculante.
+                  </p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-3">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm shrink-0 mt-0.5">account_balance</span>
+<div>
+<p class="text-xs font-bold text-primary">Término de Abono Bancario:</p>
+<p class="text-xs text-on-surface-variant mt-0.5">
+                    15 días hábiles continuos para el banco emisor (Decreto 587 Art. 2.2.2.51.5).
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification Checklist -->
+<div class="py-4 border-b border-surface-dim space-y-2">
+<p class="text-label-md font-label-md text-primary font-bold">Amparo Legal Garantizado:</p>
+<div class="flex items-center gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Compra realizada por medio no presencial (e-commerce)</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Pago emitido con instrumento electrónico financiero</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Causal subsumida en Numeral 4 Art. 51 Estatuto</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Reversión vinculante sin requerir apoderado judicial</span>
+</div>
+</div>
+<!-- Secondary Quick Action -->
+<div class="pt-4 space-y-3">
+<button class="w-full py-2.5 px-4 rounded-lg border border-surface-dim hover:border-primary text-primary font-label-lg text-label-lg transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-base">description</span>
+              Ver borrador de requerimiento a entidad
+            </button>
+<!-- Quick WhatsApp Assistance Box -->
+<div class="rounded-xl bg-surface-container-lowest p-3 border border-surface-dim flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-2xl">support_agent</span>
+<div>
+<p class="text-xs font-bold text-primary">¿Dudas con las fechas?</p>
+<p class="text-[11px] text-on-surface-variant">Línea de orientación inmediata</p>
+</div>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs font-bold text-primary transition-colors" href="#">
+                Hablar SOS
+              </a>
+</div>
+</div>
+</div>
+<!-- Institutional Authority Trust Badge Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-dim p-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">gavel</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">Facultades Jurisdiccionales Delegadas</p>
+<p class="text-[11px] text-on-surface-variant leading-tight mt-0.5">
+              Procedimiento vigilado conforme a instrucciones de la Superintendencia de Industria y Comercio (SIC).
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- BENEFIT STATS / BANNER -->
+<div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-dim">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2.5 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-xl">security</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">Obligatorio</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">
+          Los bancos colombianos y procesadores no pueden negarse a tramitar la solicitud si se formula en los 5 días de ley.
+        </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-dim">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2.5 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-xl">schedule</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">15 Días Hábiles</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">
+          Término legal perentorio que tiene la red emisora de la tarjeta o cuenta para abonar el dinero recuperado.
+        </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-dim">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2.5 rounded-lg bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-xl">balance</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">Cero Demanda</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">
+          Vía administrativa directa previa a litigios. Eficaz ante cargos fantasmas, retrasos o estafas por Internet.
+        </p>
+</div>
+</div>
+</main>
+<!-- OFFICIAL COLOMBIAN LEGAL REGISTRY & DIRECTORY -->
+<section class="bg-surface-container-low border-t border-surface-dim py-10 px-margin mt-16">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">
+            Directorio Jurídico y Fuentes Oficiales de la República de Colombia
+          </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+            Validación de sustento normativo en portales estatales y gacetas del Congreso de la República.
+          </p>
+</div>
+<span class="whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-container-lowest text-primary border border-surface-dim">
+<span class="material-symbols-outlined text-xs text-secondary">verified</span> Consulta Pública Directa
+        </span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-body-sm font-body-sm">
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html" rel="noopener noreferrer" target="_blank">
+<span>Secretaría del Senado (Ley 1480 de 2011)</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=74100" rel="noopener noreferrer" target="_blank">
+<span>Función Pública (Decreto 587 de 2016)</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://www.suin-juriscol.gov.co" rel="noopener noreferrer" target="_blank">
+<span>SUIN-Juriscol (Normatividad Vigente)</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://www.sic.gov.co" rel="noopener noreferrer" target="_blank">
+<span>Superindustria (SIC Consumidor)</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://www.superfinanciera.gov.co" rel="noopener noreferrer" target="_blank">
+<span>Superfinanciera (SFC Bancos)</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://www.aerocivil.gov.co" rel="noopener noreferrer" target="_blank">
+<span>Aeronáutica Civil RAC 3</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://www.cce.org.co" rel="noopener noreferrer" target="_blank">
+<span>Cámara Colombiana Comercio Electrónico</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-lowest border border-surface-dim hover:border-secondary text-primary hover:text-secondary flex items-center justify-between transition-colors" href="https://unctad.org" rel="noopener noreferrer" target="_blank">
+<span>Directrices UNCTAD Consumidor</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+</div>
+</div>
+</section>
+<!-- FOOTER (Exact Shared Component implementation) -->
+<footer class="w-full py-space-xl px-margin border-t border-outline-variant dark:border-outline bg-surface-container-low dark:bg-inverse-surface">
+<div class="max-w-7xl mx-auto space-y-6">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">
+            ReversoYa
+          </span>
+<span class="text-xs bg-surface-container px-2 py-0.5 rounded text-on-surface">LegalTech Colombia</span>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 text-label-md font-label-md">
+<a class="text-secondary dark:text-secondary-fixed underline" href="#">Estatuto del Consumidor Art. 51</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Términos y Condiciones</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Política de Habeas Data</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Superintendencia de Industria y Comercio</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Superintendencia Financiera</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-inverse-on-surface transition-colors" href="#">Aeronáutica Civil RAC 3</a>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-dim">
+<p class="font-badge-legal text-badge-legal text-on-surface-variant dark:text-surface-variant leading-relaxed">
+          © 2025 ReversoYa S.A.S. Cumplimiento estricto de la Ley 1480 de 2011, Decreto 587 de 2016 y Reglamentos Aeronáuticos de Colombia RAC 3. Vigilado indirectamente por facultades de la SIC y SFC. Plataforma de auxilio al consumidor ante fraudes cibernéticos, transacciones no reconocidas e incumplimiento de aerolíneas o portales web.
+        </p>
+</div>
+</div>
+</footer>
+</body></html>

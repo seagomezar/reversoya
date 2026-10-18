@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -19,7 +19,8 @@
             "emerald-dark": "#007A57",
             "emerald-soft": "#E8F8F3",
             "danger": "#D9383A",
-            "danger-soft": "#FDF2F2"
+            "danger-soft": "#FDF2F2",
+            "surface": "#F8F9FF"
           },
           fontFamily: {
             "display": ["'Plus Jakarta Sans'", "system-ui", "sans-serif"],
@@ -34,13 +35,28 @@
     body {
       font-family: 'Inter', system-ui, sans-serif;
       color: #0F172A;
-      background-color: #F8FAFC;
+      background-color: #F8F9FF;
+      overflow-x: hidden;
     }
     h1, h2, h3, h4, .font-display {
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
     .tabular-nums {
       font-variant-numeric: tabular-nums;
+    }
+    .law-chip {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap !important;
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     .step-panel {
       display: none;
@@ -70,14 +86,14 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-soft selection:text-navy">
+<body class="min-h-dvh flex flex-col antialiased selection:bg-emerald-soft selection:text-navy">
 
   <!-- HEADER -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 no-print">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <a href="#" onclick="goToStep(1); return false;" class="flex items-center gap-2.5 focus:outline-none" aria-label="ReversoYa Inicio">
-          <svg class="h-9 w-auto" viewBox="0 0 220 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 no-print shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="#" onclick="goToStep(1); return false;" class="flex items-center gap-2.5 focus:outline-none shrink-0" aria-label="ReversoYa Inicio">
+          <svg class="h-8 sm:h-9 w-auto" viewBox="0 0 220 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M26 4L6 11V26C6 40 26 49 26 49C26 49 46 40 46 26V11L26 4Z" fill="#0B132B" stroke="#00A878" stroke-width="2.5" stroke-linejoin="round"/>
             <path d="M26 17C20.477 17 16 21.477 16 27C16 32.523 20.477 37 26 37C30.05 37 33.54 34.6 35.12 31.15" stroke="#00A878" stroke-width="2.8" stroke-linecap="round"/>
             <path d="M28 13L26 17.5L30.8 19" fill="#00A878"/>
@@ -85,18 +101,63 @@
             <text x="58" y="35" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="24" font-weight="800" fill="#0B132B" letter-spacing="-0.5">Reverso<tspan fill="#00A878">Ya</tspan></text>
           </svg>
         </a>
-        <span class="hidden md:inline-block text-xs text-slate-500 border-l border-slate-200 pl-3">
+        <span class="hidden lg:inline-block text-xs text-slate-500 border-l border-slate-200 pl-3 truncate">
           Tu plata de vuelta por ley, sin rogarle al comercio
         </span>
       </div>
 
-      <div class="flex items-center gap-3">
-        <span class="hidden sm:inline-block text-xs font-medium text-slate-500">
-          Ley 1480 de 2011 · Decreto 587 de 2016 · RAC 3
-        </span>
-        <button type="button" onclick="resetForm()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <a href="#directorio-juridico" class="hidden sm:inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-navy hover:bg-slate-100 transition whitespace-nowrap">
+          Fuentes oficiales
+        </a>
+        <button type="button" onclick="resetForm()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition whitespace-nowrap">
           Nuevo cálculo
         </button>
+      </div>
+    </div>
+
+    <!-- SINGLE-LINE STATUTORY ARTICLE CHIPS STRIP (STITCH RESPONSIVE BAR) -->
+    <div class="bg-slate-50/90 border-t border-slate-200/80 py-2 px-4 sm:px-6 overflow-x-auto no-scrollbar">
+      <div class="max-w-6xl mx-auto flex items-center gap-2 flex-nowrap">
+        <span class="law-chip text-[11px] font-bold uppercase tracking-wider text-slate-500 mr-1">
+          Normativa oficial:
+        </span>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Art. 78 C.P.
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr007.html#229" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Art. 229 C.P.
+        </a>
+        <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          ONU A/RES/70/186
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Arts. 7, 8 y 43 Ley 1480
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Art. 47 Ley 1480
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#50" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Art. 50 lit. h Ley 1480
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-soft text-emerald-dark border border-emerald/30 hover:bg-emerald hover:text-white transition">
+          Art. 51 Ley 1480
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Arts. 58 y 61 Ley 1480
+        </a>
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Decreto 587 de 2016
+        </a>
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Cap. 51 Decreto 1074/2015
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Ley 527 de 1999
+        </a>
+        <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          RAC 3 Aerocivil
+        </a>
       </div>
     </div>
   </header>
@@ -104,7 +165,7 @@
   <!-- STEP PROGRESS BAR -->
   <nav aria-label="Pasos de la calculadora" class="bg-white border-b border-slate-200 py-3 no-print">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <ol class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+      <ol class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
         <li>
           <button type="button" onclick="goToStep(1)" id="stepper-1" class="w-full flex items-center gap-2.5 p-2.5 rounded-lg border-2 border-navy bg-slate-50 text-left transition">
             <span id="stepper-badge-1" class="w-6 h-6 rounded-full bg-navy text-white font-display font-bold text-xs flex items-center justify-center shrink-0">1</span>
@@ -146,17 +207,17 @@
   </nav>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-5 sm:py-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
       <!-- LEFT COLUMN: 4-STEP WIZARD -->
-      <div class="lg:col-span-8 space-y-6">
+      <div class="lg:col-span-8 space-y-6 min-w-0">
 
         <!-- ========================================================= -->
         <!-- PASO 1: DATOS DE LA COMPRA O VUELO                        -->
         <!-- ========================================================= -->
         <section id="step-1" class="step-panel active no-print" aria-labelledby="step1-heading">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-6">
+          <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-6">
             <div class="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Paso 1 de 4</span>
@@ -164,77 +225,93 @@
                   ¿Qué ocurrió con tu compra o tiquete aéreo?
                 </h1>
                 <p class="text-sm text-slate-600 mt-1">
-                  En pagos con PSE, Nequi, Daviplata o tarjetas, la ley colombiana te permite exigir la devolución del dinero directamente ante tu entidad financiera.
+                  En pagos con PSE, Nequi, Daviplata o tarjetas, el <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 51 de la Ley 1480 de 2011</a> y el <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">Decreto 587 de 2016</a> te permiten exigir la devolución del dinero directamente ante tu entidad financiera.
                 </p>
               </div>
             </div>
 
-            <!-- Subtle quick-fill scenarios -->
-            <div class="bg-slate-50 rounded-lg p-3 border border-slate-200/80 flex flex-wrap items-center gap-2">
-              <span class="text-xs font-semibold text-slate-600 mr-1">Cargar ejemplo frecuente:</span>
-              <button type="button" onclick="loadPreset('instagram')" data-preset="instagram" class="preset-btn px-2.5 py-1 rounded-md text-xs font-semibold bg-navy text-white transition">
-                Pedido no entregado ($680.000)
-              </button>
-              <button type="button" onclick="loadPreset('garantia')" data-preset="garantia" class="preset-btn px-2.5 py-1 rounded-md text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
-                Producto defectuoso en descuento ($1.450.000)
-              </button>
-              <button type="button" onclick="loadPreset('fraude')" data-preset="fraude" class="preset-btn px-2.5 py-1 rounded-md text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
-                Cobro duplicado ($320.000)
-              </button>
-              <button type="button" onclick="loadPreset('vuelo')" data-preset="vuelo" class="preset-btn px-2.5 py-1 rounded-md text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition">
-                Vuelo sobrevendido ($540.000)
-              </button>
+            <!-- Quick-fill scenarios WITHOUT example amounts -->
+            <div class="bg-slate-50 rounded-xl p-3 sm:p-3.5 border border-slate-200/80">
+              <span class="block text-xs font-semibold text-slate-600 mb-2">Casos rápidos frecuentes:</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" onclick="loadPreset('instagram')" data-preset="instagram" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-navy text-white transition whitespace-nowrap">
+                  Pedido no entregado
+                </button>
+                <button type="button" onclick="loadPreset('garantia')" data-preset="garantia" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition whitespace-nowrap">
+                  Producto defectuoso en descuento
+                </button>
+                <button type="button" onclick="loadPreset('fraude')" data-preset="fraude" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition whitespace-nowrap">
+                  Cobro duplicado
+                </button>
+                <button type="button" onclick="loadPreset('vuelo')" data-preset="vuelo" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition whitespace-nowrap">
+                  Vuelo sobrevendido
+                </button>
+              </div>
             </div>
 
-            <!-- 1.1 Causal Selection -->
+            <!-- 1.1 Causal Selection (Stitch 2x2 Responsive Grid with single-line article chips) -->
             <div>
               <label class="block font-display font-bold text-sm text-navy mb-2.5">
                 1. Selecciona el motivo del reclamo
               </label>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup" aria-label="Motivo del reclamo">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" role="radiogroup" aria-label="Motivo del reclamo">
                 <button type="button" onclick="selectCausal('no_recibido')" id="card-causal-no_recibido" class="causal-card text-left p-4 rounded-xl border-2 border-navy bg-slate-50/70 transition flex flex-col justify-between">
-                  <div>
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                      <span class="font-display font-bold text-sm text-navy">Compra no entregada</span>
-                      <span class="px-2 py-0.5 rounded bg-emerald-soft text-emerald-dark font-semibold text-[11px]">Art. 51 num. 4</span>
+                  <div class="w-full">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+                        Art. 51 num. 4 Ley 1480
+                      </span>
+                      <span id="dot-causal-no_recibido" class="w-4 h-4 rounded-full border-2 border-navy bg-navy flex items-center justify-center shrink-0">
+                        <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                      </span>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <span class="block font-display font-bold text-sm text-navy">Compra no entregada</span>
+                    <p class="text-xs text-slate-600 leading-relaxed mt-1">
                       Venció la fecha pactada de entrega, no enviaron guía de despacho o el comercio dejó de responder.
                     </p>
                   </div>
                 </button>
 
                 <button type="button" onclick="selectCausal('defectuoso')" id="card-causal-defectuoso" class="causal-card text-left p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition flex flex-col justify-between">
-                  <div>
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                      <span class="font-display font-bold text-sm text-navy">Producto defectuoso o retracto</span>
-                      <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold text-[11px]">Arts. 7, 47 y 51</span>
+                  <div class="w-full">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="law-chip px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">
+                        Arts. 7, 47 y 51 Ley 1480
+                      </span>
+                      <span id="dot-causal-defectuoso" class="w-4 h-4 rounded-full border border-slate-300 bg-white flex items-center justify-center shrink-0"></span>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <span class="block font-display font-bold text-sm text-navy">Producto defectuoso o retracto</span>
+                    <p class="text-xs text-slate-600 leading-relaxed mt-1">
                       Llegó dañado, no corresponde a lo anunciado o ejerciste retracto en 5 días hábiles y te niegan el dinero.
                     </p>
                   </div>
                 </button>
 
                 <button type="button" onclick="selectCausal('fraude')" id="card-causal-fraude" class="causal-card text-left p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition flex flex-col justify-between">
-                  <div>
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                      <span class="font-display font-bold text-sm text-navy">Cobro doble o no autorizado</span>
-                      <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold text-[11px]">Art. 51 nums. 1 y 2</span>
+                  <div class="w-full">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="law-chip px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">
+                        Art. 51 nums. 1 y 2 Ley 1480
+                      </span>
+                      <span id="dot-causal-fraude" class="w-4 h-4 rounded-full border border-slate-300 bg-white flex items-center justify-center shrink-0"></span>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <span class="block font-display font-bold text-sm text-navy">Cobro doble o no autorizado</span>
+                    <p class="text-xs text-slate-600 leading-relaxed mt-1">
                       La pasarela debitó dos veces el mismo pago o se registró un cargo electrónico que no autorizaste.
                     </p>
                   </div>
                 </button>
 
                 <button type="button" onclick="selectCausal('vuelo')" id="card-causal-vuelo" class="causal-card text-left p-4 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition flex flex-col justify-between">
-                  <div>
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                      <span class="font-display font-bold text-sm text-navy">Sobreventa o cancelación de vuelo</span>
-                      <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold text-[11px]">RAC 3 Aerocivil</span>
+                  <div class="w-full">
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="law-chip px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px]">
+                        RAC 3 Aerocivil + Art. 51
+                      </span>
+                      <span id="dot-causal-vuelo" class="w-4 h-4 rounded-full border border-slate-300 bg-white flex items-center justify-center shrink-0"></span>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <span class="block font-display font-bold text-sm text-navy">Sobreventa o cancelación de vuelo</span>
+                    <p class="text-xs text-slate-600 leading-relaxed mt-1">
                       Negaron el embarque por sobreventa, cancelaron el vuelo por causas de la aerolínea o retienen el reembolso.
                     </p>
                   </div>
@@ -250,7 +327,7 @@
                 </label>
                 <div class="relative">
                   <span class="absolute inset-y-0 left-0 pl-3 flex items-center font-display font-bold text-slate-700">$</span>
-                  <input id="inputMonto" type="number" min="1000" step="5000" value="680000" oninput="recalculateCase()" class="w-full pl-7 pr-12 py-2.5 rounded-lg border-slate-300 font-display font-bold text-base text-navy tabular-nums focus:border-navy focus:ring-navy"/>
+                  <input id="inputMonto" type="number" min="0" step="5000" value="" placeholder="Ingresa el valor de tu compra" oninput="recalculateCase()" class="w-full pl-7 pr-12 py-2.5 rounded-lg border-slate-300 font-display font-bold text-base text-navy tabular-nums placeholder:font-sans placeholder:font-normal placeholder:text-slate-400 placeholder:text-sm focus:border-navy focus:ring-navy"/>
                   <span class="absolute inset-y-0 right-0 pr-3 flex items-center text-xs font-semibold text-slate-400">COP</span>
                 </div>
               </div>
@@ -329,7 +406,7 @@
             </div>
 
             <div class="pt-2 flex items-center justify-end">
-              <button type="button" onclick="goToStep(2)" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition">
+              <button type="button" onclick="goToStep(2)" class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition text-center">
                 Continuar al paso 2: Respuesta del comercio →
               </button>
             </div>
@@ -340,71 +417,79 @@
         <!-- PASO 2: RESPUESTA DEL COMERCIO Y SOPORTES                 -->
         <!-- ========================================================= -->
         <section id="step-2" class="step-panel no-print" aria-labelledby="step2-heading">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-6">
+          <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-6">
             <div class="border-b border-slate-100 pb-4">
               <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Paso 2 de 4</span>
               <h2 id="step2-heading" class="font-display font-bold text-xl sm:text-2xl text-navy mt-0.5">
                 Respuesta del comercio y soportes del reclamo
               </h2>
               <p class="text-sm text-slate-600 mt-1">
-                Selecciona los argumentos que te dio el proveedor. La herramienta incorporará los fundamentos específicos de la Ley 1480 de 2011 que invalidan esas negativas.
+                Selecciona los argumentos que te dio el proveedor. La herramienta incorporará los fundamentos específicos de la <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">Ley 1480 de 2011</a> que invalidan esas negativas.
               </p>
             </div>
 
-            <!-- Checklist of illegal excuses -->
+            <!-- Checklist of illegal excuses with single-line article chips -->
             <div class="space-y-3">
               <label class="block font-display font-bold text-sm text-navy">
                 1. ¿Qué respuesta recibiste del vendedor o aerolínea?
               </label>
 
-              <label class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200 bg-slate-50/60 hover:border-slate-300 cursor-pointer transition">
-                <input type="checkbox" checked onchange="recalculateCase()" class="excuse-check mt-0.5 w-4 h-4 rounded text-navy focus:ring-navy" value="bono"/>
-                <div class="flex-1 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
+              <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:border-slate-300 cursor-pointer transition">
+                <input type="checkbox" checked onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="bono"/>
+                <div class="flex-1 min-w-0 text-xs">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
                     <span class="font-display font-bold text-navy text-sm">Me ofrecen únicamente un bono, voucher o saldo a favor en la tienda</span>
-                    <span class="px-2 py-0.5 rounded bg-danger-soft text-danger font-semibold text-[11px]">Prohibido · Art. 47 Ley 1480</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                      Prohibido · Art. 47 Ley 1480
+                    </span>
                   </div>
-                  <p class="text-slate-600 mt-1">
-                    El artículo 47 de la Ley 1480 de 2011 ordena que la devolución se realice en dinero efectivo al mismo instrumento de pago; no es válido obligar al comprador a recibir bonos.
+                  <p class="text-slate-600 leading-relaxed">
+                    El <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 47 de la Ley 1480 de 2011</a> ordena que la devolución se realice en dinero efectivo al mismo instrumento de pago; no es válido obligar al comprador a recibir bonos.
                   </p>
                 </div>
               </label>
 
-              <label class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200 bg-slate-50/60 hover:border-slate-300 cursor-pointer transition">
-                <input type="checkbox" checked onchange="recalculateCase()" class="excuse-check mt-0.5 w-4 h-4 rounded text-navy focus:ring-navy" value="transportadora"/>
-                <div class="flex-1 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
+              <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:border-slate-300 cursor-pointer transition">
+                <input type="checkbox" checked onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="transportadora"/>
+                <div class="flex-1 min-w-0 text-xs">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
                     <span class="font-display font-bold text-navy text-sm">Dicen que el paquete ya fue entregado a la transportadora y debo reclamarle a ella</span>
-                    <span class="px-2 py-0.5 rounded bg-danger-soft text-danger font-semibold text-[11px]">Improcedente · Art. 50 lit. h</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                      Improcedente · Art. 50 lit. h
+                    </span>
                   </div>
-                  <p class="text-slate-600 mt-1">
-                    Según el artículo 50 literal h) de la Ley 1480 de 2011, el comercio responde directamente frente al comprador hasta que el bien sea entregado materialmente en la dirección acordada.
+                  <p class="text-slate-600 leading-relaxed">
+                    Según el <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#50" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 50 literal h) de la Ley 1480 de 2011</a>, el comercio responde directamente frente al comprador hasta que el bien sea entregado materialmente en la dirección acordada.
                   </p>
                 </div>
               </label>
 
-              <label class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200 bg-white hover:border-slate-300 cursor-pointer transition">
-                <input type="checkbox" onchange="recalculateCase()" class="excuse-check mt-0.5 w-4 h-4 rounded text-navy focus:ring-navy" value="promocion"/>
-                <div class="flex-1 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
+              <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 cursor-pointer transition">
+                <input type="checkbox" onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="promocion"/>
+                <div class="flex-1 min-w-0 text-xs">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
                     <span class="font-display font-bold text-navy text-sm">Afirman que los artículos en promoción o descuento no tienen garantía ni devolución</span>
-                    <span class="px-2 py-0.5 rounded bg-danger-soft text-danger font-semibold text-[11px]">Cláusula ineficaz · Arts. 7 y 43</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                      Cláusula ineficaz · Arts. 7 y 43
+                    </span>
                   </div>
-                  <p class="text-slate-600 mt-1">
-                    El artículo 43 de la Ley 1480 de 2011 declara ineficaces de pleno derecho las cláusulas que limiten o exoneren la garantía legal obligatoria prevista en los artículos 7 y 8.
+                  <p class="text-slate-600 leading-relaxed">
+                    El <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 43 de la Ley 1480 de 2011</a> declara ineficaces de pleno derecho las cláusulas que limiten o exoneren la garantía legal obligatoria prevista en los <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículos 7 y 8</a>.
                   </p>
                 </div>
               </label>
 
-              <label class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200 bg-white hover:border-slate-300 cursor-pointer transition">
-                <input type="checkbox" onchange="recalculateCase()" class="excuse-check mt-0.5 w-4 h-4 rounded text-navy focus:ring-navy" value="demora"/>
-                <div class="flex-1 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
+              <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 cursor-pointer transition">
+                <input type="checkbox" onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="demora"/>
+                <div class="flex-1 min-w-0 text-xs">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
                     <span class="font-display font-bold text-navy text-sm">Piden esperar de 30 a 60 días hábiles o dejaron de contestar mensajes</span>
-                    <span class="px-2 py-0.5 rounded bg-danger-soft text-danger font-semibold text-[11px]">Incumple Decreto 587 de 2016</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                      Incumple Decreto 587 de 2016
+                    </span>
                   </div>
-                  <p class="text-slate-600 mt-1">
-                    El artículo 2.2.2.51.5 del Decreto 1074 de 2015 fija un término máximo e improrrogable de 15 días hábiles para hacer efectiva la reversión del pago.
+                  <p class="text-slate-600 leading-relaxed">
+                    El <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 2.2.2.51.5 del Decreto 1074 de 2015</a> fija un término máximo e improrrogable de 15 días hábiles para hacer efectiva la reversión del pago.
                   </p>
                 </div>
               </label>
@@ -416,7 +501,9 @@
                 <label for="inputChatMsg" class="font-display font-bold text-xs uppercase tracking-wide text-navy">
                   2. Transcripción de la respuesta recibida (WhatsApp, correo o chat)
                 </label>
-                <span class="text-[11px] text-slate-500">Mensaje de datos · Ley 527 de 1999</span>
+                <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-[11px] font-semibold text-navy hover:border-emerald hover:text-emerald-dark transition">
+                  Mensaje de datos · Ley 527 de 1999
+                </a>
               </div>
               <textarea id="inputChatMsg" rows="2" oninput="analyzeChatText()" class="w-full rounded-lg border-slate-300 text-xs p-2.5 text-navy focus:border-navy focus:ring-navy" placeholder="Pega aquí la respuesta que te dio el comercio...">Hola, por políticas de nuestra tienda no hacemos devolución de dinero, solo te podemos dar un bono para que pidas otra prenda o reclámale a la transportadora.</textarea>
               <div id="chatAnalysisOutput" class="mt-2 p-2.5 rounded-lg bg-white border-l-4 border-danger text-xs text-slate-800"></div>
@@ -426,7 +513,9 @@
             <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-3">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <h3 class="font-display font-bold text-sm text-navy">3. Relación de soportes probatorios (Ley 527 de 1999)</h3>
+                  <h3 class="font-display font-bold text-sm text-navy">
+                    3. Relación de soportes probatorios (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-emerald-dark">Ley 527 de 1999</a>)
+                  </h3>
                   <p class="text-xs text-slate-600">
                     Adjunta tu comprobante de pago y capturas de pantalla para incluir su huella digital SHA-256 en el anexo probatorio del oficio.
                   </p>
@@ -439,11 +528,11 @@
               <div id="evidenceList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
             </div>
 
-            <div class="pt-2 flex items-center justify-between gap-3">
-              <button type="button" onclick="goToStep(1)" class="px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+            <div class="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <button type="button" onclick="goToStep(1)" class="px-4 py-2.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 text-center">
                 ← Volver a datos de la compra
               </button>
-              <button type="button" onclick="goToStep(3)" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition">
+              <button type="button" onclick="goToStep(3)" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition text-center">
                 Generar documentos legales →
               </button>
             </div>
@@ -454,14 +543,14 @@
         <!-- PASO 3: DOCUMENTOS LEGALES LISTOS PARA PRESENTAR          -->
         <!-- ========================================================= -->
         <section id="step-3" class="step-panel" aria-labelledby="step3-heading">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-6">
+          <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-6">
             <div class="border-b border-slate-100 pb-4 no-print">
               <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Paso 3 de 4</span>
               <h2 id="step3-heading" class="font-display font-bold text-xl sm:text-2xl text-navy mt-0.5">
                 Documentos formales listos para radicar
               </h2>
               <p class="text-sm text-slate-600 mt-1">
-                Cada documento incluye los requisitos exigidos por el artículo 2.2.2.51.3 del Decreto 1074 de 2015 y el artículo 58 de la Ley 1480 de 2011.
+                Cada documento incluye los requisitos exigidos por el <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 2.2.2.51.3 del Decreto 1074 de 2015</a> y el <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 58 de la Ley 1480 de 2011</a>.
               </p>
             </div>
 
@@ -470,57 +559,61 @@
               <div class="p-3.5 rounded-lg bg-emerald-soft border border-emerald/30">
                 <span class="text-[11px] font-semibold uppercase text-emerald-dark block">Mecanismo aplicable</span>
                 <p id="semaforoViabilidad" class="font-display font-bold text-base text-navy mt-0.5">Reversión bancaria (15 días)</p>
-                <p class="text-[11px] text-slate-600 mt-0.5">Art. 51 Ley 1480 · Decreto 587/2016</p>
+                <p class="text-[11px] text-slate-600 mt-0.5">
+                  <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 51 Ley 1480</a> · <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Decreto 587/2016</a>
+                </p>
               </div>
               <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
                 <span class="text-[11px] font-semibold uppercase text-slate-500 block">Valor total exigible</span>
-                <p id="semaforoMonto" class="font-display font-bold text-base text-navy tabular-nums mt-0.5">$680.000 COP</p>
+                <p id="semaforoMonto" class="font-display font-bold text-base text-navy tabular-nums mt-0.5">$0 COP</p>
                 <p id="semaforoMontoDetalle" class="text-[11px] text-slate-600 mt-0.5">100% reembolso al medio de pago</p>
               </div>
               <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
                 <span class="text-[11px] font-semibold uppercase text-slate-500 block">Régimen sancionatorio</span>
                 <p class="font-display font-bold text-base text-navy mt-0.5">Hasta 2.000 SMLMV</p>
-                <p class="text-[11px] text-slate-600 mt-0.5">Competencia SIC · Art. 61 Ley 1480</p>
+                <p class="text-[11px] text-slate-600 mt-0.5">
+                  Competencia SIC · <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#61" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 61 Ley 1480</a>
+                </p>
               </div>
             </div>
 
             <!-- Document switcher & export controls -->
-            <div class="flex flex-wrap items-center justify-between gap-2 no-print">
-              <div class="inline-flex p-1 rounded-lg bg-slate-100 border border-slate-200">
-                <button type="button" onclick="switchDocTab('banco')" id="doc-tab-banco" class="doc-tab-btn px-3 py-1.5 rounded-md bg-navy text-white text-xs font-bold transition">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 no-print">
+              <div class="flex overflow-x-auto no-scrollbar p-1 rounded-lg bg-slate-100 border border-slate-200 gap-1">
+                <button type="button" onclick="switchDocTab('banco')" id="doc-tab-banco" class="doc-tab-btn law-chip px-3 py-1.5 rounded-md bg-navy text-white text-xs font-bold transition">
                   1. Orden al Banco / PSE
                 </button>
-                <button type="button" onclick="switchDocTab('comercio')" id="doc-tab-comercio" class="doc-tab-btn px-3 py-1.5 rounded-md text-slate-700 hover:bg-white text-xs font-semibold transition">
+                <button type="button" onclick="switchDocTab('comercio')" id="doc-tab-comercio" class="doc-tab-btn law-chip px-3 py-1.5 rounded-md text-slate-700 hover:bg-white text-xs font-semibold transition">
                   2. Reclamación al Comercio
                 </button>
-                <button type="button" onclick="switchDocTab('sic')" id="doc-tab-sic" class="doc-tab-btn px-3 py-1.5 rounded-md text-slate-700 hover:bg-white text-xs font-semibold transition">
+                <button type="button" onclick="switchDocTab('sic')" id="doc-tab-sic" class="doc-tab-btn law-chip px-3 py-1.5 rounded-md text-slate-700 hover:bg-white text-xs font-semibold transition">
                   3. Demanda SIC / Aerocivil
                 </button>
               </div>
 
-              <div class="flex items-center gap-2">
-                <button type="button" onclick="copyCurrentDocument()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" onclick="copyCurrentDocument()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 whitespace-nowrap">
                   <span id="copyBtnLabel">Copiar texto</span>
                 </button>
-                <button type="button" onclick="downloadCurrentDocumentTxt()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+                <button type="button" onclick="downloadCurrentDocumentTxt()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 whitespace-nowrap">
                   Descargar .TXT
                 </button>
-                <button type="button" onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-navy text-white text-xs font-semibold hover:bg-navy-light">
+                <button type="button" onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-navy text-white text-xs font-semibold hover:bg-navy-light whitespace-nowrap">
                   Imprimir / PDF
                 </button>
               </div>
             </div>
 
             <!-- Document preview container -->
-            <div id="liveLegalDocument" class="print-only-doc p-6 rounded-xl bg-slate-50 border border-slate-200 font-sans text-xs sm:text-sm leading-relaxed text-slate-900 max-h-[460px] overflow-y-auto">
+            <div id="liveLegalDocument" class="print-only-doc p-4 sm:p-6 rounded-xl bg-slate-50 border border-slate-200 font-sans text-xs sm:text-sm leading-relaxed text-slate-900 max-h-[460px] overflow-y-auto">
               <!-- Populated by app.js -->
             </div>
 
-            <div class="pt-2 flex items-center justify-between gap-3 no-print">
-              <button type="button" onclick="goToStep(2)" class="px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+            <div class="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 no-print">
+              <button type="button" onclick="goToStep(2)" class="px-4 py-2.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 text-center">
                 ← Volver a respuesta y soportes
               </button>
-              <button type="button" onclick="goToStep(4)" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition">
+              <button type="button" onclick="goToStep(4)" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition text-center">
                 Continuar al paso 4: Ruta de radicación →
               </button>
             </div>
@@ -531,75 +624,75 @@
         <!-- PASO 4: RUTA DE RADICACIÓN Y SEGUIMIENTO DE 15 DÍAS       -->
         <!-- ========================================================= -->
         <section id="step-4" class="step-panel no-print" aria-labelledby="step4-heading">
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-6">
+          <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-6">
             <div class="border-b border-slate-100 pb-4">
               <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Paso 4 de 4</span>
               <h2 id="step4-heading" class="font-display font-bold text-xl sm:text-2xl text-navy mt-0.5">
                 Guía de radicación y control de los 15 días hábiles
               </h2>
               <p class="text-sm text-slate-600 mt-1">
-                Sigue estos tres pasos en orden para activar el término perentorio de devolución previsto en el artículo 2.2.2.51.5 del Decreto 1074 de 2015.
+                Sigue estos tres pasos en orden para activar el término perentorio de devolución previsto en el <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 2.2.2.51.5 del Decreto 1074 de 2015</a>.
               </p>
             </div>
 
             <!-- 3 Concrete Filing Steps -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
               <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <span class="inline-block px-2 py-0.5 rounded bg-navy text-white font-bold text-[11px] mb-2">1. Notificar al comercio</span>
+                <span class="law-chip px-2.5 py-0.5 rounded-full bg-navy text-white font-bold text-[11px] mb-2">1. Notificar al comercio</span>
                 <h3 class="font-display font-bold text-sm text-navy">Envía la Reclamación Directa</h3>
                 <p class="text-slate-600 mt-1 leading-relaxed">
-                  Remite el Documento 2 al correo, PQRS o WhatsApp de <strong id="step4MerchantName">la tienda</strong> y guarda captura del envío. Esto cumple el requisito de reclamación previa (Art. 2.2.2.51.3).
+                  Remite el Documento 2 al correo, PQRS o WhatsApp de <strong id="step4MerchantName">la tienda</strong> y guarda captura del envío. Esto cumple el requisito de reclamación previa (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Art. 2.2.2.51.3</a>).
                 </p>
               </div>
               <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <span class="inline-block px-2 py-0.5 rounded bg-navy text-white font-bold text-[11px] mb-2">2. Radicar ante el banco</span>
+                <span class="law-chip px-2.5 py-0.5 rounded-full bg-navy text-white font-bold text-[11px] mb-2">2. Radicar ante el banco</span>
                 <h3 class="font-display font-bold text-sm text-navy">Presenta la Orden de Reversión</h3>
                 <p class="text-slate-600 mt-1 leading-relaxed">
-                  Radica el Documento 1 en el canal SAC o Defensor del Consumidor Financiero de <strong id="step4BankName">tu entidad</strong> junto con la constancia del aviso enviado al comercio.
+                  Radica el Documento 1 en el canal SAC o <a href="https://www.superfinanciera.gov.co/" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Defensor del Consumidor Financiero</a> de <strong id="step4BankName">tu entidad</strong> junto con la constancia del aviso enviado al comercio.
                 </p>
               </div>
               <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <span class="inline-block px-2 py-0.5 rounded bg-emerald text-white font-bold text-[11px] mb-2">3. Recibir el abono</span>
+                <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald text-white font-bold text-[11px] mb-2">3. Recibir el abono</span>
                 <h3 class="font-display font-bold text-sm text-navy">Plazo máximo: 15 días hábiles</h3>
                 <p class="text-slate-600 mt-1 leading-relaxed">
-                  La entidad financiera y la red de pagos deben abonar el 100% de la suma reclamada dentro de los 15 días hábiles siguientes a tu radicación.
+                  La entidad financiera y la red de pagos deben abonar el 100% de la suma reclamada dentro de los 15 días hábiles siguientes a tu radicación (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Art. 2.2.2.51.5</a>).
                 </p>
               </div>
             </div>
 
             <!-- Interactive 15-Day Timeline Simulator -->
-            <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <div class="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="daySlider" class="font-display font-bold text-sm text-navy">
                   Consulta el estado legal según el día hábil transcurrido (Día <span id="currentDayLabel">3</span> de 15):
                 </label>
-                <span id="countdownStatusPill" class="px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-xs">
+                <span id="countdownStatusPill" class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-xs">
                   Faltan 12 días hábiles para el desembolso
                 </span>
               </div>
               <input id="daySlider" type="range" min="1" max="16" value="3" oninput="updateCountdownSimulator(this.value)" class="w-full accent-navy cursor-pointer"/>
-              <div class="flex justify-between text-[11px] text-slate-500 font-medium">
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-1 text-[11px] text-slate-500 font-medium">
                 <span>Día 1: Radicación</span>
-                <span>Día 5: Cierre objeción comercio</span>
-                <span>Día 10: Verificación red</span>
-                <span>Día 15: Límite de abono</span>
-                <span>Día 16+: Mora bancaria</span>
+                <span class="sm:text-center">Día 5: Cierre objeción</span>
+                <span class="hidden sm:inline text-center">Día 10: Red pagos</span>
+                <span class="sm:text-center">Día 15: Límite abono</span>
+                <span class="text-right">Día 16+: Mora</span>
               </div>
               <div id="daySimulatorDetail" class="p-3.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-800 leading-relaxed"></div>
             </div>
 
             <!-- Business-Day Statutory Deadline Calculator & Export -->
-            <div class="p-5 rounded-xl border border-slate-200 bg-white space-y-4">
+            <div class="p-4 sm:p-5 rounded-xl border border-slate-200 bg-white space-y-4">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
                 <div>
                   <h3 class="font-display font-bold text-sm text-navy">Cálculo de fechas límite en días hábiles (Colombia)</h3>
                   <p class="text-xs text-slate-600 mt-0.5">
-                    Selecciona la fecha en que radicas la solicitud para conocer el vencimiento exacto de los plazos del Decreto 587 de 2016 (excluyendo sábados, domingos y festivos nacionales).
+                    Selecciona la fecha en que radicas la solicitud para conocer el vencimiento exacto de los plazos del <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Decreto 587 de 2016</a> (excluyendo sábados, domingos y festivos nacionales).
                   </p>
                 </div>
                 <div class="shrink-0">
                   <label for="inputFechaRadicacion" class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Fecha de radicación</label>
-                  <input id="inputFechaRadicacion" type="date" onchange="recalculateCase()" class="py-1.5 px-2.5 rounded-lg border-slate-300 text-xs font-semibold text-navy focus:border-navy focus:ring-navy"/>
+                  <input id="inputFechaRadicacion" type="date" onchange="recalculateCase()" class="w-full sm:w-auto py-1.5 px-2.5 rounded-lg border-slate-300 text-xs font-semibold text-navy focus:border-navy focus:ring-navy"/>
                 </div>
               </div>
 
@@ -607,27 +700,31 @@
                 <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
                   <span class="text-[11px] font-semibold uppercase text-slate-500 block">Cierre de oposición del proveedor (5 días hábiles)</span>
                   <p id="deadline5DaysText" class="font-display font-bold text-base text-navy mt-0.5"></p>
-                  <p class="text-[11px] text-slate-600 mt-0.5">Art. 2.2.2.51.6 Decreto 1074 de 2015</p>
+                  <p class="text-[11px] text-slate-600 mt-0.5">
+                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 2.2.2.51.6 Decreto 1074 de 2015</a>
+                  </p>
                 </div>
                 <div class="p-3.5 rounded-lg bg-emerald-soft border border-emerald/30">
                   <span class="text-[11px] font-semibold uppercase text-emerald-dark block">Fecha máxima de abono bancario (15 días hábiles)</span>
                   <p id="deadline15DaysText" class="font-display font-bold text-base text-navy mt-0.5"></p>
-                  <p class="text-[11px] text-slate-700 mt-0.5">Art. 2.2.2.51.5 Decreto 1074 de 2015</p>
+                  <p class="text-[11px] text-slate-700 mt-0.5">
+                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 2.2.2.51.5 Decreto 1074 de 2015</a>
+                  </p>
                 </div>
               </div>
 
-              <div class="flex flex-wrap items-center justify-end gap-2.5 pt-1">
-                <button type="button" onclick="downloadAllDocumentsTxt()" class="px-4 py-2 rounded-lg border border-navy text-navy font-display font-bold text-xs hover:bg-slate-50 transition">
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-2.5 pt-1">
+                <button type="button" onclick="downloadAllDocumentsTxt()" class="px-4 py-2 rounded-lg border border-navy text-navy font-display font-bold text-xs hover:bg-slate-50 transition text-center">
                   Descargar paquete con los 3 oficios (.TXT)
                 </button>
-                <button type="button" onclick="goToStep(3); window.print();" class="px-4 py-2 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-xs transition">
+                <button type="button" onclick="goToStep(3); window.print();" class="px-4 py-2 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-xs transition text-center">
                   Imprimir o guardar en PDF
                 </button>
               </div>
             </div>
 
             <div class="pt-2 flex items-center justify-between">
-              <button type="button" onclick="goToStep(3)" class="px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+              <button type="button" onclick="goToStep(3)" class="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 text-center">
                 ← Volver a los documentos
               </button>
             </div>
@@ -637,14 +734,16 @@
       </div>
 
       <!-- RIGHT COLUMN: LIVE CASE SUMMARY SIDEBAR -->
-      <aside class="lg:col-span-4 lg:sticky lg:top-20 space-y-4 no-print">
+      <aside class="lg:col-span-4 lg:sticky lg:top-28 space-y-4 no-print min-w-0">
         <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           <div class="bg-navy px-5 py-4 text-white">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald">Resumen del caso</span>
-              <span id="sidebarCausalTag" class="text-[11px] font-mono text-slate-300">Art. 51 Ley 1480</span>
+              <span class="law-chip text-[11px] font-semibold uppercase tracking-wider text-emerald">Resumen del caso</span>
+              <a id="sidebarCausalTag" href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-mono text-slate-200 transition">
+                Art. 51 num. 4 Ley 1480
+              </a>
             </div>
-            <h3 id="sidebarHeadline" class="font-display font-bold text-sm sm:text-base text-white mt-1.5 leading-snug">
+            <h3 id="sidebarHeadline" class="font-display font-bold text-sm sm:text-base text-white mt-2 leading-snug">
               Bancolombia S.A. debe reversar el 100% de tu compra en máximo 15 días hábiles
             </h3>
           </div>
@@ -654,7 +753,7 @@
               Valor total a restituir:
             </span>
             <div class="flex items-baseline gap-1.5 mt-1">
-              <span id="sidebarTotalAmount" class="font-display font-extrabold text-3xl text-navy tabular-nums">$680.000</span>
+              <span id="sidebarTotalAmount" class="font-display font-extrabold text-3xl text-navy tabular-nums">$0</span>
               <span class="font-bold text-xs text-slate-500">COP</span>
             </div>
             <p id="sidebarCompensationNote" class="text-xs text-slate-600 mt-1"></p>
@@ -663,27 +762,32 @@
           <div class="p-5 space-y-3 text-xs">
             <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-slate-700 font-semibold">1. Tu plazo para avisar (5 días):</span>
-                <span id="sidebarDaysLeft" class="px-2 py-0.5 rounded bg-emerald-soft text-emerald-dark font-bold">Quedan 3 días hábiles</span>
+                <span class="text-slate-700 font-semibold">1. Plazo comprador (5 días):</span>
+                <span id="sidebarDaysLeft" class="law-chip px-2 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+                  Quedan 3 días hábiles
+                </span>
               </div>
               <p class="text-[11px] text-slate-500 leading-snug">
-                Tiempo que tienes tú como comprador para notificar al comercio y al banco (Art. 2.2.2.51.4).
+                Tiempo para notificar al comercio y al banco (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 2.2.2.51.4 Dec. 1074/2015</a>).
               </p>
               <div class="pt-2 border-t border-slate-200 flex items-center justify-between gap-2">
-                <span class="text-slate-700 font-semibold">2. Plazo del banco para pagar:</span>
-                <span class="px-2 py-0.5 rounded bg-navy text-white font-bold">Máx. 15 días hábiles</span>
+                <span class="text-slate-700 font-semibold">2. Plazo banco para abonar:</span>
+                <span class="law-chip px-2 py-0.5 rounded-full bg-navy text-white font-bold text-[11px]">
+                  Máx. 15 días hábiles
+                </span>
               </div>
               <p class="text-[11px] text-slate-500 leading-snug">
-                Tiempo máximo que tiene el banco para devolverte el dinero una vez radicas la solicitud (Art. 2.2.2.51.5).
+                Término perentorio de desembolso bancario (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 2.2.2.51.5 Dec. 1074/2015</a>).
               </p>
             </div>
 
             <div class="pt-2 border-t border-slate-100 space-y-1.5">
-              <p class="font-bold text-navy text-[11px] uppercase tracking-wide">Normas aplicadas:</p>
+              <p class="font-bold text-navy text-[11px] uppercase tracking-wide">Normas oficiales aplicables:</p>
               <ul class="space-y-1 text-slate-600">
-                <li>· <strong>Art. 78 C.P.:</strong> Protección constitucional al consumidor.</li>
-                <li>· <strong>Arts. 47 y 51 Ley 1480/2011:</strong> Retracto y reversión de pago.</li>
-                <li>· <strong>Decreto 587/2016:</strong> Regla 5 días (comprador) + 15 días (banco).</li>
+                <li>· <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Arts. 78 y 229 C.P.</a> y <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">ONU A/RES/70/186</a>: Protección y acceso a la justicia.</li>
+                <li>· <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Ley 1480 de 2011</a> (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47" target="_blank" rel="noopener noreferrer" class="underline">Arts. 47</a> y <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="underline">51</a>): Retracto y reversión de pago.</li>
+                <li>· <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Decreto 587 de 2016</a> (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline">Dec. 1074/2015</a>): Regla de 5 y 15 días hábiles.</li>
+                <li>· <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Ley 527 de 1999</a> y <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">RAC 3 Aerocivil</a>: Pruebas digitales y vuelos.</li>
               </ul>
             </div>
 
@@ -697,16 +801,117 @@
       </aside>
 
     </div>
+
+    <!-- ========================================================= -->
+    <!-- DIRECTORIO DE REFERENCIAS JURÍDICAS Y FUENTES OFICIALES   -->
+    <!-- ========================================================= -->
+    <section id="directorio-juridico" class="mt-10 bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-xs no-print" aria-labelledby="directorio-heading">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Fuentes Primarias Verificadas</span>
+          <h2 id="directorio-heading" class="font-display font-bold text-base sm:text-lg text-navy mt-0.5">
+            Enlaces Oficiales de Normativa, Jurisdicción y Estadísticas (Documento Ejecutivo y App)
+          </h2>
+        </div>
+        <span class="law-chip px-2.5 py-1 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+          Consulta Pública Oficial
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Arts. 78 y 229 C.P.</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Constitución Política de Colombia</p>
+          <p class="text-[11px] text-slate-500">Secretaría del Senado · Protección al consumidor y acceso a la justicia</p>
+        </a>
+
+        <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Res. A/RES/70/186</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Directrices de las Naciones Unidas</p>
+          <p class="text-[11px] text-slate-500">ONU / UNCTAD · Protección del consumidor en comercio electrónico</p>
+        </a>
+
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-emerald-soft font-bold text-[10px] text-emerald-dark">Ley 1480 de 2011</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Estatuto del Consumidor</p>
+          <p class="text-[11px] text-slate-500">Función Pública · Arts. 7, 8, 43, 47, 50 lit. h, 51, 58 y 61</p>
+        </a>
+
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-emerald-soft font-bold text-[10px] text-emerald-dark">Decreto 587 de 2016</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Reversión de Pagos Electrónicos</p>
+          <p class="text-[11px] text-slate-500">Función Pública · Plazos de 5 días (comprador) y 15 días (banco)</p>
+        </a>
+
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Decreto 1074 de 2015</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Capítulo 51 · Sector Comercio</p>
+          <p class="text-[11px] text-slate-500">Función Pública · Artículos 2.2.2.51.1 a 2.2.2.51.13 compilados</p>
+        </a>
+
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Ley 527 de 1999</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Mensajes de Datos y Firmas</p>
+          <p class="text-[11px] text-slate-500">Secretaría del Senado · Validez probatoria e integridad SHA-256</p>
+        </a>
+
+        <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">RAC 3 Aerocivil</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Reglamentos Aeronáuticos</p>
+          <p class="text-[11px] text-slate-500">Aerocivil / SUIT · Reembolso 100% + compensación mínima del 30%</p>
+        </a>
+
+        <a href="https://ccce.org.co/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">CCCE · SIC Facilita</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Cámara de Comercio Electrónico</p>
+          <p class="text-[11px] text-slate-500">Informes de pagos digitales en Colombia (370M+ transacciones/año)</p>
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white border-t border-slate-200 py-5 px-4 sm:px-6 mt-10 text-xs text-slate-500 no-print">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+  <footer class="bg-white border-t border-slate-200 py-5 px-4 sm:px-6 mt-8 text-xs text-slate-500 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       <div>
         <strong class="text-navy font-display">ReversoYa</strong>: Herramienta de orientación y generación documental para consumidores en Colombia.
       </div>
-      <div>
-        Art. 78 y 229 C.P. · Ley 1480 de 2011 · Decreto 587 de 2016 · RAC 3 Aerocivil
+      <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="hover:text-navy underline">Arts. 78 y 229 C.P.</a>
+        <span>·</span>
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="hover:text-navy underline">Ley 1480 de 2011</a>
+        <span>·</span>
+        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="hover:text-navy underline">Decreto 587 de 2016</a>
+        <span>·</span>
+        <a href="https://servicioslinea.sic.gov.co/servilinea/ServiLinea/DemandasProteccion/" target="_blank" rel="noopener noreferrer" class="hover:text-navy underline">Demandas SIC</a>
+        <span>·</span>
+        <a href="https://sicfacilita.sic.gov.co/SICFacilita/" target="_blank" rel="noopener noreferrer" class="hover:text-navy underline">SIC Facilita</a>
+        <span>·</span>
+        <a href="https://www.superfinanciera.gov.co/" target="_blank" rel="noopener noreferrer" class="hover:text-navy underline">Superfinanciera</a>
       </div>
     </div>
   </footer>

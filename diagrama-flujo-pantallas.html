@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReversoYa: Diagrama de Flujo de Pantallas y Arquitectura de Usuario</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "navy": "#0B132B",
+            "navy-light": "#1C2541",
+            "emerald": "#00A878",
+            "emerald-dark": "#007A57",
+            "emerald-soft": "#E8F8F3",
+            "danger": "#D9383A",
+            "danger-soft": "#FDF2F2"
+          },
+          fontFamily: {
+            "display": ["'Plus Jakarta Sans'", "system-ui", "sans-serif"],
+            "sans": ["'Inter'", "system-ui", "sans-serif"],
+            "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #0F172A;
+      background-color: #F8FAFC;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    .law-chip {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap !important;
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
+    @media print {
+      body {
+        background: #FFFFFF !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-break-inside-avoid {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 focus:outline-none">
+          <svg class="h-9 w-auto" viewBox="0 0 220 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 4L6 11V26C6 40 26 49 26 49C26 49 46 40 46 26V11L26 4Z" fill="#0B132B" stroke="#00A878" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M26 17C20.477 17 16 21.477 16 27C16 32.523 20.477 37 26 37C30.05 37 33.54 34.6 35.12 31.15" stroke="#00A878" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M28 13L26 17.5L30.8 19" fill="#00A878"/>
+            <circle cx="26" cy="27" r="3" fill="#FFFFFF"/>
+            <text x="58" y="35" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="24" font-weight="800" fill="#0B132B" letter-spacing="-0.5">Reverso<tspan fill="#00A878">Ya</tspan></text>
+          </svg>
+        </a>
+        <span class="hidden sm:inline-block text-xs font-semibold text-slate-500 border-l border-slate-200 pl-3">
+          Diagrama de Flujo de Pantallas y Arquitectura de Decisión Legal
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <a href="index.html" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition whitespace-nowrap">
+          Abrir Aplicación Interactiva
+        </a>
+        <button type="button" onclick="window.print()" class="px-3.5 py-1.5 rounded-lg bg-navy hover:bg-navy-light text-white text-xs font-display font-bold transition whitespace-nowrap">
+          Imprimir / Guardar PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 space-y-10">
+
+    <!-- TITLE BANNER -->
+    <section class="bg-navy rounded-2xl p-6 sm:p-8 text-white shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="max-w-3xl space-y-2">
+          <span class="law-chip px-3 py-1 rounded-full bg-emerald/20 text-[#63FCC0] border border-emerald/40 text-xs font-bold uppercase tracking-wider">
+            Arquitectura de Experiencia de Usuario (UX Legal)
+          </span>
+          <h1 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+            Flujo Guiado en 4 Pantallas: Del Incumplimiento al Desembolso Bancario
+          </h1>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Representación detallada de la serie de pantallas y el recorrido paso a paso que sigue el ciudadano en Colombia para ejecutar la reversión de pago (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="underline text-[#63FCC0]">Art. 51 Ley 1480 de 2011</a> y <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="underline text-[#63FCC0]">Decreto 587 de 2016</a>), el derecho de retracto (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47" target="_blank" rel="noopener noreferrer" class="underline text-[#63FCC0]">Art. 47</a>), la garantía legal (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7" target="_blank" rel="noopener noreferrer" class="underline text-[#63FCC0]">Arts. 7 y 8</a>) y la compensación aérea (<a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" target="_blank" rel="noopener noreferrer" class="underline text-[#63FCC0]">RAC 3 Aerocivil</a>).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-xs shrink-0">
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-slate-400 block text-[11px]">Plazo del comprador</span>
+            <strong class="font-display font-extrabold text-lg text-[#63FCC0]">5 días hábiles</strong>
+            <span class="block text-[11px] text-slate-300 mt-0.5">Para notificar (Art. 2.2.2.51.4)</span>
+          </div>
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-slate-400 block text-[11px]">Plazo del banco / PSE</span>
+            <strong class="font-display font-extrabold text-lg text-white">15 días hábiles</strong>
+            <span class="block text-[11px] text-slate-300 mt-0.5">Para devolver el 100% (Art. 2.2.2.51.5)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 1. DIAGRAMA DE FLUJO GENERAL (VISTA PANORAMICA CONECTADA)           -->
+    <!-- =================================================================== -->
+    <section class="space-y-4 print-break-inside-avoid">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <h2 class="font-display font-extrabold text-lg sm:text-xl text-navy">
+          1. Mapa General del Recorrido en 4 Pantallas
+        </h2>
+        <span class="text-xs font-semibold text-slate-500">
+          Flujo lineal asistido con validación normativa en tiempo real
+        </span>
+      </div>
+
+      <!-- Horizontal Flow Pipeline -->
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 relative">
+
+        <!-- NODE 1 -->
+        <div class="bg-white rounded-2xl border-2 border-navy p-5 shadow-sm flex flex-col justify-between relative">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="w-8 h-8 rounded-full bg-navy text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">1</span>
+              <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+                Art. 51 Ley 1480 · RAC 3
+              </span>
+            </div>
+            <h3 class="font-display font-extrabold text-base text-navy">
+              Pantalla 1: Datos de la Compra y Cálculo del Plazo
+            </h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              El usuario selecciona qué ocurrió con su compra o vuelo, ingresa el valor en pesos, el medio de pago electrónico y los días transcurridos.
+            </p>
+            <div class="mt-3 pt-3 border-t border-slate-100 space-y-1.5 text-xs">
+              <div class="font-bold text-navy text-[11px] uppercase">Entradas del usuario:</div>
+              <ul class="space-y-1 text-slate-600">
+                <li>· Causal (No entrega, Defectuoso/Retracto, Cobro doble, Sobreventa aérea)</li>
+                <li>· Monto en COP y entidad (PSE, Nequi, Daviplata, Tarjeta)</li>
+                <li>· Días hábiles desde la noticia del problema</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-navy font-semibold flex items-center justify-between">
+            <span>Salida a Pantalla 2</span>
+            <span class="text-emerald-dark font-bold">→ Verifica ventana de 5 días</span>
+          </div>
+        </div>
+
+        <!-- NODE 2 -->
+        <div class="bg-white rounded-2xl border-2 border-navy p-5 shadow-sm flex flex-col justify-between relative">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="w-8 h-8 rounded-full bg-navy text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">2</span>
+              <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+                Arts. 43 Ley 1480 · Ley 527
+              </span>
+            </div>
+            <h3 class="font-display font-extrabold text-base text-navy">
+              Pantalla 2: Auditoría de Excusas y Soportes
+            </h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              El usuario marca la excusa que le dio el comercio por WhatsApp o correo y adjunta sus capturas o comprobantes de pago.
+            </p>
+            <div class="mt-3 pt-3 border-t border-slate-100 space-y-1.5 text-xs">
+              <div class="font-bold text-navy text-[11px] uppercase">Procesamiento automático:</div>
+              <ul class="space-y-1 text-slate-600">
+                <li>· Desvirtúa excusas ilegales (“solo damos bono”, “en promoción no hay garantía”)</li>
+                <li>· Calcula huella criptográfica <strong>SHA-256</strong> de los archivos (Ley 527/1999)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-navy font-semibold flex items-center justify-between">
+            <span>Salida a Pantalla 3</span>
+            <span class="text-emerald-dark font-bold">→ Sella prueba e imputación</span>
+          </div>
+        </div>
+
+        <!-- NODE 3 -->
+        <div class="bg-white rounded-2xl border-2 border-emerald p-5 shadow-sm flex flex-col justify-between relative">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="w-8 h-8 rounded-full bg-emerald text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">3</span>
+              <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+                Art. 2.2.2.51.3 Dec. 1074
+              </span>
+            </div>
+            <h3 class="font-display font-extrabold text-base text-navy">
+              Pantalla 3: Semáforo y 3 Oficios Formales
+            </h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              Muestra la viabilidad jurídica, el monto total exigible y redacta en vivo los tres documentos legales listos para copiar, descargar o imprimir.
+            </p>
+            <div class="mt-3 pt-3 border-t border-slate-100 space-y-1.5 text-xs">
+              <div class="font-bold text-navy text-[11px] uppercase">3 Documentos generados:</div>
+              <ul class="space-y-1 text-slate-600">
+                <li><strong>1.</strong> Orden de Reversión al Banco / PSE</li>
+                <li><strong>2.</strong> Reclamación Directa al Comercio</li>
+                <li><strong>3.</strong> Demanda SIC (Art. 58) / Reclamo RAC 3</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 p-2.5 rounded-lg bg-emerald-soft border border-emerald/30 text-[11px] text-navy font-semibold flex items-center justify-between">
+            <span>Salida a Pantalla 4</span>
+            <span class="text-emerald-dark font-bold">→ Pasa a radicación y reloj</span>
+          </div>
+        </div>
+
+        <!-- NODE 4 -->
+        <div class="bg-white rounded-2xl border-2 border-navy p-5 shadow-sm flex flex-col justify-between relative">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="w-8 h-8 rounded-full bg-navy text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">4</span>
+              <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+                Art. 2.2.2.51.5 Dec. 1074
+              </span>
+            </div>
+            <h3 class="font-display font-extrabold text-base text-navy">
+              Pantalla 4: Ruta de Radicación y Plazo de 15 Días
+            </h3>
+            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              Guía el orden de envío (primero al comercio, luego al banco) y calcula las fechas exactas en días hábiles colombianos para el reembolso.
+            </p>
+            <div class="mt-3 pt-3 border-t border-slate-100 space-y-1.5 text-xs">
+              <div class="font-bold text-navy text-[11px] uppercase">Hitos de seguimiento:</div>
+              <ul class="space-y-1 text-slate-600">
+                <li>· <strong>Día 1 a 5:</strong> Cierre de oposición del comercio</li>
+                <li>· <strong>Día 15 hábil:</strong> Fecha límite de abono bancario</li>
+                <li>· <strong>Día 16+:</strong> Escalada a Superfinanciera y SIC</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 p-2.5 rounded-lg bg-navy text-white text-[11px] font-semibold flex items-center justify-between">
+            <span>Resultado final</span>
+            <span class="text-[#63FCC0] font-bold">✓ Restitución del dinero</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 2. ARBOL DE DECISION JURIDICA (LOGICA DE BIFURCACION DEL FLUJO)     -->
+    <!-- =================================================================== -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6 print-break-inside-avoid">
+      <div class="border-b border-slate-100 pb-4 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-dark">Motor de Reglas Jurídicas</span>
+          <h2 class="font-display font-extrabold text-lg sm:text-xl text-navy mt-0.5">
+            2. Árbol de Decisión Automática entre Pantallas
+          </h2>
+        </div>
+        <span class="law-chip px-3 py-1 rounded-full bg-slate-100 text-navy font-semibold text-xs">
+          Bifurcación según plazo (5 días) y causal elegida
+        </span>
+      </div>
+
+      <!-- SVG Visual Flowchart -->
+      <div class="w-full overflow-x-auto">
+        <svg viewBox="0 0 1120 340" class="w-full min-w-[780px] h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Grid -->
+          <rect width="1120" height="340" rx="16" fill="#F8FAFC" stroke="#E2E8F0"/>
+
+          <!-- Start Box: Pantalla 1 Input -->
+          <rect x="24" y="115" width="210" height="110" rx="12" fill="#0B132B"/>
+          <text x="42" y="143" fill="#63FCC0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800">PANTALLA 1: ENTRADA</text>
+          <text x="42" y="166" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="800">Compra o Vuelo Fallido</text>
+          <text x="42" y="188" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Pago por PSE, Nequi, Daviplata</text>
+          <text x="42" y="205" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">o Tarjeta Débito / Crédito</text>
+
+          <!-- Arrow 1 -->
+          <line x1="234" y1="170" x2="288" y2="170" stroke="#0B132B" stroke-width="2.5"/>
+          <polygon points="288,165 298,170 288,175" fill="#0B132B"/>
+
+          <!-- Decision Diamond / Box: 5 Business Days Check -->
+          <rect x="298" y="105" width="210" height="130" rx="12" fill="#FFFFFF" stroke="#0B132B" stroke-width="2.5"/>
+          <text x="316" y="133" fill="#007A57" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800">VALIDACIÓN DE TÉRMINO</text>
+          <text x="316" y="156" fill="#0B132B" font-family="Plus Jakarta Sans, sans-serif" font-size="13.5" font-weight="800">¿Notifica dentro de los</text>
+          <text x="316" y="174" fill="#0B132B" font-family="Plus Jakarta Sans, sans-serif" font-size="13.5" font-weight="800">5 días hábiles?</text>
+          <text x="316" y="198" fill="#475569" font-family="Inter, sans-serif" font-size="11">Art. 2.2.2.51.4 Decreto 1074</text>
+          <text x="316" y="214" fill="#475569" font-family="Inter, sans-serif" font-size="11">de 2015 (Decreto 587/2016)</text>
+
+          <!-- Top Branch Arrow (YES <= 5 Days) -->
+          <path d="M508 140 L555 140 L555 82 L595 82" stroke="#00A878" stroke-width="2.5" fill="none"/>
+          <polygon points="595,77 605,82 595,87" fill="#00A878"/>
+          <rect x="518" y="56" width="68" height="20" rx="6" fill="#E8F8F3" stroke="#00A878"/>
+          <text x="552" y="70" fill="#007A57" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">SÍ (≤ 5 d)</text>
+
+          <!-- Bottom Branch Arrow (NO > 5 Days) -->
+          <path d="M508 200 L555 200 L555 258 L595 258" stroke="#D9383A" stroke-width="2.5" fill="none"/>
+          <polygon points="595,253 605,258 595,263" fill="#D9383A"/>
+          <rect x="518" y="264" width="68" height="20" rx="6" fill="#FDF2F2" stroke="#D9383A"/>
+          <text x="552" y="278" fill="#D9383A" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">NO (&gt; 5 d)</text>
+
+          <!-- Top Outcome Box: Bank Reversal -->
+          <rect x="605" y="26" width="235" height="112" rx="12" fill="#E8F8F3" stroke="#00A878" stroke-width="2"/>
+          <text x="621" y="50" fill="#007A57" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800">VÍA 1: REVERSIÓN BANCARIA</text>
+          <text x="621" y="70" fill="#0B132B" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800">Orden Vinculante al Banco</text>
+          <text x="621" y="90" fill="#1E293B" font-family="Inter, sans-serif" font-size="11">El emisor (PSE/Nequi/Tarjeta)</text>
+          <text x="621" y="106" fill="#1E293B" font-family="Inter, sans-serif" font-size="11">debe abonar el 100% en máximo</text>
+          <text x="621" y="122" fill="#007A57" font-family="Inter, sans-serif" font-size="11" font-weight="700">15 días hábiles (Art. 2.2.2.51.5)</text>
+
+          <!-- Bottom Outcome Box: SIC Jurisdictional -->
+          <rect x="605" y="202" width="235" height="112" rx="12" fill="#FDF2F2" stroke="#D9383A" stroke-width="2"/>
+          <text x="621" y="226" fill="#D9383A" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800">VÍA 2: ACCIÓN JURISDICCIONAL</text>
+          <text x="621" y="246" fill="#0B132B" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800">Reclamo Prejudicial + SIC</text>
+          <text x="621" y="266" fill="#1E293B" font-family="Inter, sans-serif" font-size="11">Activa Reclamación Directa y</text>
+          <text x="621" y="282" fill="#1E293B" font-family="Inter, sans-serif" font-size="11">Demanda ante la SIC (Art. 58</text>
+          <text x="621" y="298" fill="#D9383A" font-family="Inter, sans-serif" font-size="11" font-weight="700">Ley 1480) + Multa Art. 61</text>
+
+          <!-- Merge Arrows into Screens 2, 3 & 4 -->
+          <path d="M840 82 L868 82 L868 152 L890 152" stroke="#0B132B" stroke-width="2" fill="none"/>
+          <path d="M840 258 L868 258 L868 188 L890 188" stroke="#0B132B" stroke-width="2" fill="none"/>
+          <polygon points="890,147 898,152 890,157" fill="#0B132B"/>
+          <polygon points="890,183 898,188 890,193" fill="#0B132B"/>
+
+          <!-- Final Box: Screens 2, 3, 4 Output -->
+          <rect x="898" y="85" width="198" height="170" rx="12" fill="#0B132B" stroke="#00A878" stroke-width="2"/>
+          <text x="914" y="112" fill="#63FCC0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800">PANTALLAS 2, 3 Y 4</text>
+          <text x="914" y="133" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800">Expediente Completo</text>
+          <text x="914" y="156" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">1. Sello SHA-256 (Ley 527)</text>
+          <text x="914" y="176" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">2. Oficio Banco / PSE</text>
+          <text x="914" y="196" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">3. Reclamo al Comercio</text>
+          <text x="914" y="216" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">4. Demanda SIC / RAC 3</text>
+          <text x="914" y="238" fill="#63FCC0" font-family="Inter, sans-serif" font-size="11" font-weight="700">5. Calendario días hábiles</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 3. DETALLE DE LAS 4 PANTALLAS Y PANEL PERSISTENTE (WIREFRAMES)      -->
+    <!-- =================================================================== -->
+    <section class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <h2 class="font-display font-extrabold text-lg sm:text-xl text-navy">
+          3. Anatomía Detallada de Cada Pantalla y del Resumen Lateral Persistente
+        </h2>
+        <span class="text-xs font-semibold text-slate-500">
+          Estructura visual de componentes e interacciones del usuario
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- WIREFRAME PANTALLA 1 -->
+        <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm print-break-inside-avoid">
+          <div class="bg-navy px-5 py-3.5 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-emerald text-navy font-display font-extrabold text-xs flex items-center justify-center">1</span>
+              <h3 class="font-display font-bold text-sm">Pantalla 1: ¿Qué ocurrió con tu compra o tiquete aéreo?</h3>
+            </div>
+            <span class="law-chip text-[11px] font-mono text-[#63FCC0]">Paso 1 de 4</span>
+          </div>
+
+          <div class="p-5 space-y-4 text-xs">
+            <!-- Mini UI Mockup -->
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+              <div class="text-[11px] font-bold text-slate-500 uppercase">Vista de componentes en pantalla:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded bg-navy text-white text-[11px] font-semibold">Pedido no entregado</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-200 text-slate-700 text-[11px]">Producto defectuoso en descuento</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-200 text-slate-700 text-[11px]">Cobro duplicado</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-200 text-slate-700 text-[11px]">Vuelo sobrevendido</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 pt-1">
+                <div class="p-2 rounded bg-white border-2 border-navy">
+                  <span class="text-[10px] text-emerald-dark font-bold block">Art. 51 num. 4 Ley 1480</span>
+                  <strong class="text-navy">No entregaron el pedido</strong>
+                </div>
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <span class="text-[10px] text-emerald-dark font-bold block">RAC 3 Aerocivil</span>
+                  <strong class="text-navy">Sobreventa aérea (+30%)</strong>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <span class="text-[10px] text-slate-400 block">Valor en COP</span>
+                  <span class="font-mono text-slate-700">$ [Ingresa valor]</span>
+                </div>
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <span class="text-[10px] text-slate-400 block">Medio de pago</span>
+                  <span class="text-slate-700">PSE / Nequi / Tarjeta</span>
+                </div>
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <span class="text-[10px] text-slate-400 block">Días hábiles</span>
+                  <span class="text-emerald-dark font-bold">1 a 5 días (En plazo)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 text-slate-600">
+              <p><strong>Acción del usuario:</strong> Elige el motivo del reclamo, digita el valor de su compra, selecciona el banco o billetera emisora y los días hábiles transcurridos.</p>
+              <p><strong>Respuesta del sistema:</strong> Calcula si está dentro de los 5 días hábiles del <a href="https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30019935" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">artículo 2.2.2.51.4 del Decreto 1074 de 2015</a> y, si es un vuelo, suma automáticamente el 30% de compensación mínima del RAC 3.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WIREFRAME PANTALLA 2 -->
+        <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm print-break-inside-avoid">
+          <div class="bg-navy px-5 py-3.5 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-emerald text-navy font-display font-extrabold text-xs flex items-center justify-center">2</span>
+              <h3 class="font-display font-bold text-sm">Pantalla 2: ¿Qué te respondió el comercio o aerolínea?</h3>
+            </div>
+            <span class="law-chip text-[11px] font-mono text-[#63FCC0]">Paso 2 de 4</span>
+          </div>
+
+          <div class="p-5 space-y-4 text-xs">
+            <!-- Mini UI Mockup -->
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+              <div class="text-[11px] font-bold text-slate-500 uppercase">Vista de componentes en pantalla:</div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="p-2 rounded bg-danger-soft border-2 border-danger">
+                  <span class="text-[10px] text-danger font-bold block">Viola Art. 47 y 51 Ley 1480</span>
+                  <strong class="text-navy">“Solo damos bono de cambio”</strong>
+                </div>
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <span class="text-[10px] text-danger font-bold block">Viola Art. 43 Ley 1480</span>
+                  <strong class="text-navy">“En promoción no hay garantía”</strong>
+                </div>
+              </div>
+              <div class="p-2.5 rounded bg-emerald-soft border border-emerald/30 text-navy">
+                <strong class="block text-emerald-dark">Contraargumento jurídico insertado al expediente:</strong>
+                <span>El artículo 47 de la Ley 1480 prohíbe obligar al consumidor a recibir bonos o saldos a favor.</span>
+              </div>
+              <div class="p-2 rounded bg-white border border-dashed border-slate-300 flex items-center justify-between">
+                <span class="text-slate-600">Evidencia adjunta (Ley 527 de 1999)</span>
+                <span class="font-mono text-[10px] bg-slate-100 px-2 py-0.5 rounded text-navy">SHA-256: 9f86d081884c...</span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 text-slate-600">
+              <p><strong>Acción del usuario:</strong> Marca la respuesta que recibió de la tienda (o pega el mensaje de WhatsApp) y adjunta capturas de pantalla o el soporte de pago PSE.</p>
+              <p><strong>Respuesta del sistema:</strong> Invalida jurídicamente la excusa invocando los <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">artículos 43, 47 y 50 de la Ley 1480</a> y genera la huella digital SHA-256 de cada archivo con validez de mensaje de datos (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">Ley 527 de 1999</a>).</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WIREFRAME PANTALLA 3 -->
+        <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm print-break-inside-avoid">
+          <div class="bg-navy px-5 py-3.5 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-emerald text-navy font-display font-extrabold text-xs flex items-center justify-center">3</span>
+              <h3 class="font-display font-bold text-sm">Pantalla 3: Tus 3 documentos legales listos para presentar</h3>
+            </div>
+            <span class="law-chip text-[11px] font-mono text-[#63FCC0]">Paso 3 de 4</span>
+          </div>
+
+          <div class="p-5 space-y-4 text-xs">
+            <!-- Mini UI Mockup -->
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+              <div class="text-[11px] font-bold text-slate-500 uppercase">Vista de componentes en pantalla:</div>
+              <div class="flex gap-1.5">
+                <span class="px-2.5 py-1 rounded bg-navy text-white font-bold text-[11px]">1. Orden al Banco / PSE</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-200 text-slate-700 text-[11px]">2. Reclamación al Comercio</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-200 text-slate-700 text-[11px]">3. Demanda SIC / RAC 3</span>
+              </div>
+              <div class="p-3 rounded bg-white border border-slate-200 font-serif text-[11px] text-slate-800 space-y-1">
+                <div class="font-bold text-navy">SOLICITUD FORMAL DE REVERSIÓN DE PAGO (ART. 51 LEY 1480 Y DEC. 587/2016)</div>
+                <p>Incluye los 5 requisitos taxativos del Art. 2.2.2.51.3 del Decreto 1074 de 2015, la prohibición de rechazo por tratarse de PSE y el inventario probatorio SHA-256.</p>
+              </div>
+              <div class="flex gap-2">
+                <span class="px-2.5 py-1 rounded bg-emerald text-white font-bold text-[11px]">Copiar texto</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 font-semibold text-[11px]">Descargar .TXT</span>
+                <span class="px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 font-semibold text-[11px]">Imprimir / Guardar PDF</span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 text-slate-600">
+              <p><strong>Acción del usuario:</strong> Alterna entre las 3 pestañas documentales, revisa el texto formal personalizado y lo copia, descarga o imprime en formato PDF limpio.</p>
+              <p><strong>Respuesta del sistema:</strong> Ensambla simultáneamente el oficio vinculante para el banco emisor, la reclamación directa de procedibilidad (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">Art. 58 num. 5 Ley 1480</a>) y el escrito jurisdiccional para la SIC.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WIREFRAME PANTALLA 4 -->
+        <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm print-break-inside-avoid">
+          <div class="bg-navy px-5 py-3.5 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-emerald text-navy font-display font-extrabold text-xs flex items-center justify-center">4</span>
+              <h3 class="font-display font-bold text-sm">Pantalla 4: Guía de radicación y control de los 15 días hábiles</h3>
+            </div>
+            <span class="law-chip text-[11px] font-mono text-[#63FCC0]">Paso 4 de 4</span>
+          </div>
+
+          <div class="p-5 space-y-4 text-xs">
+            <!-- Mini UI Mockup -->
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+              <div class="text-[11px] font-bold text-slate-500 uppercase">Vista de componentes en pantalla:</div>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <strong class="text-navy block">1. Comercio</strong>
+                  <span class="text-[10px] text-slate-500">Enviar Documento 2</span>
+                </div>
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <strong class="text-navy block">2. Banco / PSE</strong>
+                  <span class="text-[10px] text-slate-500">Radicar Documento 1</span>
+                </div>
+                <div class="p-2 rounded bg-emerald-soft border border-emerald/30">
+                  <strong class="text-emerald-dark block">3. Abono 100%</strong>
+                  <span class="text-[10px] text-navy">Máx. 15 días hábiles</span>
+                </div>
+              </div>
+              <div class="p-2.5 rounded bg-white border border-slate-200 space-y-1">
+                <div class="flex justify-between font-bold text-[11px] text-navy">
+                  <span>Simulador del plazo bancario (Día 1 a Día 16+)</span>
+                  <span class="text-emerald-dark">Art. 2.2.2.51.5</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
+                  <div class="w-2/3 h-full bg-emerald"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="p-2 rounded bg-white border border-slate-200">
+                  <span class="text-[10px] text-slate-500 block">Cierre objeción (5 d hábiles)</span>
+                  <strong class="text-navy">Excluye fines de semana y festivos</strong>
+                </div>
+                <div class="p-2 rounded bg-emerald-soft border border-emerald/30">
+                  <span class="text-[10px] text-emerald-dark block">Fecha máxima de desembolso (15 d)</span>
+                  <strong class="text-navy">Cálculo calendario Colombia</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 text-slate-600">
+              <p><strong>Acción del usuario:</strong> Selecciona la fecha de radicación para conocer el día exacto de vencimiento y descarga el paquete unificado con los 3 oficios.</p>
+              <p><strong>Respuesta del sistema:</strong> Calcula los 5 y 15 días hábiles descontando sábados, domingos y festivos oficiales de Colombia, e indica cómo escalar ante la Superfinanciera y la SIC si el banco supera el día 15.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- PERSISTENT SIDEBAR COMPONENT -->
+      <div class="bg-white rounded-2xl border-2 border-navy p-5 sm:p-6 shadow-sm print-break-inside-avoid">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1.5 max-w-2xl">
+            <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+              Componente Transversal (Visible durante las 4 pantallas)
+            </span>
+            <h3 class="font-display font-extrabold text-base sm:text-lg text-navy">
+              Tarjeta Lateral Persistente: «Resumen del Caso» y Doble Reloj Legal (Regla 5 + 15)
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Acompaña al usuario en las 4 pantallas actualizando en tiempo real el valor total a restituir y diferenciando explícitamente los dos plazos del Decreto 587 de 2016 para evitar confusiones:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs shrink-0">
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-navy block">1. Tu plazo para avisar (5 días hábiles)</span>
+              <span class="text-slate-600 block mt-0.5">Tiempo del comprador para notificar al comercio y al banco (Art. 2.2.2.51.4).</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-emerald-soft border border-emerald/30">
+              <span class="font-bold text-navy block">2. Plazo del banco para pagar (Máx. 15 días hábiles)</span>
+              <span class="text-slate-700 block mt-0.5">Tiempo máximo que tiene el banco para abonar el dinero tras radicar (Art. 2.2.2.51.5).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-5 px-4 sm:px-6 mt-8 text-xs text-slate-500 no-print">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        <strong class="text-navy font-display">ReversoYa</strong> · Diagrama de Flujo de Pantallas y Arquitectura Legal
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="text-navy font-semibold hover:underline">Aplicación Web</a>
+        <a href="presentacion-10-minutos.html" class="text-navy font-semibold hover:underline">Presentación 10 Min</a>
+        <a href="videos-motion-graphics.html" class="text-navy font-semibold hover:underline">Animación Continua</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

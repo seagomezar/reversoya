@@ -401,11 +401,105 @@ function recalculateCase() {
       ? `${formatCOP(state.monto)} banco + ${formatCOP(compensacionRAC3)} aerolínea (RAC 3)`
       : `100% mediante ${state.banco}`);
 
-  // Update Step 4 labels & Business-Day Deadlines
+  // Update Step 4 labels, Bank Filing Channel Guide & Business-Day Deadlines
   const s4Merchant = document.getElementById('step4MerchantName');
   const s4Bank = document.getElementById('step4BankName');
   if (s4Merchant) s4Merchant.textContent = state.comercio;
   if (s4Bank) s4Bank.textContent = state.banco;
+
+  const BANK_FILING_CHANNELS = {
+    'Bancolombia S.A.': {
+      route: 'Sucursal Virtual Personas o App Mi Bancolombia → Solicitudes → Radicar solicitud / PQRS → Reversión de pago en comercio electrónico (Decreto 587 de 2016).',
+      defensor: 'defensor@bancolombia.com.co',
+      phone: '01 8000 912 345 / (601) 343 0000',
+      url: 'https://www.bancolombia.com/personas/necesidades/atencion-al-cliente/radicar-solicitud',
+      label: 'Abrir portal PQRS Bancolombia'
+    },
+    'Banco Davivienda S.A.': {
+      route: 'App Davivienda / App Daviplata → Botón "¿Necesita ayuda?" → Presentar solicitudes y reclamos (PQRS) → Reversión de pago Ley 1480.',
+      defensor: 'defensoria@davivienda.com',
+      phone: '01 8000 123 838 / #688 (Daviplata)',
+      url: 'https://www.davivienda.com/wps/portal/personas/nuevo/personas/aqui_puedo/atencion_en_linea',
+      label: 'Abrir atención en línea Davivienda'
+    },
+    'Nequi S.A. Compañía de Financiamiento': {
+      route: 'App Nequi → Perfil → Ayuda → Peticiones, Quejas y Reclamos (PQRS) → Reversión de pago en compras electrónicas (adjuntando el Documento 1).',
+      defensor: 'escribe@nequi.com · Defensoría: defensoriacliente@nequi.co',
+      phone: '(+57) 300 600 0100',
+      url: 'https://www.nequi.com.co/ayuda',
+      label: 'Abrir centro de ayuda Nequi'
+    },
+    'BBVA Colombia': {
+      route: 'BBVA Net o App BBVA → Atención al Cliente → Formulario PQRS → Reversión de pago Decreto 587 de 2016.',
+      defensor: 'defensoria.bbva@bbva.com',
+      phone: '01 8000 912 227 / (601) 401 0000',
+      url: 'https://www.bbva.com.co/personas/atencion-al-cliente.html',
+      label: 'Abrir portal PQRS BBVA'
+    },
+    'Banco de Bogotá': {
+      route: 'Portal Banco de Bogotá / Banca Virtual → Servicio al Cliente → Radicar PQRS → Reversión de compras por medios electrónicos.',
+      defensor: 'defensoriaconsumidorfinanciero@bancodebogota.com.co',
+      phone: '01 8000 518 877 / (601) 382 0000',
+      url: 'https://www.bancodebogota.com/atencion-al-cliente',
+      label: 'Abrir atención al cliente Banco de Bogotá'
+    },
+    'Banco Falabella': {
+      route: 'Portal Banco Falabella → Atención al Cliente → Formulario PQR → Solicitud de reversión de pago (Art. 51 Ley 1480).',
+      defensor: 'defensoriaconsumidor@bancofalabella.com.co',
+      phone: '01 8000 958 780 / (601) 587 8000',
+      url: 'https://www.bancofalabella.com.co/page/pqr',
+      label: 'Abrir formulario PQR Banco Falabella'
+    },
+    'Nu Colombia Compañía de Financiamiento': {
+      route: 'Chat 24/7 dentro de la App Nu o correo de PQRS indicando "Solicitud de Reversión de Pago Decreto 587 de 2016" y adjuntando el Documento 1.',
+      defensor: 'ayuda@nu.com.co · Defensoría: defensoria.nu@ustarizabogados.com',
+      phone: '01 800 917 2000',
+      url: 'https://nu.com.co/contacto/',
+      label: 'Abrir canales oficiales Nu Colombia'
+    },
+    'Scotiabank Colpatria': {
+      route: 'Portal Scotiabank Colpatria → Servicio al Cliente → Radicar PQRS → Reversión de pago en comercio electrónico.',
+      defensor: 'defensoria@colpatria.com',
+      phone: '01 8000 522 222 / (601) 756 1616',
+      url: 'https://www.scotiabankcolpatria.com/acerca-de/servicio-al-cliente/pqrs',
+      label: 'Abrir PQRS Scotiabank Colpatria'
+    }
+  };
+
+  const bankChannelEl = document.getElementById('step4BankChannelDetail');
+  if (bankChannelEl) {
+    const ch = BANK_FILING_CHANNELS[state.banco] || BANK_FILING_CHANNELS['Bancolombia S.A.'];
+    const isPSE = state.medioPago.toLowerCase().includes('pse');
+    bankChannelEl.innerHTML = `
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-2.5">
+        <div>
+          <span class="text-[11px] font-bold uppercase text-emerald-dark block">Canales oficiales de recepción para ${safeBanco}</span>
+          <strong class="font-display text-xs sm:text-sm text-navy">¿Dónde entregar o subir el Documento 1?</strong>
+        </div>
+        <a href="${ch.url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald hover:bg-emerald-dark text-white font-display font-bold text-xs transition whitespace-nowrap text-center">
+          ${escapeHtml(ch.label)} →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 text-xs">
+        <div>
+          <strong class="text-navy block">Ruta en App / Sucursal Virtual:</strong>
+          <p class="text-slate-600 mt-0.5 leading-relaxed">${escapeHtml(ch.route)}</p>
+        </div>
+        <div>
+          <strong class="text-navy block">Correo Defensor del Consumidor Financiero y Línea SAC:</strong>
+          <p class="text-slate-600 mt-0.5 leading-relaxed">
+            Correo: <span class="font-mono font-semibold text-navy">${escapeHtml(ch.defensor)}</span><br/>
+            Línea nacional: <strong>${escapeHtml(ch.phone)}</strong>
+          </p>
+        </div>
+      </div>
+      ${isPSE ? `
+      <div class="p-2.5 rounded-lg bg-white border border-slate-200 text-[11px] text-slate-700 flex flex-wrap items-center justify-between gap-2">
+        <span><strong>Pago vía PSE:</strong> También puedes radicar copia ante el operador de la red ACH Colombia (PSE) con el número CUS de la transacción.</span>
+        <a href="https://www.pse.com.co/persona-centro-de-ayuda" target="_blank" rel="noopener noreferrer" class="font-bold text-navy underline whitespace-nowrap">Centro de ayuda PSE →</a>
+      </div>` : ''}
+    `;
+  }
 
   const fechaInput = document.getElementById('inputFechaRadicacion');
   if (fechaInput && !fechaInput.value) {
@@ -419,6 +513,10 @@ function recalculateCase() {
 
   renderLegalDocument();
   updateCountdownSimulator(document.getElementById('daySlider')?.value || 3);
+}
+
+function selectDocTab(tabKey) {
+  switchDocTab(tabKey);
 }
 
 function switchDocTab(tabKey) {

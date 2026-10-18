@@ -652,29 +652,154 @@
               </p>
             </div>
 
-            <!-- 3 Concrete Filing Steps -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <span class="law-chip px-2.5 py-0.5 rounded-full bg-navy text-white font-bold text-[11px] mb-2">1. Notificar al comercio</span>
-                <h3 class="font-display font-bold text-sm text-navy">Envía la Reclamación Directa</h3>
-                <p class="text-slate-600 mt-1 leading-relaxed">
-                  Remite el Documento 2 al correo, PQRS o WhatsApp de <strong id="step4MerchantName">la tienda</strong> y guarda captura del envío. Esto cumple el requisito de reclamación previa (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Art. 2.2.2.51.3</a>).
-                </p>
+            <!-- Detailed Step-by-Step Filing Guide: How and Where to Send Each Document -->
+            <div class="space-y-4 text-xs">
+
+              <!-- ENVIO 1: COMERCIO -->
+              <div class="p-4 sm:p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-navy text-white font-bold text-[11px]">Paso 1 de radicación · Hoy mismo</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">Documento 2</span>
+                  </div>
+                  <button type="button" onclick="selectDocTab('comercio'); goToStep(3);" class="px-3 py-1 rounded-lg bg-white border border-slate-300 text-navy font-semibold hover:bg-slate-100 transition whitespace-nowrap">
+                    Ver / Copiar Documento 2 →
+                  </button>
+                </div>
+
+                <div>
+                  <h3 class="font-display font-bold text-sm sm:text-base text-navy">
+                    1. Envía la Reclamación Directa a <span id="step4MerchantName">la tienda o aerolínea</span>
+                  </h3>
+                  <p class="text-slate-600 mt-1 leading-relaxed">
+                    Antes de radicar ante el banco, la ley exige dejar constancia de que notificaste al vendedor (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Art. 2.2.2.51.3 Decreto 1074 de 2015</a>). No necesitas esperar a que te respondan para pasar al Paso 2: basta con la prueba de envío.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+                  <div class="p-3 rounded-lg bg-white border border-slate-200">
+                    <strong class="text-navy block mb-1">¿Dónde enviarlo?</strong>
+                    <p class="text-slate-600 leading-relaxed">
+                      Al correo de PQRS / servicio al cliente de la tienda, su formulario web de contacto, o <strong>al mismo chat de WhatsApp o Instagram</strong> donde compraste (<a href="https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30019935" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">Art. 2.2.2.51.4</a>).
+                    </p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-white border border-slate-200">
+                    <strong class="text-navy block mb-1">¿Qué debes enviar?</strong>
+                    <p class="text-slate-600 leading-relaxed">
+                      Pega o adjunta el <strong>Documento 2 (Reclamación Directa al Comercio)</strong> junto con el comprobante del pago realizado.
+                    </p>
+                  </div>
+                  <div class="p-3 rounded-lg bg-emerald-soft/60 border border-emerald/30">
+                    <strong class="text-emerald-dark block mb-1">¿Qué prueba debes guardar?</strong>
+                    <p class="text-slate-700 leading-relaxed">
+                      Toma <strong>captura de pantalla o PDF del correo/mensaje enviado</strong> donde se vea la fecha. La adjuntarás en el Paso 2 ante tu banco.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <span class="law-chip px-2.5 py-0.5 rounded-full bg-navy text-white font-bold text-[11px] mb-2">2. Radicar ante el banco</span>
-                <h3 class="font-display font-bold text-sm text-navy">Presenta la Orden de Reversión</h3>
-                <p class="text-slate-600 mt-1 leading-relaxed">
-                  Radica el Documento 1 en el canal SAC o <a href="https://www.superfinanciera.gov.co/" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Defensor del Consumidor Financiero</a> de <strong id="step4BankName">tu entidad</strong> junto con la constancia del aviso enviado al comercio.
-                </p>
+
+              <!-- ENVIO 2: BANCO O BILLETERA (DINAMICO SEGUN BANCO ELEGIDO) -->
+              <div class="p-4 sm:p-5 rounded-xl border-2 border-navy bg-white space-y-3 shadow-xs">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-navy text-white font-bold text-[11px]">Paso 2 de radicación · Dentro de tus 5 días hábiles</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">Documento 1</span>
+                  </div>
+                  <button type="button" onclick="selectDocTab('banco'); goToStep(3);" class="px-3 py-1 rounded-lg bg-navy text-white font-semibold hover:bg-navy-light transition whitespace-nowrap">
+                    Ver / Copiar Documento 1 →
+                  </button>
+                </div>
+
+                <div>
+                  <h3 class="font-display font-bold text-sm sm:text-base text-navy">
+                    2. Radica la Orden de Reversión de Pago ante <span id="step4BankName">Bancolombia S.A.</span>
+                  </h3>
+                  <p class="text-slate-600 mt-1 leading-relaxed">
+                    Esta solicitud activa la obligación legal de tu entidad financiera de devolverte el 100% del dinero en máximo <strong>15 días hábiles</strong> (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Art. 2.2.2.51.5 Decreto 1074 de 2015</a>).
+                  </p>
+                </div>
+
+                <!-- Dynamic Bank Routing Instructions populated by app.js -->
+                <div id="step4BankChannelDetail" class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
+                  <!-- Populated dynamically by app.js based on state.banco and state.medioPago -->
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                  <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                    <strong class="text-navy block">Anexo 1 obligatorio:</strong>
+                    <span class="text-slate-600">El <strong>Documento 1 (Orden al Banco / PSE)</strong> firmado o pegado en el formulario PQRS.</span>
+                  </div>
+                  <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                    <strong class="text-navy block">Anexo 2 obligatorio:</strong>
+                    <span class="text-slate-600">La <strong>captura del aviso enviado al comercio</strong> en el Paso 1 (prueba de reclamación previa).</span>
+                  </div>
+                  <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                    <strong class="text-navy block">Anexo 3 obligatorio:</strong>
+                    <span class="text-slate-600">El comprobante del débito o transacción (PSE, Nequi, Daviplata o extracto de tarjeta).</span>
+                  </div>
+                </div>
               </div>
-              <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald text-white font-bold text-[11px] mb-2">3. Recibir el abono</span>
-                <h3 class="font-display font-bold text-sm text-navy">Plazo máximo: 15 días hábiles</h3>
-                <p class="text-slate-600 mt-1 leading-relaxed">
-                  La entidad financiera y la red de pagos deben abonar el 100% de la suma reclamada dentro de los 15 días hábiles siguientes a tu radicación (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline">Art. 2.2.2.51.5</a>).
-                </p>
+
+              <!-- ENVIO 3: SIC / AEROCIVIL / SUPERFINANCIERA -->
+              <div class="p-4 sm:p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald text-white font-bold text-[11px]">Paso 3 de radicación · Respaldo Jurisdiccional y Vigilancia</span>
+                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-navy font-bold text-[11px]">Documento 3</span>
+                  </div>
+                  <button type="button" onclick="selectDocTab('sic'); goToStep(3);" class="px-3 py-1 rounded-lg bg-white border border-slate-300 text-navy font-semibold hover:bg-slate-100 transition whitespace-nowrap">
+                    Ver / Copiar Documento 3 →
+                  </button>
+                </div>
+
+                <div>
+                  <h3 class="font-display font-bold text-sm sm:text-base text-navy">
+                    3. ¿Dónde radicar ante la SIC, Aerocivil o Superfinanciera? (100% en línea y sin abogado)
+                  </h3>
+                  <p class="text-slate-600 mt-1 leading-relaxed">
+                    Úsalo de inmediato si ya habían pasado más de 5 días hábiles, si reclamas el <strong>30% adicional de compensación por vuelo sobrevendido (RAC 3)</strong>, o si el banco no desembolsa al cumplirse el día 15 hábil:
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
+                  <a href="https://servicioslinea.sic.gov.co/servilinea/ServiLinea/DemandasProteccion/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-white border border-slate-200 hover:border-navy transition flex flex-col justify-between">
+                    <div>
+                      <span class="law-chip px-2 py-0.5 rounded bg-emerald-soft text-emerald-dark font-bold text-[10px] mb-1">Vía Jurisdiccional</span>
+                      <strong class="text-navy block">1. Demanda en Línea SIC</strong>
+                      <p class="text-slate-600 text-[11px] mt-0.5">Sube el Documento 3 en PDF para que un juez de la SIC ordene el pago (Art. 58 Ley 1480).</p>
+                    </div>
+                    <span class="text-emerald-dark font-bold text-[11px] mt-2 inline-block">Abrir portal SIC →</span>
+                  </a>
+
+                  <a href="https://sicfacilita.sic.gov.co/SICFacilita/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-white border border-slate-200 hover:border-navy transition flex flex-col justify-between">
+                    <div>
+                      <span class="law-chip px-2 py-0.5 rounded bg-slate-100 text-navy font-bold text-[10px] mb-1">Mediación Rápida</span>
+                      <strong class="text-navy block">2. SIC Facilita</strong>
+                      <p class="text-slate-600 text-[11px] mt-0.5">Chat oficial de mediación directa con el comercio vigilado por la Superintendencia.</p>
+                    </div>
+                    <span class="text-emerald-dark font-bold text-[11px] mt-2 inline-block">Abrir SIC Facilita →</span>
+                  </a>
+
+                  <a href="https://www.superfinanciera.gov.co/publicaciones/61157/quejas-61157/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-white border border-slate-200 hover:border-navy transition flex flex-col justify-between">
+                    <div>
+                      <span class="law-chip px-2 py-0.5 rounded bg-slate-100 text-navy font-bold text-[10px] mb-1">Vigilancia Bancaria</span>
+                      <strong class="text-navy block">3. Queja Superfinanciera</strong>
+                      <p class="text-slate-600 text-[11px] mt-0.5">Si tu banco o billetera rechaza tramitar la reversión por PSE o supera los 15 días hábiles.</p>
+                    </div>
+                    <span class="text-emerald-dark font-bold text-[11px] mt-2 inline-block">Abrir Superfinanciera →</span>
+                  </a>
+
+                  <a href="https://www.aerocivil.gov.co/atencion/participacion/atencion-al-ciudadano" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-white border border-slate-200 hover:border-navy transition flex flex-col justify-between">
+                    <div>
+                      <span class="law-chip px-2 py-0.5 rounded bg-slate-100 text-navy font-bold text-[10px] mb-1">Vuelos RAC 3</span>
+                      <strong class="text-navy block">4. PQRSDF Aerocivil</strong>
+                      <p class="text-slate-600 text-[11px] mt-0.5">Para reportar sobreventa o cancelación aérea y exigir sanción bajo el RAC 3.</p>
+                    </div>
+                    <span class="text-emerald-dark font-bold text-[11px] mt-2 inline-block">Abrir Aerocivil →</span>
+                  </a>
+                </div>
               </div>
+
             </div>
 
             <!-- Interactive 15-Day Timeline Simulator -->

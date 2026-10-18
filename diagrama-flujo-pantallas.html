@@ -175,27 +175,27 @@
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="w-8 h-8 rounded-full bg-navy text-white font-display font-extrabold text-sm flex items-center justify-center shrink-0">2</span>
               <span class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
-                Arts. 43 Ley 1480 · Ley 527
+                Arts. 43, 47 y 50 Ley 1480
               </span>
             </div>
             <h3 class="font-display font-extrabold text-base text-navy">
-              Pantalla 2: Auditoría de Excusas y Soportes
+              Pantalla 2: Auditoría de Respuesta del Comercio
             </h3>
             <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
-              El usuario marca la excusa que le dio el comercio por WhatsApp o correo y adjunta sus capturas o comprobantes de pago.
+              El usuario marca la excusa que le dio el comercio por WhatsApp o correo y transcribe la respuesta recibida.
             </p>
             <div class="mt-3 pt-3 border-t border-slate-100 space-y-1.5 text-xs">
               <div class="font-bold text-navy text-[11px] uppercase">Procesamiento automático:</div>
               <ul class="space-y-1 text-slate-600">
                 <li>· Desvirtúa excusas ilegales (“solo damos bono”, “en promoción no hay garantía”)</li>
-                <li>· Calcula huella criptográfica <strong>SHA-256</strong> de los archivos (Ley 527/1999)</li>
+                <li>· Incorpora la respuesta como mensaje de datos (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="underline text-navy">Ley 527/1999</a>)</li>
               </ul>
             </div>
           </div>
 
           <div class="mt-4 p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-navy font-semibold flex items-center justify-between">
             <span>Salida a Pantalla 3</span>
-            <span class="text-emerald-dark font-bold">→ Sella prueba e imputación</span>
+            <span class="text-emerald-dark font-bold">→ Estructura la imputación</span>
           </div>
         </div>
 
@@ -343,7 +343,7 @@
           <rect x="898" y="85" width="198" height="170" rx="12" fill="#0B132B" stroke="#00A878" stroke-width="2"/>
           <text x="914" y="112" fill="#63FCC0" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800">PANTALLAS 2, 3 Y 4</text>
           <text x="914" y="133" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800">Expediente Completo</text>
-          <text x="914" y="156" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">1. Sello SHA-256 (Ley 527)</text>
+          <text x="914" y="156" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">1. Excusas desvirtuadas</text>
           <text x="914" y="176" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">2. Oficio Banco / PSE</text>
           <text x="914" y="196" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">3. Reclamo al Comercio</text>
           <text x="914" y="216" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11">4. Demanda SIC / RAC 3</text>
@@ -448,15 +448,11 @@
                 <strong class="block text-emerald-dark">Contraargumento jurídico insertado al expediente:</strong>
                 <span>El artículo 47 de la Ley 1480 prohíbe obligar al consumidor a recibir bonos o saldos a favor.</span>
               </div>
-              <div class="p-2 rounded bg-white border border-dashed border-slate-300 flex items-center justify-between">
-                <span class="text-slate-600">Evidencia adjunta (Ley 527 de 1999)</span>
-                <span class="font-mono text-[10px] bg-slate-100 px-2 py-0.5 rounded text-navy">SHA-256: 9f86d081884c...</span>
-              </div>
             </div>
 
             <div class="space-y-1.5 text-slate-600">
-              <p><strong>Acción del usuario:</strong> Marca la respuesta que recibió de la tienda (o pega el mensaje de WhatsApp) y adjunta capturas de pantalla o el soporte de pago PSE.</p>
-              <p><strong>Respuesta del sistema:</strong> Invalida jurídicamente la excusa invocando los <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">artículos 43, 47 y 50 de la Ley 1480</a> y genera la huella digital SHA-256 de cada archivo con validez de mensaje de datos (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">Ley 527 de 1999</a>).</p>
+              <p><strong>Acción del usuario:</strong> Marca la respuesta que recibió de la tienda y transcribe o pega el mensaje recibido por WhatsApp, chat o correo electrónico.</p>
+              <p><strong>Respuesta del sistema:</strong> Invalida jurídicamente la excusa invocando los <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">artículos 43, 47 y 50 de la Ley 1480</a> e incorpora el mensaje con validez probatoria (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="underline text-navy font-semibold">Ley 527 de 1999</a>).</p>
             </div>
           </div>
         </article>
@@ -482,7 +478,7 @@
               </div>
               <div class="p-3 rounded bg-white border border-slate-200 font-serif text-[11px] text-slate-800 space-y-1">
                 <div class="font-bold text-navy">SOLICITUD FORMAL DE REVERSIÓN DE PAGO (ART. 51 LEY 1480 Y DEC. 587/2016)</div>
-                <p>Incluye los 5 requisitos taxativos del Art. 2.2.2.51.3 del Decreto 1074 de 2015, la prohibición de rechazo por tratarse de PSE y el inventario probatorio SHA-256.</p>
+                <p>Incluye los 5 requisitos taxativos del Art. 2.2.2.51.3 del Decreto 1074 de 2015, la prohibición de rechazo por tratarse de PSE y la relación de anexos probatorios.</p>
               </div>
               <div class="flex gap-2">
                 <span class="px-2.5 py-1 rounded bg-emerald text-white font-bold text-[11px]">Copiar texto</span>

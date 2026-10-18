@@ -38,13 +38,13 @@ window.REVERSOYA_VIDEOS.push({
     {
       start: 18,
       end: 27,
-      stepTitle: "Paso 2: Excusas y SHA-256",
-      tag: "III. PASO 2 · AUDITORÍA DE EXCUSAS Y SOPORTES",
+      stepTitle: "Paso 2: Respuesta del comercio",
+      tag: "III. PASO 2 · AUDITORÍA DE RESPUESTA DEL COMERCIO",
       kicker: "DETECCIÓN DE CLÁUSULAS INEFICACES Y LEY 527 DE 1999",
-      headline: "Desvirtúa excusas ilegales y certifica pruebas SHA-256",
+      headline: "Desvirtúa excusas ilegales e incorpora mensajes de datos",
       stat: "Paso 2 de 4",
-      sub: "Analiza la respuesta del comercio en WhatsApp o correo e incorpora la huella criptográfica SHA-256 de los soportes según la Ley 527 de 1999.",
-      voiceover: "En el segundo paso, el sistema detecta las cláusulas ineficaces en la respuesta del vendedor y genera la huella digital SHA-256 de los mensajes de datos conforme a la Ley 527 de 1999.",
+      sub: "Analiza la respuesta del comercio en WhatsApp o correo e incorpora los mensajes de datos con validez probatoria según la Ley 527 de 1999.",
+      voiceover: "En el segundo paso, el sistema detecta las cláusulas ineficaces en la respuesta del vendedor e incorpora los mensajes de datos conforme a la Ley 527 de 1999.",
       visualType: "chat_excuses"
     },
     {

@@ -178,7 +178,7 @@ def build_formal_pdf(filename="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf"):
     story.append(Paragraph("4. SOLUCIÓN Y FLUJO DE PANTALLAS", heading_style))
     story.append(
         Paragraph(
-            'ReversoYa articula los derechos del consumidor con el procedimiento administrativo y jurisdiccional mediante una aplicación web guiada en cuatro pasos: <b>Paso 1 (Datos de la compra y cálculo del plazo de 5 días hábiles):</b> el usuario elige la causal (no entrega, producto defectuoso o retracto, cobro doble o sobreventa aérea), registra el valor en pesos colombianos, el medio de pago y la entidad financiera; el sistema verifica si está dentro de los 5 días hábiles del <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" color="#0B3D91"><u>artículo 2.2.2.51.4 del Decreto 1074 de 2015</u></a> para ordenar la reversión bancaria o si procede la vía jurisdiccional ante la SIC (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" color="#0B3D91"><u>artículo 58 de la Ley 1480</u></a>). <b>Paso 2 (Auditoría de respuestas del comercio y soportes probatorios):</b> el usuario selecciona o transcribe la respuesta recibida del proveedor; la herramienta identifica las normas vulneradas y calcula la huella digital SHA-256 de los comprobantes conforme a la <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" color="#0B3D91"><u>Ley 527 de 1999</u></a>. <b>Paso 3 (Generación de los tres documentos formales):</b> el sistema redacta automáticamente (1) la Solicitud Formal de Reversión de Pago dirigida al banco o billetera emisora con los requisitos taxativos del <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" color="#0B3D91"><u>artículo 2.2.2.51.3 del Decreto 1074 de 2015</u></a>, (2) la Reclamación Directa al proveedor (requisito de procedibilidad del <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" color="#0B3D91"><u>artículo 58 numeral 5 de la Ley 1480</u></a>) y (3) el formato de Demanda de Protección al Consumidor ante la SIC o reclamo aeronáutico <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" color="#0B3D91"><u>RAC 3</u></a>. <b>Paso 4 (Guía de radicación y control de los 15 días hábiles):</b> presenta el instructivo de radicación y el cronograma que controla el término legal de 15 días hábiles para el desembolso bancario (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" color="#0B3D91"><u>artículo 2.2.2.51.5</u></a>).',
+            'ReversoYa articula los derechos del consumidor con el procedimiento administrativo y jurisdiccional mediante una aplicación web guiada en cuatro pasos: <b>Paso 1 (Datos de la compra y cálculo del plazo de 5 días hábiles):</b> el usuario elige la causal (no entrega, producto defectuoso o retracto, cobro doble o sobreventa aérea), registra el valor en pesos colombianos, el medio de pago y la entidad financiera; el sistema verifica si está dentro de los 5 días hábiles del <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" color="#0B3D91"><u>artículo 2.2.2.51.4 del Decreto 1074 de 2015</u></a> para ordenar la reversión bancaria o si procede la vía jurisdiccional ante la SIC (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" color="#0B3D91"><u>artículo 58 de la Ley 1480</u></a>). <b>Paso 2 (Auditoría de respuestas del comercio):</b> el usuario selecciona o transcribe la respuesta recibida del proveedor; la herramienta identifica las normas vulneradas e incorpora el mensaje de datos conforme a la <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" color="#0B3D91"><u>Ley 527 de 1999</u></a>. <b>Paso 3 (Generación de los tres documentos formales):</b> el sistema redacta automáticamente (1) la Solicitud Formal de Reversión de Pago dirigida al banco o billetera emisora con los requisitos taxativos del <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" color="#0B3D91"><u>artículo 2.2.2.51.3 del Decreto 1074 de 2015</u></a>, (2) la Reclamación Directa al proveedor (requisito de procedibilidad del <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" color="#0B3D91"><u>artículo 58 numeral 5 de la Ley 1480</u></a>) y (3) el formato de Demanda de Protección al Consumidor ante la SIC o reclamo aeronáutico <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" color="#0B3D91"><u>RAC 3</u></a>. <b>Paso 4 (Guía de radicación y control de los 15 días hábiles):</b> presenta el instructivo de radicación paso a paso y el cronograma que controla el término legal de 15 días hábiles para el desembolso bancario (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" color="#0B3D91"><u>artículo 2.2.2.51.5</u></a>).',
             body_style,
         )
     )
@@ -282,7 +282,7 @@ def render_legal_diagram_png(artifact_type):
             ("“Solo damos bono de cambio en tienda”", "PROHIBIDO · Art. 47 Ley 1480", (255, 90, 95)),
             ("“Reclámele a Servientrega, ya salió”", "IMPROCEDENTE · Art. 50 lit. h", (255, 90, 95)),
             ("“En promoción o descuento no hay garantía”", "INEFICAZ · Arts. 7 y 43 Ley 1480", (255, 90, 95)),
-            ("Sello Criptográfico SHA-256 Verificado ✓", "VÁLIDO · Ley 527 de 1999", (0, 196, 140)),
+            ("Mensaje de datos incorporado al reclamo ✓", "VÁLIDO · Ley 527 de 1999", (0, 196, 140)),
         ]
         for i, (msg, law, col) in enumerate(items):
             by = 86 + i * 96
@@ -310,7 +310,7 @@ def render_legal_diagram_png(artifact_type):
             ("1. CONSTITUCIÓN Y DD. HH.", "Arts. 78 y 229 C.P. + Directrices ONU A/RES/70/186", (56, 189, 248)),
             ("2. LEY 1480 DE 2011", "Arts. 7, 43, 47, 50, 51, 58 y 61 (Estatuto Consumidor)", (0, 196, 140)),
             ("3. DECRETO 587 DE 2016", "5 días para notificar → 15 días hábiles para abonar", (99, 252, 192)),
-            ("4. RAC 3 AEROCIVIL + LEY 527", "100% + 30% en vuelos y pruebas SHA-256", (245, 158, 11)),
+            ("4. RAC 3 AEROCIVIL + LEY 527", "100% + 30% en vuelos y mensajes de datos", (245, 158, 11)),
         ]
         for i, (k, t, col) in enumerate(pillars):
             by = 86 + i * 96
@@ -461,11 +461,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
             "cards": [
                 ("PANTALLA 1: DATOS Y PLAZO DE 5 DÍAS", "Selecciona causal, monto, medio de pago (PSE/Nequi/Tarjeta) y verifica si aplica reversión bancaria o ruta SIC."),
                 ("PANTALLA 2: DETECTOR DE EXCUSAS", "Analiza la respuesta de WhatsApp o correo e identifica las cláusulas nulas de pleno derecho (Arts. 43, 47 y 50 Ley 1480)."),
-                ("VALIDEZ PROBATORIA (LEY 527 DE 1999)", "Calcula la huella criptográfica SHA-256 de los comprobantes y capturas de pantalla para el anexo probatorio."),
+                ("VALIDEZ PROBATORIA (LEY 527 DE 1999)", "Incorpora los mensajes de datos y soportes de la transacción en el anexo probatorio del reclamo."),
             ],
             "artifact": "chat_excuses",
             "norm_summary": "Arts. 43, 47 y 50 Ley 1480 de 2011 · Ley 527 de 1999",
-            "notes": "En la Pantalla 1 el usuario valida cuántos de los 5 días hábiles le quedan, y en la Pantalla 2 analiza la respuesta del vendedor en WhatsApp y certifica los soportes con huella SHA-256 conforme a la Ley 527 de 1999.",
+            "notes": "En la Pantalla 1 el usuario valida cuántos de los 5 días hábiles le quedan, y en la Pantalla 2 analiza la respuesta del vendedor en WhatsApp e incorpora los mensajes de datos conforme a la Ley 527 de 1999.",
         },
         {
             "badge": "DIAPOSITIVA 6 DE 10",

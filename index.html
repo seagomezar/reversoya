@@ -115,9 +115,6 @@
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <a href="#directorio-juridico" class="hidden sm:inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-navy hover:bg-slate-100 transition whitespace-nowrap">
-          Fuentes oficiales
-        </a>
         <button type="button" onclick="resetForm()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition whitespace-nowrap">
           Nuevo cálculo
         </button>
@@ -196,8 +193,8 @@
           <button type="button" onclick="goToStep(2)" id="stepper-2" class="w-full flex items-center gap-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-slate-300 text-left transition">
             <span id="stepper-badge-2" class="w-6 h-6 rounded-full bg-slate-100 text-slate-700 font-display font-bold text-xs flex items-center justify-center shrink-0">2</span>
             <div class="min-w-0">
-              <span class="block font-display font-bold text-xs text-slate-800 truncate">Respuesta y soportes</span>
-              <span class="block text-[11px] text-slate-500 truncate">Excusas del comercio</span>
+              <span class="block font-display font-bold text-xs text-slate-800 truncate">Respuesta del comercio</span>
+              <span class="block text-[11px] text-slate-500 truncate">Excusas del vendedor</span>
             </div>
           </button>
         </li>
@@ -431,14 +428,14 @@
         </section>
 
         <!-- ========================================================= -->
-        <!-- PASO 2: RESPUESTA DEL COMERCIO Y SOPORTES                 -->
+        <!-- PASO 2: RESPUESTA DEL COMERCIO                            -->
         <!-- ========================================================= -->
         <section id="step-2" class="step-panel no-print" aria-labelledby="step2-heading">
           <div class="bg-white rounded-xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-6">
             <div class="border-b border-slate-100 pb-4">
               <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Paso 2 de 4</span>
               <h2 id="step2-heading" class="font-display font-bold text-xl sm:text-2xl text-navy mt-0.5">
-                Respuesta del comercio y soportes del reclamo
+                Respuesta del comercio o aerolínea
               </h2>
               <p class="text-sm text-slate-600 mt-1">
                 Selecciona los argumentos que te dio el proveedor. La herramienta incorporará los fundamentos específicos de la <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="text-navy font-semibold underline hover:text-emerald-dark">Ley 1480 de 2011</a> que invalidan esas negativas.
@@ -526,25 +523,6 @@
               <div id="chatAnalysisOutput" class="mt-2 p-2.5 rounded-lg bg-white border-l-4 border-danger text-xs text-slate-800"></div>
             </div>
 
-            <!-- Real File Attachment & SHA-256 Hash Calculator -->
-            <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-3">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                  <h3 class="font-display font-bold text-sm text-navy">
-                    3. Relación de soportes probatorios (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-emerald-dark">Ley 527 de 1999</a>)
-                  </h3>
-                  <p class="text-xs text-slate-600">
-                    Adjunta tu comprobante de pago y capturas de pantalla para incluir su huella digital SHA-256 en el anexo probatorio del oficio.
-                  </p>
-                </div>
-                <label class="px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-navy text-xs font-bold cursor-pointer shrink-0 transition text-center">
-                  <span>Adjuntar archivo</span>
-                  <input id="evidenceFileInput" type="file" multiple class="hidden" onchange="handleRealFileUpload(this.files)"/>
-                </label>
-              </div>
-              <div id="evidenceList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
-            </div>
-
             <div class="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
               <button type="button" onclick="goToStep(1)" class="px-4 py-2.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 text-center">
                 ← Volver a datos de la compra
@@ -628,7 +606,7 @@
 
             <div class="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 no-print">
               <button type="button" onclick="goToStep(2)" class="px-4 py-2.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 text-center">
-                ← Volver a respuesta y soportes
+                ← Volver a respuesta del comercio
               </button>
               <button type="button" onclick="goToStep(4)" class="px-5 py-2.5 rounded-lg bg-navy hover:bg-navy-light text-white font-display font-bold text-sm transition text-center">
                 Continuar al paso 4: Ruta de radicación →
@@ -943,133 +921,6 @@
       </aside>
 
     </div>
-
-    <!-- ========================================================= -->
-    <!-- DIRECTORIO DE REFERENCIAS JURÍDICAS Y FUENTES OFICIALES   -->
-    <!-- ========================================================= -->
-    <section id="directorio-juridico" class="mt-10 bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-xs no-print" aria-labelledby="directorio-heading">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-4">
-        <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-dark">Fuentes Primarias Verificadas</span>
-          <h2 id="directorio-heading" class="font-display font-bold text-base sm:text-lg text-navy mt-0.5">
-            Enlaces Oficiales de Normativa, Jurisdicción y Estadísticas (Documento Ejecutivo y App)
-          </h2>
-        </div>
-        <span class="law-chip self-start sm:self-auto px-2.5 py-1 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
-          Consulta Pública Oficial
-        </span>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Art. 78 C.P.</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Constitución Política (Art. 78)</p>
-          <p class="text-[11px] text-slate-500">Secretaría del Senado · Protección al consumidor y calidad de bienes</p>
-        </a>
-
-        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr007.html#229" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Art. 229 C.P.</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Constitución Política (Art. 229)</p>
-          <p class="text-[11px] text-slate-500">Secretaría del Senado · Derecho de acceso efectivo a la justicia</p>
-        </a>
-
-        <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Res. A/RES/70/186</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Directrices de las Naciones Unidas</p>
-          <p class="text-[11px] text-slate-500">ONU / UNCTAD · Protección del consumidor en comercio electrónico</p>
-        </a>
-
-        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-emerald-soft font-bold text-[10px] text-emerald-dark">Ley 1480 de 2011</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Estatuto del Consumidor</p>
-          <p class="text-[11px] text-slate-500">Función Pública · Arts. 7, 8, 43, 47, 50 lit. h, 51, 58 y 61</p>
-        </a>
-
-        <a href="https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/1681735" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">SUIN-Juriscol</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Sistema Único de Información Normativa</p>
-          <p class="text-[11px] text-slate-500">Ministerio de Justicia · Texto oficial de la Ley 1480 de 2011</p>
-        </a>
-
-        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-emerald-soft font-bold text-[10px] text-emerald-dark">Decreto 587 de 2016</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Reversión de Pagos Electrónicos</p>
-          <p class="text-[11px] text-slate-500">Función Pública · Plazos de 5 días (comprador) y 15 días (banco)</p>
-        </a>
-
-        <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Decreto 1074 de 2015</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Capítulo 51 · Sector Comercio</p>
-          <p class="text-[11px] text-slate-500">Función Pública · Artículos 2.2.2.51.1 a 2.2.2.51.13 compilados</p>
-        </a>
-
-        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Ley 527 de 1999</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Mensajes de Datos y Firmas</p>
-          <p class="text-[11px] text-slate-500">Secretaría del Senado · Validez probatoria e integridad SHA-256</p>
-        </a>
-
-        <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">RAC 3 Aerocivil</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Reglamentos Aeronáuticos</p>
-          <p class="text-[11px] text-slate-500">Aerocivil / SUIT · Reembolso 100% + compensación mínima del 30%</p>
-        </a>
-
-        <a href="https://ccce.org.co/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">CCCE Colombia</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Cámara de Comercio Electrónico</p>
-          <p class="text-[11px] text-slate-500">Estadísticas de pagos digitales en Colombia (370M+ transacciones/año)</p>
-        </a>
-
-        <a href="https://sicfacilita.sic.gov.co/SICFacilita/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">SIC Facilita</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Plataforma SIC Facilita</p>
-          <p class="text-[11px] text-slate-500">Superintendencia de Industria y Comercio · Mediación con comercios inscritos</p>
-        </a>
-
-        <a href="https://servicioslinea.sic.gov.co/servilinea/ServiLinea/DemandasProteccion/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
-          <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Demandas SIC</span>
-            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
-          </div>
-          <p class="font-display font-bold text-navy">Acción de Protección al Consumidor</p>
-          <p class="text-[11px] text-slate-500">Delegatura para Asuntos Jurisdiccionales · Art. 58 Ley 1480 de 2011</p>
-        </a>
-      </div>
-    </section>
   </main>
 
   <!-- FOOTER -->

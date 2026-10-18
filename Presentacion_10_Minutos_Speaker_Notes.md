@@ -52,10 +52,10 @@
 ## Diapositiva 5: Solución y Flujo de Pantallas (Parte 1: Pantallas 1 y 2)
 - **Contenido en pantalla:**
   - **Pantalla 1 (Datos de la compra y término de 5 días):** Selección de causal, monto en COP, medio de pago y verificación automática de los 5 días hábiles (o activación de ruta jurisdiccional SIC Art. 58 si ya pasaron los 5 días).
-  - **Pantalla 2 (Detector de excusas y huella SHA-256):** Analiza el mensaje del vendedor, señala las cláusulas ineficaces de pleno derecho (Art. 43 Ley 1480) y certifica los soportes bajo la **Ley 527 de 1999**.
+  - **Pantalla 2 (Detector de excusas y validez de mensajes de datos):** Analiza el mensaje del vendedor, señala las cláusulas ineficaces de pleno derecho (Art. 43 Ley 1480) e incorpora la respuesta bajo la **Ley 527 de 1999**.
 - **Notas del orador:**
   > “Inspirados en las calculadoras laborales guiadas, construimos un flujo de 4 pasos sin jerga procesal. En la **Pantalla 1**, el usuario elige qué ocurrió, ingresa el valor, el medio de pago y valida cuántos de los 5 días hábiles le quedan.
-  > En la **Pantalla 2**, el usuario pega el mensaje de WhatsApp del vendedor; el sistema señala los artículos violados (Arts. 43, 47 y 50 de la Ley 1480) y calcula la huella digital SHA-256 de los soportes conforme a la Ley 527 de 1999.”
+  > En la **Pantalla 2**, el usuario pega el mensaje de WhatsApp del vendedor; el sistema señala los artículos violados (Arts. 43, 47 y 50 de la Ley 1480) e incorpora los mensajes de datos conforme a la Ley 527 de 1999.”
 
 ---
 

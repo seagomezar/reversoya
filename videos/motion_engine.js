@@ -193,7 +193,7 @@ window.ReversoMotionEngine = (function () {
         { msg: '“Solo damos bono de cambio en la tienda”', law: 'PROHIBIDO · Art. 47 Ley 1480', col: '#FF5A5F' },
         { msg: '“Reclámele a Servientrega, ya salió”', law: 'IMPROCEDENTE · Art. 50 lit. h', col: '#FF5A5F' },
         { msg: '“En promoción o descuento no hay garantía”', law: 'INEFICAZ · Arts. 7 y 43 Ley 1480', col: '#FF5A5F' },
-        { msg: 'Sello Probatorio SHA-256 Verificado ✓', law: 'VÁLIDO · Ley 527 de 1999', col: '#00C48C' }
+        { msg: 'Mensaje de datos incorporado al reclamo ✓', law: 'VÁLIDO · Ley 527 de 1999', col: '#00C48C' }
       ];
       excuses.forEach((ex, i) => {
         const appear = easeOutCubic(Math.max(0, Math.min(1, (sceneProgress - i * 0.12) * 2.5)));
@@ -252,7 +252,7 @@ window.ReversoMotionEngine = (function () {
       const milestones = is5
         ? [
             'Hito 1: Incumplimiento de entrega o defecto del bien',
-            'Hito 2: Reclamación al comercio y sello SHA-256',
+            'Hito 2: Reclamación directa enviada al comercio',
             'Hito 3: Orden de reversión radicada ante el banco/PSE'
           ]
         : [
@@ -272,7 +272,7 @@ window.ReversoMotionEngine = (function () {
         { k: '1. CONSTITUCIÓN Y DD. HH.', t: 'Arts. 78 y 229 C.P. + ONU A/RES/70/186', c: '#38BDF8' },
         { k: '2. LEY 1480 DE 2011', t: 'Arts. 7, 43, 47, 50, 51 y 58 (Estatuto Consumidor)', c: '#00C48C' },
         { k: '3. DECRETO 587 DE 2016', t: '5 días para notificar → 15 días para abonar', c: '#63FCC0' },
-        { k: '4. RAC 3 AEROCIVIL + LEY 527', t: '100% + 30% en vuelos y pruebas SHA-256', c: '#F59E0B' }
+        { k: '4. RAC 3 AEROCIVIL + LEY 527', t: '100% + 30% en vuelos y mensajes de datos', c: '#F59E0B' }
       ];
       pillars.forEach((pl, i) => {
         const appear = easeOutCubic(Math.max(0, Math.min(1, (sceneProgress - i * 0.1) * 2.5)));
@@ -317,7 +317,7 @@ window.ReversoMotionEngine = (function () {
       const cards = type === 'ui_step1'
         ? [
             { step: 'PASO 1', name: 'Datos de la compra y plazo de 5 días', status: 'PSE / Nequi / Tarjeta' },
-            { step: 'PASO 2', name: 'Auditoría de excusas y huella SHA-256', status: 'Arts. 43, 47, 50 + Ley 527' },
+            { step: 'PASO 2', name: 'Auditoría de respuesta del comercio', status: 'Arts. 43, 47, 50 + Ley 527' },
             { step: 'PASO 3', name: 'Generación de los 3 oficios formales', status: 'Art. 2.2.2.51.3 Dec. 1074' },
             { step: 'PASO 4', name: 'Guía de radicación y plazo de 15 días', status: 'Abono bancario 100%' }
           ]
@@ -325,7 +325,7 @@ window.ReversoMotionEngine = (function () {
             { step: 'OFICIO 1', name: 'Solicitud Formal de Reversión al Banco', status: 'Requisitos Art. 2.2.2.51.3' },
             { step: 'OFICIO 2', name: 'Reclamación Directa al Comercio', status: 'Procedibilidad Art. 58 num. 5' },
             { step: 'OFICIO 3', name: 'Demanda Jurisdiccional SIC / RAC 3', status: 'Mínima cuantía sin abogado' },
-            { step: 'ANEXO', name: 'Certificación de Mensajes de Datos', status: 'Huella SHA-256 · Ley 527/1999' }
+            { step: 'ANEXO', name: 'Validez de Mensajes de Datos', status: 'Comprobante y chat · Ley 527/1999' }
           ];
       cards.forEach((c, i) => {
         const by = ry + 22 + i * 84;
@@ -358,7 +358,7 @@ window.ReversoMotionEngine = (function () {
           ]
         : [
             { badge: 'SUPUESTO · MÁS DE 5 DÍAS HÁBILES', title: 'Venció la ventana administrativa ante el banco', desc: 'El comprador conserva su acción jurisdiccional.', col: '#F59E0B' },
-            { badge: 'NORMA · ART. 58 LEY 1480 Y ART. 24 CGP', title: 'Demanda de protección al consumidor ante la SIC', desc: 'Mínima cuantía sin requerir abogado + huella SHA-256.', col: '#38BDF8' },
+            { badge: 'NORMA · ART. 58 LEY 1480 Y ART. 24 CGP', title: 'Demanda de protección al consumidor ante la SIC', desc: 'Mínima cuantía sin requerir abogado + mensajes Ley 527.', col: '#38BDF8' },
             { badge: 'RESULTADO · SENTENCIA Y SANCIÓN SIC', title: 'Orden judicial de devolución + multa 2.000 SMLMV', desc: 'Cobertura jurídica completa en todo el territorio.', col: '#00C48C' }
           ];
       caseBoxes.forEach((cb, i) => {

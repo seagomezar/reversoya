@@ -34,11 +34,7 @@ const state = {
   nombreUsuario: 'Camila Andrea Restrepo Gómez',
   cedulaUsuario: '1.020.784.512',
   diasTranscurridos: 2,
-  activeDocTab: 'banco',
-  evidenceFiles: [
-    { name: 'Comprobante_Pago_PSE_Bancolombia.pdf', hash: '8f4a92e1c04b...91c2' },
-    { name: 'Captura_Respuesta_Comercio.png', hash: '3b1e77c4a912...40d9' }
-  ]
+  activeDocTab: 'banco'
 };
 
 const CAUSAL_META = {
@@ -260,53 +256,6 @@ function analyzeChatText() {
   } else {
     out.innerHTML = `<strong>Observaciones jurídicas detectadas (${findings.length}):</strong><br/>· ` + findings.join('<br/>· ');
   }
-}
-
-function renderEvidenceList() {
-  const list = document.getElementById('evidenceList');
-  if (!list) return;
-  list.innerHTML = '';
-  state.evidenceFiles.forEach((file, index) => {
-    const item = document.createElement('div');
-    item.className = 'p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between gap-2';
-    item.innerHTML = `
-      <div class="min-w-0">
-        <span class="block truncate font-semibold text-navy">${escapeHtml(file.name)}</span>
-        <span class="block font-mono text-[10px] text-emerald-dark">SHA-256: ${escapeHtml(file.hash)}</span>
-      </div>
-      <button type="button" onclick="removeEvidenceFile(${index})" class="text-slate-400 hover:text-danger text-xs font-bold px-1.5" title="Quitar archivo">✕</button>
-    `;
-    list.appendChild(item);
-  });
-}
-
-function removeEvidenceFile(idx) {
-  state.evidenceFiles.splice(idx, 1);
-  renderEvidenceList();
-  renderLegalDocument();
-}
-
-async function handleRealFileUpload(fileList) {
-  if (!fileList || fileList.length === 0) return;
-  for (const file of Array.from(fileList)) {
-    let hashHex = '';
-    try {
-      const buffer = await file.arrayBuffer();
-      if (window.crypto && window.crypto.subtle) {
-        const hashBuffer = await window.crypto.subtle.digest('SHA-256', buffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const fullHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-        hashHex = fullHex.slice(0, 12) + '...' + fullHex.slice(-4);
-      } else {
-        hashHex = Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
-      }
-    } catch (e) {
-      hashHex = Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
-    }
-    state.evidenceFiles.push({ name: file.name, hash: hashHex });
-  }
-  renderEvidenceList();
-  renderLegalDocument();
 }
 
 function recalculateCase() {
@@ -563,9 +512,7 @@ function buildDocumentHtml(docType) {
     ? selectedExcuses.map((e, i) => `   ${i + 1}. ${e}`).join('<br/>')
     : '   1. Falta de entrega oportuna o ausencia de reembolso efectivo de las sumas pagadas.';
 
-  const annexListHtml = state.evidenceFiles.length > 0
-    ? state.evidenceFiles.map((f) => `${escapeHtml(f.name)} (SHA-256: ${escapeHtml(f.hash)})`).join(', ')
-    : 'Comprobante de transacción electrónica y constancia de reclamación directa al proveedor.';
+  const annexListHtml = 'Comprobante de la transacción electrónica y constancia de reclamación directa enviada al proveedor.';
 
   const plazoDeclarationHtml = enTermino5Dias
     ? `Dentro del término legal de cinco (5) días hábiles siguientes al conocimiento del hecho (${state.diasTranscurridos} días hábiles transcurridos), presenté reclamación directa ante el proveedor, frente a lo cual se configuró:`
@@ -755,7 +702,6 @@ function updateCountdownSimulator(dayVal) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderEvidenceList();
   analyzeChatText();
   recalculateCase();
 });

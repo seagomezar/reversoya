@@ -54,18 +54,7 @@ def build_formal_pdf(filename="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf"):
         leading=13.5,
         textColor=colors.black,
         alignment=TA_LEFT,
-        spaceAfter=1.5,
-    )
-
-    subtitle_style = ParagraphStyle(
-        "FormalSubtitle",
-        parent=styles["Normal"],
-        fontName="Times-Roman",
-        fontSize=9.0,
-        leading=11,
-        textColor=colors.HexColor("#222222"),
-        alignment=TA_LEFT,
-        spaceAfter=4,
+        spaceAfter=6,
     )
 
     heading_style = ParagraphStyle(
@@ -96,21 +85,6 @@ def build_formal_pdf(filename="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf"):
         Paragraph(
             "REVERSOYA: PLATAFORMA DE REVERSIÓN DE PAGO, RETRACTO Y RECLAMACIÓN DE CONSUMO",
             title_style,
-        )
-    )
-    story.append(
-        Paragraph(
-            "Documento Ejecutivo: Producto Legal en Colombia",
-            subtitle_style,
-        )
-    )
-    story.append(
-        HRFlowable(
-            width="100%",
-            thickness=0.8,
-            color=colors.black,
-            spaceBefore=1,
-            spaceAfter=6,
         )
     )
 

@@ -36,7 +36,6 @@
       font-family: 'Inter', system-ui, sans-serif;
       color: #0F172A;
       background-color: #F8F9FF;
-      overflow-x: hidden;
     }
     h1, h2, h3, h4, .font-display {
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -82,6 +81,15 @@
         padding: 0 !important;
         max-height: none !important;
         overflow: visible !important;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .print-only-doc a {
+        color: #000000 !important;
+        text-decoration: none !important;
+      }
+      .print-only-doc a::after {
+        content: none !important;
       }
     }
   </style>
@@ -132,7 +140,10 @@
           ONU A/RES/70/186
         </a>
         <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
-          Arts. 7, 8 y 43 Ley 1480
+          Arts. 7 y 8 Ley 1480
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Art. 43 Ley 1480
         </a>
         <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
           Art. 47 Ley 1480
@@ -144,13 +155,19 @@
           Art. 51 Ley 1480
         </a>
         <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#58" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
-          Arts. 58 y 61 Ley 1480
+          Art. 58 Ley 1480
+        </a>
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#61" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          Art. 61 Ley 1480
         </a>
         <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
           Decreto 587 de 2016
         </a>
         <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
           Cap. 51 Decreto 1074/2015
+        </a>
+        <a href="https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30019935" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
+          SUIN-Juriscol
         </a>
         <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white text-navy border border-slate-200 hover:border-emerald hover:text-emerald-dark transition">
           Ley 527 de 1999
@@ -437,9 +454,9 @@
               <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:border-slate-300 cursor-pointer transition">
                 <input type="checkbox" checked onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="bono"/>
                 <div class="flex-1 min-w-0 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <span class="font-display font-bold text-navy text-sm">Me ofrecen únicamente un bono, voucher o saldo a favor en la tienda</span>
-                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1.5 mb-1">
+                    <span class="font-display font-bold text-navy text-sm flex-1 min-w-0">Me ofrecen únicamente un bono, voucher o saldo a favor en la tienda</span>
+                    <span class="law-chip self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
                       Prohibido · Art. 47 Ley 1480
                     </span>
                   </div>
@@ -452,9 +469,9 @@
               <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:border-slate-300 cursor-pointer transition">
                 <input type="checkbox" checked onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="transportadora"/>
                 <div class="flex-1 min-w-0 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <span class="font-display font-bold text-navy text-sm">Dicen que el paquete ya fue entregado a la transportadora y debo reclamarle a ella</span>
-                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1.5 mb-1">
+                    <span class="font-display font-bold text-navy text-sm flex-1 min-w-0">Dicen que el paquete ya fue entregado a la transportadora y debo reclamarle a ella</span>
+                    <span class="law-chip self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
                       Improcedente · Art. 50 lit. h
                     </span>
                   </div>
@@ -467,14 +484,14 @@
               <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 cursor-pointer transition">
                 <input type="checkbox" onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="promocion"/>
                 <div class="flex-1 min-w-0 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <span class="font-display font-bold text-navy text-sm">Afirman que los artículos en promoción o descuento no tienen garantía ni devolución</span>
-                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1.5 mb-1">
+                    <span class="font-display font-bold text-navy text-sm flex-1 min-w-0">Afirman que los artículos en promoción o descuento no tienen garantía ni devolución</span>
+                    <span class="law-chip self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
                       Cláusula ineficaz · Arts. 7 y 43
                     </span>
                   </div>
                   <p class="text-slate-600 leading-relaxed">
-                    El <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 43 de la Ley 1480 de 2011</a> declara ineficaces de pleno derecho las cláusulas que limiten o exoneren la garantía legal obligatoria prevista en los <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículos 7 y 8</a>.
+                    El <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">artículo 43 de la Ley 1480 de 2011</a> declara ineficaces de pleno derecho las cláusulas que limiten o exoneren la garantía legal obligatoria prevista en los artículos <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">7</a> y <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#8" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="text-navy font-semibold underline hover:text-emerald-dark">8</a>.
                   </p>
                 </div>
               </label>
@@ -482,9 +499,9 @@
               <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 cursor-pointer transition">
                 <input type="checkbox" onchange="recalculateCase()" class="excuse-check mt-1 w-4 h-4 rounded text-navy focus:ring-navy shrink-0" value="demora"/>
                 <div class="flex-1 min-w-0 text-xs">
-                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <span class="font-display font-bold text-navy text-sm">Piden esperar de 30 a 60 días hábiles o dejaron de contestar mensajes</span>
-                    <span class="law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1.5 mb-1">
+                    <span class="font-display font-bold text-navy text-sm flex-1 min-w-0">Piden esperar de 30 a 60 días hábiles o dejaron de contestar mensajes</span>
+                    <span class="law-chip self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-[11px]">
                       Incumple Decreto 587 de 2016
                     </span>
                   </div>
@@ -667,7 +684,7 @@
                   Consulta el estado legal según el día hábil transcurrido (Día <span id="currentDayLabel">3</span> de 15):
                 </label>
                 <span id="countdownStatusPill" class="law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-xs">
-                  Faltan 12 días hábiles para el desembolso
+                  Faltan 12 días hábiles
                 </span>
               </div>
               <input id="daySlider" type="range" min="1" max="16" value="3" oninput="updateCountdownSimulator(this.value)" class="w-full accent-navy cursor-pointer"/>
@@ -736,10 +753,10 @@
       <!-- RIGHT COLUMN: LIVE CASE SUMMARY SIDEBAR -->
       <aside class="lg:col-span-4 lg:sticky lg:top-28 space-y-4 no-print min-w-0">
         <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-          <div class="bg-navy px-5 py-4 text-white">
-            <div class="flex items-center justify-between gap-2">
+          <div class="bg-navy px-4 sm:px-5 py-4 text-white">
+            <div class="flex flex-wrap items-center justify-between gap-1.5">
               <span class="law-chip text-[11px] font-semibold uppercase tracking-wider text-emerald">Resumen del caso</span>
-              <a id="sidebarCausalTag" href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="law-chip px-2.5 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-mono text-slate-200 transition">
+              <a id="sidebarCausalTag" href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="law-chip px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-semibold text-slate-200 transition">
                 Art. 51 num. 4 Ley 1480
               </a>
             </div>
@@ -748,7 +765,7 @@
             </h3>
           </div>
 
-          <div class="p-5 border-b border-slate-100 bg-slate-50/60">
+          <div class="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/60">
             <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500 block">
               Valor total a restituir:
             </span>
@@ -759,9 +776,9 @@
             <p id="sidebarCompensationNote" class="text-xs text-slate-600 mt-1"></p>
           </div>
 
-          <div class="p-5 space-y-3 text-xs">
+          <div class="p-4 sm:p-5 space-y-3 text-xs">
             <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-2">
-              <div class="flex items-center justify-between gap-2">
+              <div class="flex flex-wrap items-center justify-between gap-1.5">
                 <span class="text-slate-700 font-semibold">1. Plazo comprador (5 días):</span>
                 <span id="sidebarDaysLeft" class="law-chip px-2 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
                   Quedan 3 días hábiles
@@ -770,7 +787,7 @@
               <p class="text-[11px] text-slate-500 leading-snug">
                 Tiempo para notificar al comercio y al banco (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline hover:text-navy">Art. 2.2.2.51.4 Dec. 1074/2015</a>).
               </p>
-              <div class="pt-2 border-t border-slate-200 flex items-center justify-between gap-2">
+              <div class="pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between gap-1.5">
                 <span class="text-slate-700 font-semibold">2. Plazo banco para abonar:</span>
                 <span class="law-chip px-2 py-0.5 rounded-full bg-navy text-white font-bold text-[11px]">
                   Máx. 15 días hábiles
@@ -784,9 +801,9 @@
             <div class="pt-2 border-t border-slate-100 space-y-1.5">
               <p class="font-bold text-navy text-[11px] uppercase tracking-wide">Normas oficiales aplicables:</p>
               <ul class="space-y-1 text-slate-600">
-                <li>· <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Arts. 78 y 229 C.P.</a> y <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">ONU A/RES/70/186</a>: Protección y acceso a la justicia.</li>
+                <li>· Arts. <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">78</a> y <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr007.html#229" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">229 C.P.</a> y <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">ONU A/RES/70/186</a>: Protección y acceso a la justicia.</li>
                 <li>· <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Ley 1480 de 2011</a> (<a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47" target="_blank" rel="noopener noreferrer" class="underline">Arts. 47</a> y <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#51" target="_blank" rel="noopener noreferrer" class="underline">51</a>): Retracto y reversión de pago.</li>
-                <li>· <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Decreto 587 de 2016</a> (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline">Dec. 1074/2015</a>): Regla de 5 y 15 días hábiles.</li>
+                <li>· <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Decreto 587 de 2016</a> (<a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608" target="_blank" rel="noopener noreferrer" class="underline">Dec. 1074/2015</a> · <a href="https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30019935" target="_blank" rel="noopener noreferrer" class="underline">SUIN</a>): Regla de 5 y 15 días hábiles.</li>
                 <li>· <a href="http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">Ley 527 de 1999</a> y <a href="https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380" target="_blank" rel="noopener noreferrer" class="font-semibold text-navy hover:underline">RAC 3 Aerocivil</a>: Pruebas digitales y vuelos.</li>
               </ul>
             </div>
@@ -813,7 +830,7 @@
             Enlaces Oficiales de Normativa, Jurisdicción y Estadísticas (Documento Ejecutivo y App)
           </h2>
         </div>
-        <span class="law-chip px-2.5 py-1 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
+        <span class="law-chip self-start sm:self-auto px-2.5 py-1 rounded-full bg-emerald-soft text-emerald-dark font-bold text-[11px]">
           Consulta Pública Oficial
         </span>
       </div>
@@ -821,11 +838,20 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
         <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr002.html#78" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
           <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Arts. 78 y 229 C.P.</span>
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Art. 78 C.P.</span>
             <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
           </div>
-          <p class="font-display font-bold text-navy">Constitución Política de Colombia</p>
-          <p class="text-[11px] text-slate-500">Secretaría del Senado · Protección al consumidor y acceso a la justicia</p>
+          <p class="font-display font-bold text-navy">Constitución Política (Art. 78)</p>
+          <p class="text-[11px] text-slate-500">Secretaría del Senado · Protección al consumidor y calidad de bienes</p>
+        </a>
+
+        <a href="http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991_pr007.html#229" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Art. 229 C.P.</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Constitución Política (Art. 229)</p>
+          <p class="text-[11px] text-slate-500">Secretaría del Senado · Derecho de acceso efectivo a la justicia</p>
         </a>
 
         <a href="https://docs.un.org/es/A/RES/70/186" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
@@ -844,6 +870,15 @@
           </div>
           <p class="font-display font-bold text-navy">Estatuto del Consumidor</p>
           <p class="text-[11px] text-slate-500">Función Pública · Arts. 7, 8, 43, 47, 50 lit. h, 51, 58 y 61</p>
+        </a>
+
+        <a href="https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Leyes/1681735" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">SUIN-Juriscol</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Sistema Único de Información Normativa</p>
+          <p class="text-[11px] text-slate-500">Ministerio de Justicia · Texto oficial de la Ley 1480 de 2011</p>
         </a>
 
         <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
@@ -884,11 +919,29 @@
 
         <a href="https://ccce.org.co/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
           <div class="flex items-center justify-between gap-2">
-            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">CCCE · SIC Facilita</span>
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">CCCE Colombia</span>
             <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
           </div>
           <p class="font-display font-bold text-navy">Cámara de Comercio Electrónico</p>
-          <p class="text-[11px] text-slate-500">Informes de pagos digitales en Colombia (370M+ transacciones/año)</p>
+          <p class="text-[11px] text-slate-500">Estadísticas de pagos digitales en Colombia (370M+ transacciones/año)</p>
+        </a>
+
+        <a href="https://sicfacilita.sic.gov.co/SICFacilita/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">SIC Facilita</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Plataforma SIC Facilita</p>
+          <p class="text-[11px] text-slate-500">Superintendencia de Industria y Comercio · Mediación con comercios inscritos</p>
+        </a>
+
+        <a href="https://servicioslinea.sic.gov.co/servilinea/ServiLinea/DemandasProteccion/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-slate-50 hover:bg-emerald-soft/40 border border-slate-200 hover:border-emerald transition flex flex-col justify-between gap-1.5 group">
+          <div class="flex items-center justify-between gap-2">
+            <span class="law-chip px-2 py-0.5 rounded-full bg-white border border-slate-200 font-bold text-[10px] text-navy">Demandas SIC</span>
+            <span class="text-slate-400 group-hover:text-emerald-dark font-bold">↗</span>
+          </div>
+          <p class="font-display font-bold text-navy">Acción de Protección al Consumidor</p>
+          <p class="text-[11px] text-slate-500">Delegatura para Asuntos Jurisdiccionales · Art. 58 Ley 1480 de 2011</p>
         </a>
       </div>
     </section>

@@ -6,6 +6,7 @@ const OFFICIAL_LINKS = {
   onu: 'https://docs.un.org/es/A/RES/70/186',
   ley1480: 'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306',
   art7: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#7',
+  art8: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html#8',
   art43: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#43',
   art47: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#47',
   art50: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#50',
@@ -14,6 +15,7 @@ const OFFICIAL_LINKS = {
   art61: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011_pr001.html#61',
   dec587: 'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=69037',
   dec1074: 'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608',
+  suinDec1074: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30019935',
   ley527: 'http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html',
   rac3: 'https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=127380',
   sicDemanda: 'https://servicioslinea.sic.gov.co/servilinea/ServiLinea/DemandasProteccion/',
@@ -637,19 +639,19 @@ function updateCountdownSimulator(dayVal) {
 
   if (day <= 5) {
     pill.className = 'law-chip px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-dark font-bold text-xs';
-    pill.textContent = `Faltan ${15 - day} días hábiles para el desembolso`;
+    pill.textContent = `Faltan ${15 - day} días hábiles`;
     detail.innerHTML = `<strong>Día ${day} hábil (Verificación de la solicitud):</strong> La solicitud ya fue radicada ante <strong>${safeBanco}</strong> y notificada a <strong>${safeComercio}</strong>. Según el <a href="${OFFICIAL_LINKS.dec1074}" target="_blank" rel="noopener noreferrer" class="underline font-semibold text-navy">artículo 2.2.2.51.6 del Decreto 1074 de 2015</a>, el comercio solo puede oponerse si acredita documentalmente que ya entregó el bien o que ya devolvió el dinero.`;
   } else if (day <= 14) {
     pill.className = 'law-chip px-2.5 py-0.5 rounded-full bg-slate-200 text-navy font-bold text-xs';
-    pill.textContent = `En trámite bancario: faltan ${15 - day} días hábiles`;
+    pill.textContent = `En trámite: faltan ${15 - day} días hábiles`;
     detail.innerHTML = `<strong>Día ${day} hábil (Procesamiento en red de pagos):</strong> Cerrado el término de oposición del proveedor, <strong>${safeBanco}</strong> y la red procesadora (${safeMedio}) ejecutan el abono de <strong>${montoText}</strong> a favor del consumidor.`;
   } else if (day === 15) {
     pill.className = 'law-chip px-2.5 py-0.5 rounded-full bg-emerald text-white font-bold text-xs';
-    pill.textContent = 'Día 15 hábil: vencimiento del plazo legal de abono';
+    pill.textContent = 'Día 15 hábil: vence plazo legal';
     detail.innerHTML = `<strong>Día 15 hábil (Plazo límite, <a href="${OFFICIAL_LINKS.dec1074}" target="_blank" rel="noopener noreferrer" class="underline font-semibold text-navy">Art. 2.2.2.51.5 Decreto 1074 de 2015</a>):</strong> Hoy vence el término máximo para que <strong>${safeBanco}</strong> acredite <strong>${montoText}</strong> en la cuenta o tarjeta del consumidor sin cobro de comisiones.`;
   } else {
     pill.className = 'law-chip px-2.5 py-0.5 rounded-full bg-danger-soft text-danger font-bold text-xs';
-    pill.textContent = 'Día 16+: incumplimiento del plazo bancario';
+    pill.textContent = 'Día 16+: mora bancaria';
     detail.innerHTML = `<strong>Día 16+ hábil (Mora del emisor financiero):</strong> Si <strong>${safeBanco}</strong> no abonó los recursos al cumplirse el día 15 hábil, procede presentar queja formal ante el <strong>Defensor del Consumidor Financiero</strong> y ante la <a href="${OFFICIAL_LINKS.superfinanciera}" target="_blank" rel="noopener noreferrer" class="underline font-semibold text-navy"><strong>Superintendencia Financiera de Colombia</strong></a> por incumplimiento del <a href="${OFFICIAL_LINKS.dec587}" target="_blank" rel="noopener noreferrer" class="underline font-semibold text-navy">Decreto 587 de 2016</a>.`;
   }
 }

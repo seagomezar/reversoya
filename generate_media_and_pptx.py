@@ -9,7 +9,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Image as RLImage, Table, TableStyle
 from reportlab.lib import colors
 
 
@@ -29,6 +29,33 @@ FONT_H2 = load_font(21, bold=True)
 FONT_H3 = load_font(17, bold=True)
 FONT_BODY = load_font(15, bold=False)
 FONT_SMALL = load_font(13, bold=True)
+
+
+def render_pdf_logo_png_bytes():
+    """Renders high-resolution 4x supersampled ReversoYa logo PNG for embedding in the PDF."""
+    w, h = 760, 180
+    img = Image.new("RGBA", (w, h), (255, 255, 255, 255))
+    draw = ImageDraw.Draw(img)
+
+    # Shield base
+    shield_pts = [(90, 14), (24, 38), (24, 92), (44, 136), (90, 166), (136, 136), (156, 92), (156, 38)]
+    draw.polygon(shield_pts, fill=(11, 19, 43, 255), outline=(0, 196, 140, 255), width=7)
+
+    # Circular return arrow inside shield
+    draw.arc([54, 54, 126, 126], start=35, end=315, fill=(0, 196, 140, 255), width=9)
+    draw.polygon([(94, 40), (86, 58), (108, 62)], fill=(0, 196, 140, 255))
+    draw.ellipse([80, 80, 100, 100], fill=(255, 255, 255, 255))
+
+    # Wordmark ReversoYa
+    font_logo = load_font(82, bold=True)
+    draw.text((182, 42), "Reverso", font=font_logo, fill=(11, 19, 43, 255))
+    rev_bbox = draw.textbbox((182, 42), "Reverso", font=font_logo)
+    draw.text((rev_bbox[2] + 2, 42), "Ya", font=font_logo, fill=(0, 168, 120, 255))
+
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    buf.seek(0)
+    return buf
 
 
 # ==============================================================================
@@ -88,14 +115,35 @@ def build_formal_pdf(filename="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf"):
         )
     )
 
-    # 1. NOMBRE - LOGO - ESLOGAN
+    # 1. NOMBRE - LOGO - ESLOGAN (with embedded logo image)
     story.append(Paragraph("1. NOMBRE, LOGO Y ESLOGAN", heading_style))
-    story.append(
-        Paragraph(
-            "<b>Nombre:</b> ReversoYa. <b>Logo:</b> Escudo institucional acompañado de una flecha circular de retorno que simboliza la protección legal del comprador y la restitución íntegra del dinero a su cuenta de origen. <b>Eslogan:</b> <i>«Tu plata de vuelta por ley, sin rogarle al comercio»</i>.",
-            body_style,
+    logo_img = RLImage(render_pdf_logo_png_bytes(), width=34 * mm, height=8.05 * mm)
+    sec1_table = Table(
+        [
+            [
+                Paragraph("<b>Nombre:</b> ReversoYa.", body_style),
+                Paragraph("<b>Logo:</b>", body_style),
+                logo_img,
+                Paragraph(
+                    "<b>Eslogan:</b> <i>«Tu plata de vuelta por ley, sin rogarle al comercio»</i>.",
+                    body_style,
+                ),
+            ]
+        ],
+        colWidths=[32 * mm, 11 * mm, 38 * mm, 97 * mm],
+    )
+    sec1_table.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 2),
+                ("TOPPADDING", (0, 0), (-1, -1), 0),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+            ]
         )
     )
+    story.append(sec1_table)
 
     # 2. PROBLEMA JURÍDICO - DERECHOS - LEGISLACIÓN
     story.append(

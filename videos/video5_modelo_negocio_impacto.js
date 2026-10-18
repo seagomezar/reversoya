@@ -1,59 +1,63 @@
-// Código Fuente: Video 5 (45.0s): Propuesta de Valor, Benchmark y Modelo de Negocio
-// Importado por videos-motion-graphics.html y presentacion-10-minutos.html
+// Parte V: Diferenciación en Colombia y Sostenibilidad del Modelo
+// Articulado en la animación continua de ReversoYa
 
 window.REVERSOYA_VIDEOS = window.REVERSOYA_VIDEOS || [];
 
 window.REVERSOYA_VIDEOS.push({
   id: 5,
-  slug: "video5_modelo_negocio_impacto",
-  sourceFile: "videos/video5_modelo_negocio_impacto.js",
-  title: "Video 5: Propuesta de Valor y Modelo de Negocio",
-  subtitle: "Benchmark en Colombia y sostenibilidad ($0 / $19.900 / B2B SaaS)",
+  slug: "parte5_modelo_negocio_impacto",
+  title: "V. Diferenciación en Colombia y Sostenibilidad",
+  subtitle: "Comparación frente a alternativas locales y modelo de acceso sin comisiones",
+  legalFocus: "Acceso Material a la Justicia · Sostenibilidad B2C y B2B",
   duration: 45.0,
   accent: "#00C48C",
   scenes: [
     {
       start: 0,
       end: 11,
-      tag: "ESCENA 1/4 · BENCHMARK EN COLOMBIA",
-      kicker: "DIFERENCIACIÓN FRENTE A LO EXISTENTE EN EL PAÍS",
-      headline: "Por qué SIC Facilita y los chatbots no bastan",
-      stat: "Acción Vinculante",
-      sub: "SIC Facilita solo opera con comercios adheridos voluntariamente y las apps de peticiones solo escriben al vendedor. ReversoYa vincula al banco emisor.",
-      voiceover: "En Colombia, SIC Facilita solo incluye comercios registrados voluntariamente y los generadores de peticiones solo le escriben al vendedor. ReversoYa activa la obligación legal del banco emisor.",
+      stepTitle: "Diferenciación en Colombia",
+      tag: "V. DIFERENCIACIÓN EN EL ECOSISTEMA COLOMBIANO",
+      kicker: "COMPARACIÓN FRENTE A LAS ALTERNATIVAS ACTUALES",
+      headline: "Por qué SIC Facilita y las peticiones simples no bastan",
+      stat: "Orden Vinculante",
+      sub: "SIC Facilita solo opera con comercios adheridos voluntariamente y los formatos de petición solo escriben al vendedor. ReversoYa vincula al banco emisor.",
+      voiceover: "Esta arquitectura marca una diferencia sustancial en Colombia: mientras SIC Facilita depende de comercios inscritos voluntariamente, ReversoYa acciona la obligación legal del banco emisor.",
       visualType: "benchmark_matrix"
     },
     {
       start: 11,
       end: 22,
-      tag: "ESCENA 2/4 · NIVEL 1: ACCESO GRATUITO ($0)",
-      kicker: "MODELO FREEMIUM DE ACCESO A LA JUSTICIA",
-      headline: "Diagnóstico y descarga de oficios por $0 COP",
+      stepTitle: "Nivel 1: Acceso gratuito ($0)",
+      tag: "V. SOSTENIBILIDAD · NIVEL 1 DE ACCESO UNIVERSAL",
+      kicker: "AUTOGESTIÓN CIUDADANA SIN COSTO",
+      headline: "Diagnóstico y descarga de los 3 oficios por $0 COP",
       stat: "$0 COP Gratis",
-      sub: "Cualquier consumidor puede validar sus plazos, identificar cláusulas ineficaces y descargar los 3 documentos formales sin costo.",
-      voiceover: "Nuestro primer nivel es completamente gratuito: cualquier ciudadano puede diagnosticar su caso y descargar los tres documentos formales listos para presentar por cero pesos.",
+      sub: "Cualquier consumidor en Colombia puede validar sus plazos, desvirtuar cláusulas ineficaces y descargar los 3 documentos formales sin costo.",
+      voiceover: "Para garantizar el acceso universal a la justicia, el primer nivel es gratuito: cualquier ciudadano puede diagnosticar su caso y descargar los tres documentos formales por cero pesos.",
       visualType: "pricing_tiers"
     },
     {
       start: 22,
       end: 34,
-      tag: "ESCENA 3/4 · NIVEL 2: TARIFA PLANA B2C ($19.900)",
-      kicker: "0% DE COMISIÓN SOBRE EL DINERO RECUPERADO",
-      headline: "Radicación Triple Asistida por $19.900 COP",
+      stepTitle: "Nivel 2: Tarifa plana ($19.900)",
+      tag: "V. SOSTENIBILIDAD · NIVEL 2 DE RADICACIÓN ASISTIDA",
+      kicker: "TARIFA PLANA B2C CON 0% DE COMISIÓN",
+      headline: "Radicación simultánea asistida por $19.900 COP",
       stat: "$19.900 COP",
-      sub: "95% más económico que un abogado particular. Automatiza la remisión simultánea a Comercio, Banco/PSE y SIC con seguimiento de los 15 días hábiles.",
-      voiceover: "El segundo nivel cobra una tarifa plana de diecinueve mil novecientos pesos por caso, sin descontar porcentaje alguno del reembolso, para automatizar la radicación simultánea y el seguimiento.",
+      sub: "95% más económico que un abogado particular y sin descontar comisión del reembolso. Envía simultáneamente a Comercio, Banco/PSE y SIC.",
+      voiceover: "El segundo nivel ofrece radicación simultánea asistida por una tarifa plana de diecinueve mil novecientos pesos, sin descontar ningún porcentaje del dinero recuperado por el comprador.",
       visualType: "pricing_tiers"
     },
     {
       start: 34,
       end: 45,
-      tag: "ESCENA 4/4 · NIVEL 3: LICENCIA B2B SAAS",
-      kicker: "API DE RETRACTO Y GARANTÍA PARA COMERCIOS Y PASARELAS",
-      headline: "Prevención de multas SIC de hasta 2.000 SMLMV",
+      stepTitle: "Nivel 3: Prevención B2B e impacto",
+      tag: "V. SOSTENIBILIDAD · NIVEL 3 B2B E IMPACTO NACIONAL",
+      kicker: "PREVENCIÓN DE SANCIONES PARA COMERCIOS Y PASARELAS",
+      headline: "Cumplimiento normativo que evita multas de 2.000 SMLMV",
       stat: "$290k – $1.2M / mes",
-      sub: "Los comercios electrónicos y pasarelas pagan una suscripción mensual para resolver retractos y garantías en 1 clic antes de recibir sanciones.",
-      voiceover: "Y el tercer nivel es una suscripción mensual B2B para comercios y pasarelas que integran la autogestión de retractos para prevenir demandas y multas ante la SIC.",
+      sub: "Comercios y pasarelas integran la resolución temprana de retractos y garantías, haciendo efectivo el artículo 78 de la Constitución en toda Colombia.",
+      voiceover: "Y el tercer nivel integra a comercios y pasarelas mediante una suscripción mensual que previene litigios y multas ante la SIC, logrando que la ley del consumidor en Colombia se cumpla de verdad.",
       visualType: "impact_summary"
     }
   ]

@@ -1,70 +1,75 @@
-// Código Fuente: Video 3 (45.0s): Solución y Flujo en 4 Pantallas
-// Importado por videos-motion-graphics.html y presentacion-10-minutos.html
+// Parte III: Solución y Flujo Guiado de Reclamación
+// Articulado en la animación continua de ReversoYa
 
 window.REVERSOYA_VIDEOS = window.REVERSOYA_VIDEOS || [];
 
 window.REVERSOYA_VIDEOS.push({
   id: 3,
-  slug: "video3_flujo_4_pantallas",
-  sourceFile: "videos/video3_flujo_4_pantallas.js",
-  title: "Video 3: Flujo Guiado en 4 Pantallas",
-  subtitle: "Del diagnóstico del plazo a los 3 oficios y el reloj de 15 días",
+  slug: "parte3_flujo_4_pantallas",
+  title: "III. Solución y Flujo Guiado de Reclamación",
+  subtitle: "Cuatro pasos desde la verificación del plazo hasta los tres oficios y el desembolso",
+  legalFocus: "Art. 2.2.2.51.3 Decreto 1074 de 2015 · Ley 527 de 1999",
   duration: 45.0,
   accent: "#63FCC0",
   scenes: [
     {
       start: 0,
       end: 9,
-      tag: "ESCENA 1/5 · ARQUITECTURA DE LA SOLUCIÓN",
-      kicker: "FLUJO GUIADO PASO A PASO",
-      headline: "Sin jerga procesal: 4 pasos en 3 minutos",
-      stat: "4 Pasos Claros",
-      sub: "Inspirada en las calculadoras laborales guiadas, la aplicación traduce la Ley 1480 y el Decreto 587 en decisiones simples.",
-      voiceover: "Diseñamos un flujo guiado de cuatro pasos que traduce normas técnicas en una calculadora ciudadana que cualquier persona completa en tres minutos.",
+      stepTitle: "Arquitectura en 4 pasos",
+      tag: "III. ARQUITECTURA DE LA SOLUCIÓN",
+      kicker: "TRADUCCIÓN DE LA LEY EN ACCIÓN CIUDADANA",
+      headline: "Sin jerga procesal: 4 pasos claros para reclamar",
+      stat: "4 Pasos Guiados",
+      sub: "Inspirada en las calculadoras laborales paso a paso, la herramienta convierte la Ley 1480 y el Decreto 587 en decisiones comprensibles para cualquier persona.",
+      voiceover: "Para que cualquier ciudadano ejerza estos derechos sin intermediarios costosos, articulamos la normativa en un recorrido guiado de cuatro pasos claros.",
       visualType: "ui_step1"
     },
     {
       start: 9,
       end: 18,
-      tag: "ESCENA 2/5 · PANTALLA 1: DATOS Y PLAZO",
-      kicker: "PASO 1 DE 4 · VERIFICACIÓN DEL TÉRMINO DE 5 DÍAS",
-      headline: "Causal, valor pagado, medio electrónico y plazo",
-      stat: "Pantalla 1 de 4",
-      sub: "El usuario selecciona qué ocurrió, el medio de pago (PSE, Nequi, tarjeta) y verifica si aplica reversión bancaria directa o ruta ante la SIC.",
-      voiceover: "En la Pantalla 1 el usuario elige el motivo del reclamo, ingresa el valor y el medio de pago, y el sistema verifica al instante su ventana legal de cinco días hábiles.",
+      stepTitle: "Paso 1: Causal y plazo",
+      tag: "III. PASO 1 · DIAGNÓSTICO DE CAUSAL Y PLAZO",
+      kicker: "VERIFICACIÓN DEL TÉRMINO DE 5 DÍAS HÁBILES",
+      headline: "Causal, monto en pesos, medio de pago y ruta legal",
+      stat: "Paso 1 de 4",
+      sub: "El usuario selecciona qué ocurrió, el medio electrónico (PSE, Nequi, tarjeta) y valida si procede reversión bancaria directa o acción ante la SIC.",
+      voiceover: "En el primer paso, el comprador indica el motivo del incumplimiento, el valor pagado y el instrumento financiero, verificando de inmediato su ventana legal de cinco días hábiles.",
       visualType: "clock5"
     },
     {
       start: 18,
       end: 27,
-      tag: "ESCENA 3/5 · PANTALLA 2: EXCUSAS Y SOPORTES",
-      kicker: "PASO 2 DE 4 · AUDITORÍA DE RESPUESTA Y LEY 527",
-      headline: "Invalida cláusulas nulas y certifica pruebas SHA-256",
-      stat: "Pantalla 2 de 4",
+      stepTitle: "Paso 2: Excusas y SHA-256",
+      tag: "III. PASO 2 · AUDITORÍA DE EXCUSAS Y SOPORTES",
+      kicker: "DETECCIÓN DE CLÁUSULAS INEFICACES Y LEY 527 DE 1999",
+      headline: "Desvirtúa excusas ilegales y certifica pruebas SHA-256",
+      stat: "Paso 2 de 4",
       sub: "Analiza la respuesta del comercio en WhatsApp o correo e incorpora la huella criptográfica SHA-256 de los soportes según la Ley 527 de 1999.",
-      voiceover: "En la Pantalla 2 el sistema identifica las cláusulas abusivas en la respuesta del comercio y calcula la huella digital SHA-256 de los comprobantes conforme a la Ley 527 de 1999.",
+      voiceover: "En el segundo paso, el sistema detecta las cláusulas ineficaces en la respuesta del vendedor y genera la huella digital SHA-256 de los mensajes de datos conforme a la Ley 527 de 1999.",
       visualType: "chat_excuses"
     },
     {
       start: 27,
       end: 36,
-      tag: "ESCENA 4/5 · PANTALLA 3: LOS 3 DOCUMENTOS",
-      kicker: "PASO 3 DE 4 · REQUISITOS DEL ART. 2.2.2.51.3",
-      headline: "Orden al Banco + Reclamación al Comercio + SIC",
-      stat: "3 Oficios Listos",
-      sub: "Estructura los 3 documentos formales con las declaraciones y requisitos exactos del Decreto 1074 de 2015 para impedir rechazos de forma.",
-      voiceover: "En la Pantalla 3 se generan automáticamente los tres documentos formales: la orden de reversión para el banco, la reclamación directa al comercio y la demanda para la SIC.",
+      stepTitle: "Paso 3: Los 3 oficios",
+      tag: "III. PASO 3 · GENERACIÓN DE LOS 3 DOCUMENTOS",
+      kicker: "REQUISITOS FORMALES DEL ART. 2.2.2.51.3 DEC. 1074",
+      headline: "Orden al Banco + Reclamación al Comercio + Demanda SIC",
+      stat: "3 Oficios Formales",
+      sub: "Redacta los tres documentos con las declaraciones y requisitos taxativos del Decreto 1074 de 2015 para impedir rechazos de forma por parte del banco.",
+      voiceover: "En el tercer paso se redactan automáticamente los tres oficios formales: la orden de reversión para el banco emisor, la reclamación directa al comercio y la demanda para la SIC.",
       visualType: "docs_triple"
     },
     {
       start: 36,
       end: 45,
-      tag: "ESCENA 5/5 · PANTALLA 4: SEGUIMIENTO 15 DÍAS",
-      kicker: "PASO 4 DE 4 · CONTROL DE EJECUCIÓN BANCARIA",
-      headline: "Hoja de ruta y cronómetro de 15 días hábiles",
+      stepTitle: "Paso 4: Plazo de 15 días",
+      tag: "III. PASO 4 · RADICACIÓN Y CUMPLIMIENTO BANCARIO",
+      kicker: "CONTROL DEL TÉRMINO LEGAL DE 15 DÍAS HÁBILES",
+      headline: "Hoja de ruta de radicación y exigibilidad del abono",
       stat: "Día 1 a Día 15",
-      sub: "Guía el orden de radicación y controla el término legal de 15 días hábiles hasta el abono efectivo en la cuenta del consumidor.",
-      voiceover: "Y en la Pantalla 4 el usuario cuenta con la hoja de ruta de radicación y el cronómetro de quince días hábiles que controla el desembolso por parte de su entidad financiera.",
+      sub: "Guía el orden de radicación y verifica el término perentorio de 15 días hábiles hasta el abono efectivo en la cuenta del consumidor.",
+      voiceover: "Finalmente, en el cuarto paso el ciudadano sigue la guía de radicación simultánea y controla los quince días hábiles que tiene su entidad financiera para abonar el dinero.",
       visualType: "timeline15"
     }
   ]

@@ -12,17 +12,17 @@ Herramienta LegalTech de acceso a la justicia para **Colombia** que ejecuta la *
 |---|---|---|---|
 | **1** | **Aplicación Web Independiente (Calculadora y Generador de Oficios)** | `index.html` + `app.js` | [Abrir Aplicación](https://seagomezar.github.io/reversoya/index.html) |
 | **2** | **Documento Ejecutivo Formal (1 Página A4)** | `ReversoYa_Resumen_Ejecutivo_1Pagina.pdf` / `resumen-ejecutivo-1-pagina.html` | [Descargar PDF](https://seagomezar.github.io/reversoya/ReversoYa_Resumen_Ejecutivo_1Pagina.pdf) |
-| **3** | **Presentación de 10 Minutos Estilizada con Artefactos Motion Design** | `presentacion-10-minutos.html` / `ReversoYa_Presentacion_10Minutos.pptx` / `Presentacion_10_Minutos_Speaker_Notes.md` | [Abrir Diapositivas Web](https://seagomezar.github.io/reversoya/presentacion-10-minutos.html) · [Descargar .PPTX](https://seagomezar.github.io/reversoya/ReversoYa_Presentacion_10Minutos.pptx) |
-| **4** | **5 Videos de Motion Design (45 s c/u, Código Fuente + Reproductor HTML)** | `videos-motion-graphics.html` + código fuente en `videos/*.js` | [Abrir Reproductor Motion Design](https://seagomezar.github.io/reversoya/videos-motion-graphics.html) |
+| **3** | **Presentación de Sustentación (10 Diapositivas)** | `presentacion-10-minutos.html` / `ReversoYa_Presentacion_10Minutos.pptx` / `Presentacion_10_Minutos_Speaker_Notes.md` | [Abrir Diapositivas Web](https://seagomezar.github.io/reversoya/presentacion-10-minutos.html) · [Descargar .PPTX](https://seagomezar.github.io/reversoya/ReversoYa_Presentacion_10Minutos.pptx) |
+| **4** | **Animación Continua del Problema Jurídico, Marco Normativo y Solución** | `videos-motion-graphics.html` + capítulos en `videos/*.js` | [Abrir Animación Continua](https://seagomezar.github.io/reversoya/videos-motion-graphics.html) |
 
-### Código Fuente de los 5 Videos de Motion Design (`videos/`)
-Los 5 videos de 45 segundos están implementados en módulos de código fuente dentro de `videos/` e importados desde `videos-motion-graphics.html` y `presentacion-10-minutos.html`:
-- `videos/motion_engine.js`: Motor compartido de renderizado Canvas 2D a 60 FPS y artefactos visuales para diapositivas.
-- `videos/video1_problema_colombia.js`: Video 1 (45 s): El Problema en Colombia (370M de pagos digitales y las 4 excusas improcedentes).
-- `videos/video2_marco_legal_decreto587.js`: Video 2 (45 s): Marco Constitucional (Arts. 78 y 229 C.P.), Ley 1480/2011 y Decreto 587 de 2016.
-- `videos/video3_flujo_4_pantallas.js`: Video 3 (45 s): Solución y Flujo Guiado en 4 Pantallas.
-- `videos/video4_casos_y_vuelos_rac3.js`: Video 4 (45 s): Casos Reales y Compensación Aérea RAC 3 (100 % reembolso + 30 % compensación).
-- `videos/video5_modelo_negocio_impacto.js`: Video 5 (45 s): Propuesta de Valor, Benchmark en Colombia y Modelo de Negocio ($0 / $19.900 / B2B SaaS).
+### Estructura de la Animación Continua (`videos/`)
+Los 5 capítulos de la narrativa jurídica están enlazados en una sola animación continua en `videos-motion-graphics.html`:
+- `videos/motion_engine.js`: Motor de narrativa visual que enlaza los 5 capítulos y 23 secuencias en una línea continua.
+- `videos/video1_problema_colombia.js`: Capítulo I: El Problema del Consumidor Digital en Colombia (370M de pagos digitales y las 4 excusas ilegales).
+- `videos/video2_marco_legal_decreto587.js`: Capítulo II: Fundamento Constitucional (Arts. 78 y 229 C.P.), Ley 1480/2011 y Decreto 587 de 2016.
+- `videos/video3_flujo_4_pantallas.js`: Capítulo III: Solución y Flujo Guiado de Reclamación en 4 Pasos.
+- `videos/video4_casos_y_vuelos_rac3.js`: Capítulo IV: Casos Reales y Compensación Aérea RAC 3 (100 % reembolso + 30 % compensación).
+- `videos/video5_modelo_negocio_impacto.js`: Capítulo V: Diferenciación en Colombia y Sostenibilidad ($0 / $19.900 / B2B SaaS).
 
 ---
 

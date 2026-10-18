@@ -9,7 +9,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Image as RLImage, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Image as RLImage, Table, TableStyle
 from reportlab.lib import colors
 
 
@@ -59,7 +59,7 @@ def render_pdf_logo_png_bytes():
 
 
 # ==============================================================================
-# 1. GENERATE FORMAL 1-PAGE PDF DOCUMENT (NO AI SLOP, NO CARD LAYOUT)
+# 1. GENERATE FORMAL 1-PAGE PDF DOCUMENT
 # ==============================================================================
 def build_formal_pdf(filename="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf"):
     doc = SimpleDocTemplate(
@@ -211,25 +211,37 @@ def build_formal_pdf(filename="ReversoYa_Resumen_Ejecutivo_1Pagina.pdf"):
 
 
 # ==============================================================================
-# 2. RENDER MOTION DESIGN ARTIFACT IMAGES FOR STYLED POWERPOINT SLIDES
+# 2. RENDER LEGAL SCHEMATIC IMAGES FOR STYLED POWERPOINT SLIDES
 # ==============================================================================
-def render_motion_artifact_png(artifact_type):
+DIAGRAM_HEADERS = {
+    "brand_shield": "ESQUEMA JURÍDICO · RESTITUCIÓN BANCARIA (DECRETO 587)",
+    "counter": "PANORAMA NACIONAL · PAGOS DIGITALES Y BARRERAS (CCCE)",
+    "chat_excuses": "AUDITORÍA LEGAL · EXCUSAS INEFICACES Y LEY 527 DE 1999",
+    "bars": "ACCESO A LA JUSTICIA · COSTO DE RECLAMACIÓN EN COLOMBIA",
+    "pillars": "JERARQUÍA NORMATIVA · C.P., LEY 1480 Y DECRETO 587",
+    "timeline15": "PROCEDIMIENTO · 3 OFICIOS Y TÉRMINO DE 15 DÍAS HÁBILES",
+    "flight_rac3": "SECTOR AÉREO · LIQUIDACIÓN RAC 3 AEROCIVIL (100% + 30%)",
+    "benchmark_matrix": "COMPARATIVA EN COLOMBIA · VINCULACIÓN BANCARIA DIRECTA",
+    "pricing_tiers": "SOSTENIBILIDAD · TRES NIVELES CON 0% DE COMISIÓN",
+    "impact_summary": "IMPACTO EN COLOMBIA · EFICACIA JURÍDICA Y ESCALA NACIONAL",
+}
+
+
+def render_legal_diagram_png(artifact_type):
     w, h = 680, 500
     img = Image.new("RGB", (w, h), (11, 19, 43))
     draw = ImageDraw.Draw(img)
 
-    # Subtle motion grid
     for x in range(0, w, 34):
         draw.line([(x, 0), (x, h)], fill=(20, 31, 62), width=1)
     for y in range(0, h, 34):
         draw.line([(0, y), (w, y)], fill=(20, 31, 62), width=1)
 
-    # Outer container border
     draw.rounded_rectangle([8, 8, w - 8, h - 8], radius=22, fill=(19, 26, 51), outline=(0, 196, 140), width=3)
 
-    # Top artifact header pill
     draw.rounded_rectangle([28, 24, w - 28, 66], radius=10, fill=(11, 19, 43), outline=(45, 65, 110), width=1)
-    draw.text((44, 35), f"ARTEFACTO MOTION DESIGN · {artifact_type.upper()}", font=FONT_SMALL, fill=(99, 252, 192))
+    header_label = DIAGRAM_HEADERS.get(artifact_type, "ESQUEMA NORMATIVO COLOMBIANO")
+    draw.text((44, 35), header_label, font=FONT_SMALL, fill=(99, 252, 192))
 
     if artifact_type == "brand_shield":
         cx, cy = w // 2, 195
@@ -352,12 +364,12 @@ def render_motion_artifact_png(artifact_type):
         tiers = (
             [
                 ("NIVEL 1 · ACCESO UNIVERSAL B2C", "$0 COP (Gratis)", "Diagnóstico de plazos y descarga de los 3 oficios."),
-                ("NIVEL 2 · RADICACIÓN ASISTIDA B2C", "$19.900 COP / caso", "0% comisión sobre reembolso · Envío triple y reloj 15d."),
+                ("NIVEL 2 · RADICACIÓN ASISTIDA B2C", "$19.900 COP / caso", "0% comisión sobre reembolso · Envío triple y plazo 15d."),
                 ("NIVEL 3 · SUSCRIPCIÓN B2B SAAS", "$290k – $1.2M / mes", "API de retracto y garantía para comercios y pasarelas."),
             ]
             if artifact_type == "pricing_tiers"
             else [
-                ("TIEMPO DE GENERACIÓN DOCUMENTAL", "3 Minutos", "3 escritos formales con requisitos del Decreto 587."),
+                ("EXPEDIENTE FORMAL COMPLETO", "3 Oficios Legales", "Cumplimiento estricto de los requisitos del Decreto 587."),
                 ("PLAZO PERENTORIO BANCARIO", "Máx. 15 Días Hábiles", "Abono del 100% directo a la cuenta del consumidor."),
                 ("MODELO ÉTICO Y SOSTENIBLE", "0% Comisión Abusiva", "Gratis ($0) + Radicación ($19.900) + SaaS B2B."),
             ]
@@ -376,7 +388,7 @@ def render_motion_artifact_png(artifact_type):
 
 
 # ==============================================================================
-# 3. BUILD STYLED 16:9 POWERPOINT PRESENTATION WITH MOTION DESIGN ARTIFACTS
+# 3. BUILD STYLED 16:9 POWERPOINT PRESENTATION
 # ==============================================================================
 def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
     prs = Presentation()
@@ -386,7 +398,7 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
 
     SLIDES_SPEC = [
         {
-            "badge": "DIAPOSITIVA 1 DE 10 · 00:00 – 00:50 (50s)",
+            "badge": "DIAPOSITIVA 1 DE 10",
             "rubric": "1. NOMBRE · LOGO · ESLOGAN",
             "title": "ReversoYa: “Tu plata de vuelta por ley, sin rogarle al comercio”",
             "subtitle": "Plataforma LegalTech colombiana para reversión de pago, retracto, garantías y compensación aérea RAC 3.",
@@ -396,10 +408,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("REGLA OPERATIVA", "Notificación formal en 5 días hábiles → Reembolso bancario en máximo 15 días hábiles."),
             ],
             "artifact": "brand_shield",
+            "norm_summary": "Art. 51 Ley 1480 de 2011 · Decreto 587 de 2016",
             "notes": "Buenas tardes. ¿A cuántos de ustedes les ha pasado que compran algo por internet o redes sociales, pagan por PSE o Nequi, el producto nunca llega o llega roto, y la tienda responde: ‘no devolvemos plata, solo damos un bono’? Para resolver ese problema cotidiano en Colombia creamos ReversoYa. Nuestro símbolo une un escudo azul naval de certeza jurídica con una flecha circular verde esmeralda que representa el retorno íntegro del dinero a la cuenta del ciudadano. Nuestro eslogan resume nuestra tesis: ‘Tu plata de vuelta por ley, sin rogarle al comercio’.",
         },
         {
-            "badge": "DIAPOSITIVA 2 DE 10 · 00:50 – 02:00 (70s)",
+            "badge": "DIAPOSITIVA 2 DE 10",
             "rubric": "2. IDENTIFICACIÓN DEL PROBLEMA EN COLOMBIA",
             "title": "370 millones de pagos digitales y reclamos que se abandonan",
             "subtitle": "El comercio digital en Colombia supera los $62 billones COP anuales (CCCE), pero el ciudadano choca con dos barreras:",
@@ -409,10 +422,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("BARRERA 3: EL PLAZO OCULTO DE 5 DÍAS", "La ley obliga al banco a devolver el dinero, pero exige radicar una solicitud formal dentro de los primeros 5 días hábiles."),
             ],
             "artifact": "counter",
+            "norm_summary": "Cámara Colombiana de Comercio Electrónico (CCCE) · Informes SIC",
             "notes": "Veamos la dimensión del problema en el país. Según la Cámara Colombiana de Comercio Electrónico, en Colombia se realizan más de 370 millones de transacciones digitales al año. Sin embargo, cuando una compra falla, el consumidor choca contra cuatro excusas improcedentes del comercio y el alto costo de contratar un abogado particular.",
         },
         {
-            "badge": "DIAPOSITIVA 3 DE 10 · 02:00 – 03:15 (75s)",
+            "badge": "DIAPOSITIVA 3 DE 10",
             "rubric": "2. PROBLEMA JURÍDICO · DERECHOS · LEGISLACIÓN",
             "title": "Arquitectura Normativa: El derecho ya existe en Colombia",
             "subtitle": "Articulación entre Constitución Política, Derechos Humanos, Estatuto del Consumidor y Decreto 587 de 2016:",
@@ -422,10 +436,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("DECRETO 587 DE 2016 Y RAC 3", "Art. 2.2.2.51.4 (5 días para avisar) → Art. 2.2.2.51.5 (15 días para que el banco abone el 100%) + RAC 3 Aerocivil (30% extra)."),
             ],
             "artifact": "pillars",
+            "norm_summary": "Arts. 78 y 229 C.P. · Ley 1480/2011 · Decreto 587/2016 · RAC 3",
             "notes": "Colombia cuenta con una legislación robusta anclada en los artículos 78 y 229 de la Constitución, la Ley 1480 de 2011 y el Decreto 587 de 2016: si notificas dentro de los 5 días hábiles siguientes al incumplimiento, tu propio banco está obligado a reversar el 100% del dinero en máximo 15 días hábiles.",
         },
         {
-            "badge": "DIAPOSITIVA 4 DE 10 · 03:15 – 04:15 (60s)",
+            "badge": "DIAPOSITIVA 4 DE 10",
             "rubric": "3. PÚBLICO OBJETIVO",
             "title": "Público Objetivo: Compradores digitales y ecosistema B2B",
             "subtitle": "Diseñado para ciudadanos sin conocimientos jurídicos y para el ecosistema de pagos electrónicos:",
@@ -435,10 +450,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("SEGMENTO B2B (COMERCIOS Y PASARELAS)", "Pasarelas (Wompi, Bold, Mercado Pago) y comercios que previenen demandas SIC y multas de hasta 2.000 SMLMV."),
             ],
             "artifact": "bars",
+            "norm_summary": "Acceso Material a la Justicia (Art. 229 C.P. y Art. 61 Ley 1480)",
             "notes": "En el segmento B2C nos dirigimos a compradores digitales y viajeros en Colombia entre los 18 y 55 años que usan PSE, Nequi, Daviplata o tarjetas; y en el segmento B2B, a pasarelas y comercios formales.",
         },
         {
-            "badge": "DIAPOSITIVA 5 DE 10 · 04:15 – 05:30 (75s)",
+            "badge": "DIAPOSITIVA 5 DE 10",
             "rubric": "4. SOLUCIÓN Y FLUJO DE PANTALLAS (PARTE 1)",
             "title": "Flujo Guiado: Pantallas 1 y 2 (Plazo y Auditoría de Excusas)",
             "subtitle": "Inspirado en las calculadoras laborales paso a paso, elimina la complejidad técnica en 4 pasos:",
@@ -448,23 +464,25 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("VALIDEZ PROBATORIA (LEY 527 DE 1999)", "Calcula la huella criptográfica SHA-256 de los comprobantes y capturas de pantalla para el anexo probatorio."),
             ],
             "artifact": "chat_excuses",
+            "norm_summary": "Arts. 43, 47 y 50 Ley 1480 de 2011 · Ley 527 de 1999",
             "notes": "En la Pantalla 1 el usuario valida cuántos de los 5 días hábiles le quedan, y en la Pantalla 2 analiza la respuesta del vendedor en WhatsApp y certifica los soportes con huella SHA-256 conforme a la Ley 527 de 1999.",
         },
         {
-            "badge": "DIAPOSITIVA 6 DE 10 · 05:30 – 06:45 (75s)",
+            "badge": "DIAPOSITIVA 6 DE 10",
             "rubric": "4. SOLUCIÓN Y FLUJO DE PANTALLAS (PARTE 2)",
-            "title": "Flujo Guiado: Pantallas 3 y 4 (3 Oficios y Reloj de 15 Días)",
+            "title": "Flujo Guiado: Pantallas 3 y 4 (3 Oficios y Plazo de 15 Días)",
             "subtitle": "Estructura los requisitos taxativos del Art. 2.2.2.51.3 del Decreto 1074 de 2015 para impedir rechazos de forma:",
             "cards": [
                 ("OFICIO 1: ORDEN VINCULANTE AL BANCO", "Solicitud formal bajo juramento exigiendo la reversión del 100% al instrumento de pago electrónico."),
                 ("OFICIOS 2 Y 3: COMERCIO Y SIC", "Reclamación directa al proveedor (requisito Art. 58 num. 5) y formato de Demanda de Protección al Consumidor."),
-                ("PANTALLA 4: CRONÓMETRO DE 15 DÍAS HÁBILES", "Controla el término perentorio del banco (Art. 2.2.2.51.5) y habilita queja ante Superfinanciera si hay mora al día 16."),
+                ("PANTALLA 4: PLAZO DE 15 DÍAS HÁBILES", "Controla el término perentorio del banco (Art. 2.2.2.51.5) y habilita queja ante Superfinanciera si hay mora al día 16."),
             ],
             "artifact": "timeline15",
+            "norm_summary": "Arts. 2.2.2.51.3 y 2.2.2.51.5 Decreto 1074 de 2015",
             "notes": "En la Pantalla 3 ReversoYa genera los 3 documentos formales con todos los requisitos del Decreto 587 para que el banco no pueda rechazarlos, y en la Pantalla 4 controla los 15 días hábiles hasta el abono efectivo.",
         },
         {
-            "badge": "DIAPOSITIVA 7 DE 10 · 06:45 – 07:45 (60s)",
+            "badge": "DIAPOSITIVA 7 DE 10",
             "rubric": "4. ALCANCE SECTORIAL · TRANSPORTE AÉREO RAC 3",
             "title": "Módulo Aeronáutico: 100% Tiquete + 30% Compensación RAC 3",
             "subtitle": "Aplicación en sobreventa (overbooking) o cancelación atribuible a la aerolínea en Colombia:",
@@ -474,10 +492,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("RESTITUCIÓN EN DINERO EFECTIVO", "Total exigible: $702.000 COP en dinero efectivo, sin obligar al pasajero a recibir bonos o millas."),
             ],
             "artifact": "flight_rac3",
+            "norm_summary": "Reglamentos Aeronáuticos de Colombia (RAC 3 Aerocivil)",
             "notes": "En el módulo aeronáutico bajo el RAC 3 de la Aerocivil, si sobrevenden un tiquete de $540.000 pesos, ReversoYa calcula automáticamente $702.000 pesos exigibles en efectivo (100% del pasaje más 30% de compensación).",
         },
         {
-            "badge": "DIAPOSITIVA 8 DE 10 · 07:45 – 08:45 (60s)",
+            "badge": "DIAPOSITIVA 8 DE 10",
             "rubric": "5. PROPUESTA DE VALOR Y BENCHMARK EN COLOMBIA",
             "title": "¿Qué existe hoy en Colombia y por qué ReversoYa es único?",
             "subtitle": "Comparación frente a las herramientas existentes en el mercado colombiano:",
@@ -487,10 +506,11 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("FRENTE A GENERADORES DE PETICIONES", "Escribir solo al vendedor no recupera el dinero si este no contesta; ReversoYa activa el débito bancario en 15 días."),
             ],
             "artifact": "benchmark_matrix",
+            "norm_summary": "Efectividad Vinculante frente al Emisor Financiero",
             "notes": "Al comparar con lo que existe hoy en Colombia vemos nuestra ventaja: ni SIC Facilita ni las apps de peticiones simples accionan la obligación del banco emisor. ReversoYa activa el reembolso bancario forzoso en 15 días hábiles.",
         },
         {
-            "badge": "DIAPOSITIVA 9 DE 10 · 08:45 – 09:30 (45s)",
+            "badge": "DIAPOSITIVA 9 DE 10",
             "rubric": "6. MODELO DE NEGOCIO",
             "title": "Modelo de Negocio: Sostenible y con 0% de comisión",
             "subtitle": "Estructura de tres niveles que garantiza acceso universal y viabilidad financiera:",
@@ -500,12 +520,13 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("3. SUSCRIPCIÓN B2B SAAS ($290k – $1.2M/mes)", "API para comercios y pasarelas que resuelven retractos en 1 clic y previenen multas de hasta 2.000 SMLMV."),
             ],
             "artifact": "pricing_tiers",
+            "norm_summary": "Sostenibilidad B2C ($0 / $19.900 COP) y Cumplimiento B2B",
             "notes": "Nuestro modelo combina un nivel Freemium gratuito con una tarifa plana de $19.900 pesos por radicación asistida (sin cobrar comisión sobre lo recuperado) y una licencia B2B SaaS mensual para comercios y pasarelas.",
         },
         {
-            "badge": "DIAPOSITIVA 10 DE 10 · 09:30 – 10:00 (30s)",
+            "badge": "DIAPOSITIVA 10 DE 10",
             "rubric": "CONCLUSIÓN E IMPACTO EN ACCESO A LA JUSTICIA",
-            "title": "Cuando la ley es ejecutable en 3 minutos, el abuso desaparece",
+            "title": "Cuando la ley es ejecutable para el ciudadano, el abuso desaparece",
             "subtitle": "Síntesis del impacto jurídico, social y tecnológico de ReversoYa en Colombia:",
             "cards": [
                 ("EFICACIA MATERIAL (ART. 78 Y 229 C.P.)", "Convierte el Estatuto del Consumidor y el Decreto 587 de 2016 en una defensa ciudadana inmediata."),
@@ -513,7 +534,8 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
                 ("ESCALABILIDAD NACIONAL", "Protege desde compras de $80.000 COP en redes sociales hasta tiquetes aéreos bajo el RAC 3."),
             ],
             "artifact": "impact_summary",
-            "notes": "En conclusión: con ReversoYa demostramos que cuando el artículo 78 de la Constitución y la Ley 1480 se traducen en una herramienta clara de tres minutos, el abuso comercial deja de ser rentable. Muchas gracias.",
+            "norm_summary": "Protección Constitucional del Consumidor en Colombia",
+            "notes": "En conclusión: con ReversoYa demostramos que cuando el artículo 78 de la Constitución y la Ley 1480 se traducen en una herramienta clara para el ciudadano, el abuso comercial deja de ser rentable. Muchas gracias.",
         },
     ]
 
@@ -601,8 +623,8 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
             p2.font.color.rgb = RGBColor(248, 250, 252)
             p2.font.name = "Segoe UI"
 
-        # 5. Right Column: Embedded Motion Design Artifact PNG + Source Module Card
-        png_stream = render_motion_artifact_png(sp["artifact"])
+        # 5. Right Column: Embedded Legal Diagram PNG + Normative Synthesis Card
+        png_stream = render_legal_diagram_png(sp["artifact"])
         slide.shapes.add_picture(
             png_stream, Inches(7.85), Inches(1.08), width=Inches(4.98)
         )
@@ -622,14 +644,14 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
         m_tf = meta_card.text_frame
         m_tf.word_wrap = True
         pm1 = m_tf.paragraphs[0]
-        pm1.text = f"ARTEFACTO INTERACTIVO: {sp['artifact'].upper()}"
+        pm1.text = "FUNDAMENTO NORMATIVO EN COLOMBIA"
         pm1.font.size = Pt(11)
         pm1.font.bold = True
         pm1.font.color.rgb = RGBColor(99, 252, 192)
         pm1.font.name = "Segoe UI"
 
         pm2 = m_tf.add_paragraph()
-        pm2.text = f"Importado desde videos/motion_engine.js · Rubro: {sp['rubric']}"
+        pm2.text = sp["norm_summary"]
         pm2.font.size = Pt(11.5)
         pm2.font.bold = True
         pm2.font.color.rgb = RGBColor(255, 255, 255)
@@ -657,7 +679,7 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
         notes_slide.notes_text_frame.text = sp["notes"]
 
     prs.save(filename)
-    print(f"Saved styled PowerPoint with Motion Design Artifacts: {filename}")
+    print(f"Saved styled PowerPoint: {filename}")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
-// ReversoYa: Motor Compartido de Motion Design (60 FPS Canvas 2D)
-// Usado tanto en videos-motion-graphics.html como en las diapositivas de presentacion-10-minutos.html
+// ReversoYa: Motor de Narrativa Visual y Esquemas Normativos (Canvas 2D)
+// Articula los 5 capítulos jurídicos en una sola animación continua
 
 window.ReversoMotionEngine = (function () {
   function easeOutCubic(x) {
@@ -44,7 +44,66 @@ window.ReversoMotionEngine = (function () {
     return cy;
   }
 
-  // Draws a motion design visual widget inside the bounding box (rx, ry, rw, rh)
+  // Builds a single coherent timeline linking all chapters and scenes sequentially
+  function buildUnifiedTimeline(videos) {
+    const list = Array.isArray(videos) ? videos : [];
+    const scenes = [];
+    const chapters = [];
+    let cursor = 0;
+
+    list.forEach((chapter, cIdx) => {
+      const chapterStart = cursor;
+      const chapterScenes = chapter.scenes || [];
+      chapterScenes.forEach((sc, sIdx) => {
+        const dur = Math.max(1, (sc.end || 9) - (sc.start || 0));
+        const gStart = cursor;
+        const gEnd = cursor + dur;
+        scenes.push({
+          globalIndex: scenes.length,
+          chapterIndex: cIdx,
+          chapterId: chapter.id,
+          chapterTitle: chapter.title,
+          chapterSubtitle: chapter.subtitle,
+          chapterLegalFocus: chapter.legalFocus || '',
+          chapterAccent: chapter.accent || '#00C48C',
+          sceneIndexInChapter: sIdx,
+          scenesInChapter: chapterScenes.length,
+          globalStart: gStart,
+          globalEnd: gEnd,
+          duration: dur,
+          stepTitle: sc.stepTitle || sc.kicker,
+          tag: sc.tag,
+          kicker: sc.kicker,
+          headline: sc.headline,
+          stat: sc.stat,
+          sub: sc.sub,
+          voiceover: sc.voiceover,
+          visualType: sc.visualType
+        });
+        cursor = gEnd;
+      });
+      chapters.push({
+        index: cIdx,
+        id: chapter.id,
+        title: chapter.title,
+        subtitle: chapter.subtitle,
+        legalFocus: chapter.legalFocus || '',
+        accent: chapter.accent || '#00C48C',
+        globalStart: chapterStart,
+        globalEnd: cursor,
+        sceneCount: chapterScenes.length
+      });
+    });
+
+    return {
+      totalDuration: Math.max(1, cursor),
+      totalScenes: scenes.length,
+      chapters,
+      scenes
+    };
+  }
+
+  // Draws the legal schematic inside the bounding box (rx, ry, rw, rh)
   function drawArtifactBox(ctx, type, rx, ry, rw, rh, sceneProgress, t) {
     drawRoundedRect(ctx, rx, ry, rw, rh, 18, '#131A33', 'rgba(255,255,255,0.14)', 1.5);
     const p = easeOutCubic(Math.min(1, sceneProgress * 1.8));
@@ -54,7 +113,6 @@ window.ReversoMotionEngine = (function () {
     ctx.textAlign = 'left';
 
     if (type === 'brand_shield') {
-      // Animated Shield + 360 Restitution Arc + 5d -> 15d flow
       const scy = ry + 130;
       for (let ring = 1; ring <= 3; ring++) {
         const rad = 42 * ring + ((t * 22) % 30);
@@ -64,7 +122,6 @@ window.ReversoMotionEngine = (function () {
         ctx.lineWidth = 2;
         ctx.stroke();
       }
-      // Shield center badge
       drawRoundedRect(ctx, cx - 56, scy - 56, 112, 112, 24, '#0B132B', '#00C48C', 3);
       ctx.beginPath();
       ctx.arc(cx, scy, 32, -Math.PI * 0.5, -Math.PI * 0.5 + Math.PI * 1.75 * p);
@@ -77,7 +134,6 @@ window.ReversoMotionEngine = (function () {
       ctx.textAlign = 'center';
       ctx.fillText('100%', cx, scy + 8);
 
-      // Bottom 2 flow cards
       const steps = [
         { k: 'PASO A · 5 DÍAS HÁBILES', v: 'Notificación formal al Banco / PSE', c: '#00C48C' },
         { k: 'PASO B · MÁX. 15 DÍAS HÁBILES', v: 'Abono obligatorio en tu cuenta (Dec. 587)', c: '#63FCC0' }
@@ -259,7 +315,7 @@ window.ReversoMotionEngine = (function () {
             { step: 'PASO 1', name: 'Datos de la compra y plazo de 5 días', status: 'PSE / Nequi / Tarjeta' },
             { step: 'PASO 2', name: 'Auditoría de excusas y huella SHA-256', status: 'Arts. 43, 47, 50 + Ley 527' },
             { step: 'PASO 3', name: 'Generación de los 3 oficios formales', status: 'Art. 2.2.2.51.3 Dec. 1074' },
-            { step: 'PASO 4', name: 'Guía de radicación y reloj de 15 días', status: 'Abono bancario 100%' }
+            { step: 'PASO 4', name: 'Guía de radicación y plazo de 15 días', status: 'Abono bancario 100%' }
           ]
         : [
             { step: 'OFICIO 1', name: 'Solicitud Formal de Reversión al Banco', status: 'Requisitos Art. 2.2.2.51.3' },
@@ -327,7 +383,7 @@ window.ReversoMotionEngine = (function () {
             { tag: 'NIVEL 3 · LICENCIA B2B SAAS & API', price: '$290k – $1.2M / mes', desc: 'Botón de autogestión para comercios y pasarelas (previene multas SIC).' }
           ]
         : [
-            { tag: 'TIEMPO DE RESPUESTA CIUDADANA', price: '3 Minutos', desc: 'Generación completa de los 3 oficios con requisitos del Decreto 587.' },
+            { tag: 'EXPEDIENTE FORMAL COMPLETO', price: '3 Oficios Legales', desc: 'Cumplimiento estricto de los requisitos del Decreto 587 de 2016.' },
             { tag: 'PLAZO FORZOSO DEL BANCO EMISOR', price: 'Máx. 15 Días Hábiles', desc: 'Abono del 100% en cuenta o tarjeta sin depender del vendedor.' },
             { tag: 'SOSTENIBILIDAD Y ESCALA NACIONAL', price: '0% Comisión Abusiva', desc: 'Nivel gratuito universal + micro-pago $19.900 + SaaS B2B.' }
           ];
@@ -349,28 +405,48 @@ window.ReversoMotionEngine = (function () {
     ctx.restore();
   }
 
-  // Renders a full 1280x720 motion design video frame
-  function renderFullVideoFrame(ctx, video, currentTime) {
-    const t = currentTime;
-    const numScenes = video.scenes.length;
-    let sceneIdx = 0;
-    for (let i = 0; i < numScenes; i++) {
-      if (t >= video.scenes[i].start && t <= video.scenes[i].end) {
-        sceneIdx = i;
+  // Renders the unified continuous animation across all 5 chapters and 23 scenes
+  function renderUnifiedAnimationFrame(ctx, videos, globalTime) {
+    const timeline = buildUnifiedTimeline(videos);
+    if (!timeline.scenes.length) {
+      return {
+        timeline,
+        activeScene: null,
+        chapterIndex: 0,
+        globalSceneIndex: 0,
+        totalScenes: 0,
+        totalDuration: timeline.totalDuration,
+        clampedTime: 0
+      };
+    }
+    const totalDur = timeline.totalDuration;
+    const clampedTime = ((globalTime % totalDur) + totalDur) % totalDur;
+
+    let activeScene = timeline.scenes[0];
+    for (let i = 0; i < timeline.scenes.length; i++) {
+      const sc = timeline.scenes[i];
+      if (clampedTime >= sc.globalStart && clampedTime <= sc.globalEnd) {
+        activeScene = sc;
         break;
       }
     }
-    const scene = video.scenes[sceneIdx];
-    const sceneDuration = Math.max(0.1, scene.end - scene.start);
-    const sceneProgress = Math.max(0, Math.min(1, (t - scene.start) / sceneDuration));
 
-    // 1. Background Deep Navy + Animated Grid
+    const localElapsed = Math.max(0, clampedTime - activeScene.globalStart);
+    const sceneProgress = Math.max(0, Math.min(1, localElapsed / activeScene.duration));
+
+    // Smooth entry/exit envelope for seamless transitions between all 22 scenes
+    const fadeIn = easeOutCubic(Math.min(1, localElapsed / 0.55));
+    const timeRemaining = Math.max(0, activeScene.globalEnd - clampedTime);
+    const fadeOut = timeRemaining < 0.35 ? easeOutCubic(timeRemaining / 0.35) : 1;
+    const contentAlpha = Math.max(0.15, Math.min(1, fadeIn * fadeOut));
+
+    // 1. Background Deep Navy + Subtle Grid
     ctx.fillStyle = '#0B132B';
     ctx.fillRect(0, 0, 1280, 720);
 
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
     ctx.lineWidth = 1;
-    const offset = (t * 18) % 40;
+    const offset = (clampedTime * 18) % 40;
     for (let x = -offset; x < 1280; x += 40) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
@@ -385,82 +461,133 @@ window.ReversoMotionEngine = (function () {
     }
 
     // 2. Top Brand Header Bar
-    drawRoundedRect(ctx, 50, 36, 1180, 68, 14, 'rgba(19, 26, 51, 0.92)', 'rgba(255, 255, 255, 0.12)', 1);
-    drawRoundedRect(ctx, 70, 50, 40, 40, 10, '#00C48C', null);
+    drawRoundedRect(ctx, 50, 28, 1180, 64, 14, 'rgba(19, 26, 51, 0.94)', 'rgba(255, 255, 255, 0.12)', 1);
+    drawRoundedRect(ctx, 68, 40, 40, 40, 10, '#00C48C', null);
     ctx.fillStyle = '#0B132B';
     ctx.font = '900 22px "Plus Jakarta Sans", sans-serif';
-    ctx.fillText('R', 82, 78);
+    ctx.textAlign = 'left';
+    ctx.fillText('R', 80, 68);
 
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 22px "Plus Jakarta Sans", sans-serif';
-    ctx.fillText('ReversoYa', 122, 76);
+    ctx.font = '800 21px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText('ReversoYa', 120, 66);
     ctx.fillStyle = '#00C48C';
     ctx.font = '700 13px Inter, sans-serif';
-    ctx.fillText('·  “Tu plata de vuelta por ley, sin rogarle al comercio”', 248, 75);
+    ctx.fillText('·  “Tu plata de vuelta por ley, sin rogarle al comercio”', 242, 65);
 
-    drawRoundedRect(ctx, 890, 52, 320, 36, 18, 'rgba(0, 196, 140, 0.15)', '#00C48C', 1);
+    drawRoundedRect(ctx, 830, 42, 382, 36, 18, 'rgba(0, 196, 140, 0.15)', '#00C48C', 1);
     ctx.fillStyle = '#63FCC0';
-    ctx.font = '700 12px Inter, sans-serif';
+    ctx.font = '700 11.5px Inter, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(scene.tag, 1050, 74);
+    ctx.fillText(activeScene.tag, 1021, 64);
     ctx.textAlign = 'left';
 
-    // 3. Left Kinetic Typography Column
-    const enter = easeOutCubic(Math.min(1, sceneProgress * 3.0));
-    const slideY = (1 - enter) * 24;
+    // 3. Coherent 5-Chapter Narrative Ribbon inside the Canvas
+    const chapterLabels = [
+      'I. El Problema en Colombia',
+      'II. Marco Constitucional y Legal',
+      'III. Flujo Guiado (4 Pasos)',
+      'IV. Casos y Vuelos RAC 3',
+      'V. Diferenciación y Modelo'
+    ];
+    const segW = (1180 - 32) / 5;
+    for (let c = 0; c < 5; c++) {
+      const sx = 50 + c * (segW + 8);
+      const sy = 104;
+      const isCurrentChapter = c === activeScene.chapterIndex;
+      const isPastChapter = c < activeScene.chapterIndex;
+      drawRoundedRect(
+        ctx,
+        sx,
+        sy,
+        segW,
+        30,
+        8,
+        isCurrentChapter ? 'rgba(0, 196, 140, 0.22)' : isPastChapter ? 'rgba(0, 196, 140, 0.08)' : 'rgba(19, 26, 51, 0.85)',
+        isCurrentChapter ? '#00C48C' : 'rgba(255, 255, 255, 0.1)',
+        isCurrentChapter ? 1.6 : 1
+      );
+      ctx.fillStyle = isCurrentChapter ? '#63FCC0' : isPastChapter ? '#A7F3D0' : '#94A3B8';
+      ctx.font = isCurrentChapter ? '800 11px Inter, sans-serif' : '600 10.5px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(chapterLabels[c], sx + segW / 2, sy + 19);
+    }
+    ctx.textAlign = 'left';
+
+    // 4. Left Kinetic Legal Argumentation Column
+    const slideY = (1 - fadeIn) * 20;
 
     ctx.save();
     ctx.translate(0, slideY);
-    ctx.globalAlpha = enter;
+    ctx.globalAlpha = contentAlpha;
 
-    drawRoundedRect(ctx, 64, 165, 480, 32, 8, 'rgba(255, 255, 255, 0.08)', null);
+    drawRoundedRect(ctx, 64, 162, 500, 32, 8, 'rgba(255, 255, 255, 0.08)', null);
     ctx.fillStyle = '#63FCC0';
     ctx.font = '800 12px Inter, sans-serif';
-    ctx.fillText(scene.kicker, 80, 186);
+    ctx.fillText(activeScene.kicker, 80, 183);
 
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 40px "Plus Jakarta Sans", sans-serif';
-    const afterHeadlineY = wrapText(ctx, scene.headline, 64, 248, 610, 48);
+    ctx.font = '800 39px "Plus Jakarta Sans", sans-serif';
+    const afterHeadlineY = wrapText(ctx, activeScene.headline, 64, 244, 610, 47);
 
-    drawRoundedRect(ctx, 64, afterHeadlineY + 20, 410, 62, 14, '#00C48C', null);
+    drawRoundedRect(ctx, 64, afterHeadlineY + 18, 410, 60, 14, '#00C48C', null);
     ctx.fillStyle = '#0B132B';
-    ctx.font = '800 27px "Plus Jakarta Sans", sans-serif';
-    ctx.fillText(scene.stat, 86, afterHeadlineY + 60);
+    ctx.font = '800 26px "Plus Jakarta Sans", sans-serif';
+    ctx.fillText(activeScene.stat, 86, afterHeadlineY + 57);
 
     ctx.fillStyle = '#CBD5E1';
-    ctx.font = '500 17.5px Inter, sans-serif';
-    wrapText(ctx, scene.sub, 64, afterHeadlineY + 118, 610, 26);
+    ctx.font = '500 17px Inter, sans-serif';
+    wrapText(ctx, activeScene.sub, 64, afterHeadlineY + 114, 610, 25);
 
     ctx.restore();
 
-    // 4. Right Dynamic Motion Widget
-    drawArtifactBox(ctx, scene.visualType, 730, 155, 500, 385, sceneProgress, t);
+    // 5. Right Dynamic Legal Schematic Box
+    ctx.save();
+    ctx.globalAlpha = contentAlpha;
+    drawArtifactBox(ctx, activeScene.visualType, 730, 152, 500, 385, sceneProgress, clampedTime);
+    ctx.restore();
 
-    // 5. Bottom Subtitle & 45-Second Progress Bar
-    drawRoundedRect(ctx, 50, 574, 1180, 78, 12, 'rgba(11, 19, 43, 0.94)', 'rgba(0, 196, 140, 0.4)', 1.5);
+    // 6. Bottom Legal Narrative Box (no timers, only legal context + voiceover)
+    drawRoundedRect(ctx, 50, 566, 1180, 84, 12, 'rgba(11, 19, 43, 0.94)', 'rgba(0, 196, 140, 0.4)', 1.5);
     ctx.fillStyle = '#00C48C';
     ctx.font = '800 11px Inter, sans-serif';
-    ctx.fillText(`GUION SINCRONIZADO (${t.toFixed(1)}s / 45.0s):`, 72, 595);
+    ctx.fillText(
+      `${activeScene.chapterTitle.toUpperCase()}  ·  ${activeScene.chapterLegalFocus.toUpperCase()}`,
+      72,
+      589
+    );
     ctx.fillStyle = '#F8FAFC';
     ctx.font = '500 13.5px Inter, sans-serif';
-    wrapText(ctx, scene.voiceover, 72, 616, 1136, 19);
+    wrapText(ctx, activeScene.voiceover, 72, 612, 1136, 19);
 
-    drawRoundedRect(ctx, 50, 668, 1180, 10, 5, 'rgba(255,255,255,0.12)', null);
-    drawRoundedRect(ctx, 50, 668, Math.max(12, 1180 * (t / 45.0)), 10, 5, '#00C48C', null);
+    // 7. Continuous Unified Narrative Progress Bar across all 5 chapters
+    drawRoundedRect(ctx, 50, 666, 1180, 10, 5, 'rgba(255,255,255,0.12)', null);
+    drawRoundedRect(ctx, 50, 666, Math.max(12, 1180 * (clampedTime / totalDur)), 10, 5, '#00C48C', null);
 
-    return { sceneIdx, scene };
+    return {
+      timeline,
+      activeScene,
+      chapterIndex: activeScene.chapterIndex,
+      globalSceneIndex: activeScene.globalIndex,
+      totalScenes: timeline.totalScenes,
+      totalDuration: totalDur,
+      clampedTime
+    };
   }
 
-  // Renders an isolated high-resolution Motion Design Artifact for a Presentation Slide
+  // Single-chapter fallback renderer (also free of timers)
+  function renderFullVideoFrame(ctx, video, currentTime) {
+    return renderUnifiedAnimationFrame(ctx, [video], currentTime);
+  }
+
+  // Renders an isolated high-resolution Legal Diagram for a Presentation Slide
   function renderSlideArtifact(ctx, width, height, artifactType, t) {
     ctx.clearRect(0, 0, width, height);
     ctx.save();
-    // Scale 520x400 logical coordinate system to canvas width x height
     const logicalW = 520;
     const logicalH = 400;
     ctx.scale(width / logicalW, height / logicalH);
 
-    // Subtle animated grid background inside artifact canvas
     drawRoundedRect(ctx, 0, 0, logicalW, logicalH, 18, '#0B132B', '#00C48C', 2);
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
     ctx.lineWidth = 1;
@@ -484,6 +611,8 @@ window.ReversoMotionEngine = (function () {
   }
 
   return {
+    buildUnifiedTimeline,
+    renderUnifiedAnimationFrame,
     renderFullVideoFrame,
     renderSlideArtifact
   };

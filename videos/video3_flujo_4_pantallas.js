@@ -9,7 +9,6 @@ window.REVERSOYA_VIDEOS.push({
   title: "III. Solución y Flujo Guiado de Reclamación",
   subtitle: "Cuatro pasos desde la verificación del plazo hasta los tres oficios y el desembolso",
   legalFocus: "Art. 2.2.2.51.3 Decreto 1074 de 2015 · Ley 527 de 1999",
-  duration: 45.0,
   accent: "#63FCC0",
   scenes: [
     {

@@ -9,7 +9,6 @@ window.REVERSOYA_VIDEOS.push({
   title: "V. Diferenciación en Colombia y Sostenibilidad",
   subtitle: "Comparación frente a alternativas locales y modelo de acceso sin comisiones",
   legalFocus: "Acceso Material a la Justicia · Sostenibilidad B2C y B2B",
-  duration: 45.0,
   accent: "#00C48C",
   scenes: [
     {
@@ -34,7 +33,7 @@ window.REVERSOYA_VIDEOS.push({
       stat: "$0 COP Gratis",
       sub: "Cualquier consumidor en Colombia puede validar sus plazos, desvirtuar cláusulas ineficaces y descargar los 3 documentos formales sin costo.",
       voiceover: "Para garantizar el acceso universal a la justicia, el primer nivel es gratuito: cualquier ciudadano puede diagnosticar su caso y descargar los tres documentos formales por cero pesos.",
-      visualType: "pricing_tiers"
+      visualType: "pricing_tier1"
     },
     {
       start: 22,
@@ -46,7 +45,7 @@ window.REVERSOYA_VIDEOS.push({
       stat: "$19.900 COP",
       sub: "95% más económico que un abogado particular y sin descontar comisión del reembolso. Envía simultáneamente a Comercio, Banco/PSE y SIC.",
       voiceover: "El segundo nivel ofrece radicación simultánea asistida por una tarifa plana de diecinueve mil novecientos pesos, sin descontar ningún porcentaje del dinero recuperado por el comprador.",
-      visualType: "pricing_tiers"
+      visualType: "pricing_tier2"
     },
     {
       start: 34,

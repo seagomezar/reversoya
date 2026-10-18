@@ -9,7 +9,6 @@ window.REVERSOYA_VIDEOS.push({
   title: "II. Fundamento Constitucional y Marco Normativo",
   subtitle: "Artículos 78 y 229 C.P., Ley 1480 de 2011, Decreto 587 de 2016, Ley 527 y RAC 3",
   legalFocus: "Arts. 78 y 229 C.P. · Ley 1480/2011 · Decreto 587/2016",
-  duration: 45.0,
   accent: "#00C48C",
   scenes: [
     {

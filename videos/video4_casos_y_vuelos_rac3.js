@@ -9,7 +9,6 @@ window.REVERSOYA_VIDEOS.push({
   title: "IV. Casos Reales y Compensación Aérea RAC 3",
   subtitle: "Aplicación práctica en compras por PSE, bienes en descuento, vuelos y vía SIC",
   legalFocus: "Art. 43, 51 y 58 Ley 1480 · RAC 3 Aerocivil",
-  duration: 45.0,
   accent: "#38BDF8",
   scenes: [
     {
@@ -22,7 +21,7 @@ window.REVERSOYA_VIDEOS.push({
       stat: "$680.000 COP",
       sub: "El comercio incumplió la entrega y ofreció solo un bono. Con la orden del Decreto 587, el banco emisor reversa el 100% del pago débito PSE.",
       voiceover: "Veamos su aplicación en casos reales en Colombia: primero, una compra de seiscientos ochenta mil pesos pagada por PSE que nunca llegó; en vez de aceptar un bono, se ordena la reversión al banco.",
-      visualType: "docs_triple"
+      visualType: "case1_pse"
     },
     {
       start: 11,
@@ -34,7 +33,7 @@ window.REVERSOYA_VIDEOS.push({
       stat: "$1.450.000 COP",
       sub: "Un equipo adquirido en promoción llegó defectuoso. El artículo 43 anula de pleno derecho la cláusula que niega garantía en bienes con descuento.",
       voiceover: "Segundo caso: un equipo de un millón cuatrocientos cincuenta mil pesos comprado en promoción que llegó averiado; el artículo 43 deja sin efecto cualquier exclusión de garantía por descuento.",
-      visualType: "law_badges"
+      visualType: "case2_garantia"
     },
     {
       start: 22,
@@ -58,7 +57,7 @@ window.REVERSOYA_VIDEOS.push({
       stat: "Mínima Cuantía SIC",
       sub: "Si venció el plazo administrativo de 5 días ante el banco, se estructura la demanda de protección al consumidor ante la SIC sin requerir abogado.",
       voiceover: "Y cuarto caso: si ya vencieron los cinco días hábiles bancarios, el ciudadano no pierde su derecho, pues el sistema estructura la demanda jurisdiccional ante la SIC en mínima cuantía sin requerir abogado.",
-      visualType: "pillars"
+      visualType: "case4_sic"
     }
   ]
 });

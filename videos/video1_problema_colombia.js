@@ -9,7 +9,6 @@ window.REVERSOYA_VIDEOS.push({
   title: "I. El Problema del Consumidor Digital en Colombia",
   subtitle: "Pagos digitales masivos, excusas ilegales de los comercios y barreras de acceso a la justicia",
   legalFocus: "Art. 51 Ley 1480 de 2011 · Decreto 587 de 2016",
-  duration: 45.0,
   accent: "#FF5A5F",
   scenes: [
     {

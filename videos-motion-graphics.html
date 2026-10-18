@@ -65,9 +65,9 @@
 
     <!-- LEFT 4 COLS: 5 LINKED CHAPTERS OF THE CONTINUOUS ANIMATION + NORMATIVE PILLARS -->
     <aside class="lg:col-span-4 space-y-4">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between gap-2">
         <span class="font-display font-bold text-xs uppercase tracking-wider text-slate-400">Estructura de la Narrativa Jurídica</span>
-        <span class="px-2.5 py-0.5 rounded bg-[#00C48C]/20 text-[#63FCC0] text-[11px] font-bold">Animación Continua</span>
+        <span class="px-2.5 py-0.5 rounded bg-[#00C48C]/20 text-[#63FCC0] text-[11px] font-bold shrink-0 whitespace-nowrap">Animación Continua</span>
       </div>
 
       <div id="videoPlaylist" class="space-y-2.5"></div>
@@ -133,10 +133,10 @@
         <!-- Sequence Jump Buttons for Active Chapter -->
         <div id="sceneButtonsBar" class="flex flex-wrap gap-1.5 pt-1"></div>
 
-        <!-- Live Legal Narrative Box -->
+        <!-- Live Legal Rule & Normative Mechanism Box -->
         <div class="p-3.5 rounded-xl bg-[#0B132B] border border-white/10">
-          <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-            <span class="font-bold text-[#00C48C] uppercase tracking-wider">Narración Jurídica de la Secuencia</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 mb-1">
+            <span id="currentSceneKickerTag" class="font-bold text-[#00C48C] uppercase tracking-wider">Fundamento Normativo de la Secuencia</span>
             <span id="currentChapterTitleTag" class="font-semibold text-slate-300">I. El Problema del Consumidor Digital en Colombia</span>
           </div>
           <p id="liveSubtitleText" class="text-sm text-white font-medium leading-relaxed"></p>
@@ -197,12 +197,12 @@
             ${ROMAN[idx] || idx + 1}
           </div>
           <div class="min-w-0 flex-1">
-            <div class="flex items-center justify-between gap-2">
-              <span class="font-display font-bold text-xs sm:text-sm text-white truncate">${ch.title}</span>
-              <span class="text-[10px] px-2 py-0.5 rounded ${active ? 'bg-[#00C48C]/20 text-[#63FCC0] font-bold' : 'bg-white/10 text-slate-300'} shrink-0">${statusLabel}</span>
+            <div class="flex items-start justify-between gap-2">
+              <span class="font-display font-bold text-xs sm:text-sm text-white leading-snug">${ch.title}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded ${active ? 'bg-[#00C48C]/20 text-[#63FCC0] font-bold' : 'bg-white/10 text-slate-300'} shrink-0 whitespace-nowrap">${statusLabel}</span>
             </div>
-            <p class="text-xs text-slate-400 truncate mt-0.5">${ch.subtitle}</p>
-            <span class="block text-[10px] text-[#63FCC0]/80 font-medium mt-1">${ch.legalFocus}</span>
+            <p class="text-xs text-slate-400 leading-snug mt-1">${ch.subtitle}</p>
+            <span class="block text-[10px] text-[#63FCC0]/85 font-semibold mt-1">${ch.legalFocus}</span>
           </div>
         `;
         container.appendChild(btn);
@@ -215,18 +215,18 @@
       bar.innerHTML = '';
 
       const chapterScenes = UNIFIED.scenes.filter((s) => s.chapterIndex === activeChapterIdx);
-      chapterScenes.forEach((sc, i) => {
+      chapterScenes.forEach((sc) => {
         const isCurrent = sc.globalIndex === activeGlobalSceneIdx;
         const b = document.createElement('button');
         b.type = 'button';
         b.onclick = () => {
-          globalTime = sc.globalStart + 0.05;
+          globalTime = sc.globalStart;
           drawFrame();
         };
         b.className = isCurrent
           ? 'px-3 py-1 rounded-lg bg-[#00C48C] text-[#0B132B] text-[11px] font-extrabold transition'
           : 'px-3 py-1 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-[11px] font-semibold text-slate-200 transition';
-        b.textContent = `${i + 1}. ${sc.stepTitle}`;
+        b.textContent = `${sc.globalIndex + 1}. ${sc.stepTitle}`;
         bar.appendChild(b);
       });
     }
@@ -234,7 +234,7 @@
     function jumpToChapter(chapterIdx) {
       const ch = UNIFIED.chapters[chapterIdx];
       if (!ch) return;
-      globalTime = ch.globalStart + 0.05;
+      globalTime = ch.globalStart;
       isPlaying = true;
       updatePlayUI();
       drawFrame();
@@ -246,7 +246,7 @@
       const targetIdx = curIdx > 0 ? curIdx - 1 : UNIFIED.scenes.length - 1;
       const target = UNIFIED.scenes[targetIdx];
       if (target) {
-        globalTime = target.globalStart + 0.05;
+        globalTime = target.globalStart;
         drawFrame();
       }
     }
@@ -256,7 +256,7 @@
       const targetIdx = (curIdx + 1) % UNIFIED.scenes.length;
       const target = UNIFIED.scenes[targetIdx];
       if (target) {
-        globalTime = target.globalStart + 0.05;
+        globalTime = target.globalStart;
         drawFrame();
       }
     }
@@ -332,8 +332,9 @@
       document.getElementById('timelineSlider').value = clampedTime;
       document.getElementById('chapterBadge').textContent = `Capítulo ${ROMAN[chapterIndex] || chapterIndex + 1} de V`;
       document.getElementById('sceneBadge').textContent = `Secuencia ${globalSceneIndex + 1} de ${totalScenes}`;
-      document.getElementById('currentChapterTitleTag').textContent = activeScene.chapterTitle;
-      document.getElementById('liveSubtitleText').textContent = `“${activeScene.voiceover}”`;
+      document.getElementById('currentSceneKickerTag').textContent = `${activeScene.kicker} · ${activeScene.stat}`;
+      document.getElementById('currentChapterTitleTag').textContent = `${activeScene.chapterTitle} (${activeScene.chapterLegalFocus})`;
+      document.getElementById('liveSubtitleText').textContent = `${activeScene.headline}: ${activeScene.sub}`;
     }
 
     function loop(timestamp) {

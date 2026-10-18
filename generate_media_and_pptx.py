@@ -404,7 +404,7 @@ def build_styled_pptx(filename="ReversoYa_Presentacion_10Minutos.pptx"):
             "subtitle": "Plataforma LegalTech colombiana para reversión de pago, retracto, garantías y compensación aérea RAC 3.",
             "cards": [
                 ("NOMBRE Y MARCA", "ReversoYa: Acción directa sobre el dinero retenido en compras digitales."),
-                ("SÍMBOLO (LOGO)", "Escudo institucional (#0B132B) con flecha circular de restitución en verde esmeralda (#00C48C)."),
+                ("SÍMBOLO (LOGO)", "Escudo institucional azul naval con flecha circular de restitución en verde esmeralda."),
                 ("REGLA OPERATIVA", "Notificación formal en 5 días hábiles → Reembolso bancario en máximo 15 días hábiles."),
             ],
             "artifact": "brand_shield",
